@@ -8,3 +8,5 @@ Technologies Used
 
 I have created same layout as assigned, with my data in it. Now I have got a resume.
 It contains some little animations.
+
+link: https://areeba-week1-day2-assignment2.vercel.app/
