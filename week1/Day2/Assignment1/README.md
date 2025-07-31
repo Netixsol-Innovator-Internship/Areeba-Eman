@@ -4,3 +4,5 @@ I have Created a page with some cards.
 It basicaly contains CSS. Used grid and flex to arrange them. I have add some hover effects as well.
 
 them pushed it in my repo and deployed.
+
+link: https://areeba-week1-day2.vercel.app/
