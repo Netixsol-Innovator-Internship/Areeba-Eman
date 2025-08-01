@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive NFT Landing Page</title>
+    <link rel="stylesheet" href="./output.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                        mono: ['"Space Mono"', "monospace"],
+                        worksans: ['"Work Sans"', "sans-serif"],
+                    },
+                    screens: {
+                        'xs': '340px',
+                        '3xl': '1770px',
+                    },
+                    fontSize: {
+                        '60': '60px',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    colors: {
+                        'custom-bg': 'rgba(218, 143, 77, 0.09)',
+                    },
+                    
+                },
+            },
+        };
+    </script>
+
+     <style>
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        .star-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+        }
+        .ambient-glow {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .responsive-heading {
+        font-size: 35px;
+        line-height: 1.2;
+      }
+
+      .responsive-text {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .responsive-small {
+        font-size: 11px;
+      }
+      
+      /* footer style */
+      @media (min-width: 640px) {
+        .responsive-heading {
+          font-size: 45px;
+        }
+        .responsive-text {
+          font-size: 13px;
+        }
+        .responsive-small {
+          font-size: 12px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .responsive-heading {
+          font-size: 50px;
+        }
+        .responsive-text {
+          font-size: 14px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .responsive-heading {
+          font-size: 55px;
+        }
+        .responsive-text {
+          font-size: 14.5px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .responsive-heading {
+          font-size: 59.76px;
+        }
+        .responsive-text {
+          font-size: 14.94px;
+        }
+      }
+
+      /* roadmap section */
+      
+    </style>
+
+</head>
+<body class="bg-black font-poppins min-h-screen w-screen overflow-x-hidden">
+    <!-- Header -->
+    <header class="bg-[#353535] text-white flex items-center justify-center">
+        <div class="w-full max-w-[1770px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-20">
+            <div class="w-full py-3 sm:py-4 md:py-5 lg:py-6 flex items-center justify-between">
+                <!-- Logo -->
+                <h1 class="font-bold text-base sm:text-lg md:text-xl lg:text-2xl">LogoHere</h1>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center justify-evenly">
+                    <nav class="px-2 xl:px-6">
+                        <a
+                            href="#"
+                            class="hover:text-gray-300 transition font-semibold text-sm lg:text-base xl:text-lg px-2 lg:px-3 xl:px-4 cursor-pointer"
+                        >
+                            About
+                        </a>
+                        <a
+                            href="#"
+                            class="hover:text-gray-300 transition font-semibold text-sm lg:text-base xl:text-lg px-2 lg:px-3 xl:px-4 cursor-pointer"
+                        >
+                            Collections
+                        </a>
+                        <a
+                            href="#"
+                            class="hover:text-gray-300 transition font-semibold text-sm lg:text-base xl:text-lg px-2 lg:px-3 xl:px-4 cursor-pointer"
+                        >
+                            Creator
+                        </a>
+                        <a
+                            href="#"
+                            class="hover:text-gray-300 transition font-semibold text-sm lg:text-base xl:text-lg px-2 lg:px-3 xl:px-4 cursor-pointer"
+                        >
+                            Roadmap
+                        </a>
+                    </nav>
+                    <button class="font-bold text-sm lg:text-base xl:text-lg bg-[#DA8F4D] px-4 lg:px-6 xl:px-8 2xl:px-12 py-2 lg:py-3 xl:py-4 ml-2 lg:ml-4 xl:ml-6 rounded-xl lg:rounded-2xl border border-white hover:bg-[#c17d3a] transition-colors">
+                        sign in
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button
+                        id="mobile-menu-button"
+                        class="text-white hover:text-gray-300 focus:outline-none transition-colors p-1"
+                    >
+                        <svg
+                            id="hamburger-icon"
+                            class="h-5 w-5 sm:h-6 sm:w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                        <svg
+                            id="close-icon"
+                            class="h-5 w-5 sm:h-6 sm:w-6 hidden"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="lg:hidden border-t border-gray-600 hidden">
+                <div class="px-2 sm:px-4 pt-3 pb-4 space-y-2">
+                    <a
+                        href="#"
+                        class="block px-3 py-2 text-white hover:text-gray-300 hover:bg-gray-600 rounded-lg transition font-semibold text-sm sm:text-base mobile-nav-link"
+                    >
+                        About
+                    </a>
+                    <a
+                        href="#"
+                        class="block px-3 py-2 text-white hover:text-gray-300 hover:bg-gray-600 rounded-lg transition font-semibold text-sm sm:text-base mobile-nav-link"
+                    >
+                        Collections
+                    </a>
+                    <a
+                        href="#"
+                        class="block px-3 py-2 text-white hover:text-gray-300 hover:bg-gray-600 rounded-lg transition font-semibold text-sm sm:text-base mobile-nav-link"
+                    >
+                        Creator
+                    </a>
+                    <a
+                        href="#"
+                        class="block px-3 py-2 text-white hover:text-gray-300 hover:bg-gray-600 rounded-lg transition font-semibold text-sm sm:text-base mobile-nav-link"
+                    >
+                        Roadmap
+                    </a>
+                    <div class="pt-3">
+                        <button class="w-full font-bold text-sm sm:text-base bg-[#DA8F4D] px-4 py-2 sm:py-3 rounded-xl border border-white hover:bg-[#c17d3a] transition-colors">
+                            sign in
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="text-white flex items-center justify-center relative bg-cover bg-center min-h-screen"
+        style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/image\ 103.png');"
+    >
+        <div class="w-full max-w-[1770px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
+                <!-- Left Side - Text Content -->
+                <div class="text-white space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1">
+                    <div class="space-y-2 sm:space-y-3 md:space-y-4">
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight">
+                            We Have High
+                        </h1>
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight flex flex-wrap items-start">
+                            Quality<span class="text-[#DA8F4D] ml-2"> NFT </span>
+                        </h1>
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight">
+                            Collections
+                        </h1>
+                        <p class="text-gray-200 font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl pt-3 sm:pt-4 md:pt-6">
+                            Lorem ipsum dolor sit amet consectetur. Rhoncus massa suspendisse turpis sed viverra tempus tortor.
+                            Habitant accumsan sagittis in facilisi placerat ac. Laoreet scelerisque viverra viverra ornare
+                            fermentum faucibus sit purus volutpat. Egestas lectus ornare convallis ornare nullam enim neque.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 pt-4 sm:pt-6 md:pt-8 lg:pt-10">
+                        <button class="font-bold text-sm sm:text-base md:text-lg bg-[#DA8F4D] px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 sm:py-3 md:py-4 rounded-xl lg:rounded-2xl border border-white hover:bg-[#c17d3a] transition-colors">
+                            Get Started
+                        </button>
+                        <button class="bg-transparent hover:bg-white hover:text-black text-white font-bold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 sm:py-3 md:py-4 rounded-xl lg:rounded-2xl border border-white transition-all duration-300">
+                            Contact us
+                        </button>
+                    </div>
+
+                    <!-- Stats Section -->
+                    <div class="bg-gradient-to-r from-white/10 via-white/5 to-white/10 backdrop-blur-md border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg w-full max-w-2xl mt-6 sm:mt-8 md:mt-10">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-20">
+                            <div class="text-center sm:text-left">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-white">240K+</div>
+                                <div class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light pt-1 sm:pt-2 md:pt-3">
+                                    Total Sale
+                                </div>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-white">100k+</div>
+                                <div class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light pt-1 sm:pt-2 md:pt-3">
+                                    Auctions
+                                </div>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-white">240k+</div>
+                                <div class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light pt-1 sm:pt-2 md:pt-3">
+                                    Artists
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Hero Image -->
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+                        <!-- Main Hero Image -->
+                        <div class="relative z-10">
+                            <img
+                                src="images/Group 865.png"
+                                alt="Hero NFT Collection"
+                                class="w-full h-auto rounded-2xl lg:rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
+
+                        <!-- Decorative Element -->
+                        <div class="absolute -bottom-3 sm:-bottom-4 md:-bottom-6 -left-3 sm:-left-4 md:-left-6 w-8 sm:w-12 md:w-16 h-8 sm:h-12 md:h-16 animate-bounce">
+                            <img src="images/thinsmooth.png" alt=""></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- About us -->
+     <div id="AboutUs"></div>
+
+      <!-- Top creations  -->
+       <div id="top-collections"></div>
+
+       <!-- Top creators  -->
+        <div id="top-creators"></div>
+
+    <!-- Roadmap Section -->
+    <div class="bg-black text-white hover:text-yellow-500 text-glow h-10 text-center animate-bounce text-4xl md:text-60 font-bold ">
+  <a href="roadmap.html">
+    <h2>Click to see RoadMap</h2>
+  </a>
+</div>
+
+
+    <!-- How It Works Section -->
+    <div class="bg-black overflow-x-hidden text-white min-h-screen ">
+
+    <div class="container mx-auto px-6 md:px-12 lg:px-16 xl:px-20 py-16 max-w-7xl">
+        <!-- Main Title -->
+         <!-- Ambient Background Glows -->
+        <div class="relative overflow-hidden bg-black text-white min-h-screen">
+        <div class="ambient-glow w-96 h-96 -bottom-20 -left-20 opacity-80 hidden sm:block"></div>
+        <div class="ambient-glow w-80 h-80 top-1/4 -right-16 opacity-60 hidden sm:block"></div>
+
+
+        <div class="text-center mb-20">
+            <h1 class="text-4xl md:text-60 font-bold">How It Works</h1>
+        </div>
+
+        <!-- Step 1: Setup And Connect Your Wallet -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center mb-20 lg:mb-32 px-4 md:px-8">
+            <!-- Image Column -->
+            <div class="order-2 lg:order-1 flex justify-center">
+                <div class="relative">
+                    <img src="images/wallet.png" 
+                         alt="Wallet with coins" 
+                         class="w-full max-w-sm h-auto">
+                </div>
+            </div>
+            
+            <!-- Content Column -->
+            <div class="order-1 lg:order-2 space-y-6 relative">
+                <!-- Decorative Star -->
+                <div class="absolute -top-8 -left-4 md:-left-8 animate-bounce">
+                    <img src="images/thinsmooth.png" 
+                         alt="Star" 
+                         class="w-10 h-10 opacity-80">
+                </div>
+                
+                <h2 class="text-3xl md:text-60 font-bold leading-tight">
+                    Setup And Connect<br>Your Wallet.
+                </h2>
+                <p class="text-base text-gray-300 leading-relaxed max-w-md">
+                    Set up your wallet of choice. Connect it to the Aniverse by clicking the wallet icon in the top right corner. Learn about the wallets we support.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 2: Create Your Own Digital NFT -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center mb-20 lg:mb-32 px-4 md:px-8">
+            <!-- Content Column -->
+            <div class="space-y-6 relative">
+                <!-- Decorative Star -->
+                <div class="absolute -bottom-12 -right-4 md:-right-8 animate-bounce">
+                    <img src="images/thinsmooth.png" 
+                         alt="Star" 
+                         class="w-10 h-10 opacity-60">
+                </div>
+                
+                <h2 class="text-3xl md:text-60 font-bold leading-tight">
+                    Create Your Own<br>Digital NFT
+                </h2>
+                <p class="text-base text-gray-300 leading-relaxed max-w-md">
+                    Click My Collections and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.
+                </p>
+            </div>
+            
+            <!-- Image Column -->
+            <div class="flex justify-center">
+                <div class="relative">
+                    <img src="images/monkey.png" 
+                         alt="Character illustration" 
+                         class="w-full max-w-sm h-auto">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Setup And Connect Your Wallet (Repeated) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center px-4 md:px-8">
+            <!-- Image Column -->
+            <div class="order-2 lg:order-1 flex justify-center">
+                <div class="relative">
+                    <img src="images/coins.png" 
+                         alt="Character with sunglasses and coins" 
+                         class="w-full max-w-sm h-auto">
+                </div>
+            </div>
+            
+            <!-- Content Column -->
+            <div class="order-1 lg:order-2 space-y-6 relative">
+                <!-- Decorative Star -->
+                <div class="absolute -top-8 -left-4 md:-left-8 animate-bounce">
+                    <img src="images/thinsmooth.png" 
+                         alt="Star" 
+                         class="w-10 h-10 opacity-80">
+                </div>
+                
+                <h2 class="text-3xl md:text-60 font-bold leading-tight">
+                    Setup And Connect<br>Your Wallet.
+                </h2>
+                <p class="text-base text-gray-300 leading-relaxed max-w-md">
+                    Set up your wallet of choice. Connect it to the Aniverse by clicking the wallet icon in the top right corner. Learn about the wallets we support.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div> 
+
+    <!-- Footer section -->
+    <footer
+      class="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-x-hidden"
+      style="
+        height: 577.8px;
+        background-image: url(images/footer.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div class="relative z-10 text-center max-w-5xl mx-auto">
+        <!-- Main Heading -->
+        <h2 class="text-white font-bold mb-6 sm:mb-8 responsive-heading">
+          Join Our Community
+        </h2>
+
+        <!-- Description Text -->
+        <p
+          class="text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4 responsive-text"
+        >
+          Lorem Ipsum Dolor Sit Amet Consectetur. Donec Vitae Hendrerit Neque
+          Nisi Ut Sit A Vulputate Elementum. Nunc Sit Nec Fermentum Proin
+          Fermentum. At Donec Ipsum Donec Nulla. Amet Ut A Felis Pellentesque
+          Vel Odio.
+        </p>
+
+        <!-- Email Signup Form -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto mb-8 sm:mb-12"
+        >
+          <input
+            type="email"
+            placeholder="Your Email"
+            class="w-full sm:flex-1 px-6 py-3 sm:py-4 rounded-full bg-white/90 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all duration-200"
+            style="font-size: 14px"
+          />
+          <button
+            class="w-full sm:w-auto border-2 border-[#EA9112] px-8 py-3 sm:py-4 text-gray-800 font-semibold rounded-full transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-transparent"
+            style="background-color: #efe7d78f; font-size: 14px"
+          >
+            Join Now
+          </button>
+        </div>
+
+        <!-- Copyright Text -->
+        <p class="text-gray-400 responsive-small">
+          © NFT Monkey. Use this template freely.
+        </p>
+      </div>
+    </footer>
+
+
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const hamburgerIcon = document.getElementById("hamburger-icon");
+        const closeIcon = document.getElementById("close-icon");
+
+        function toggleMobileMenu() {
+            const isHidden = mobileMenu.classList.contains("hidden");
+            
+            if (isHidden) {
+                // Show mobile menu
+                mobileMenu.classList.remove("hidden");
+                hamburgerIcon.classList.add("hidden");
+                closeIcon.classList.remove("hidden");
+            } else {
+                // Hide mobile menu
+                mobileMenu.classList.add("hidden");
+                hamburgerIcon.classList.remove("hidden");
+                closeIcon.classList.add("hidden");
+            }
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add("hidden");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        }
+
+        // Event listeners
+        mobileMenuButton.addEventListener("click", toggleMobileMenu);
+
+        // Close mobile menu when clicking on navigation links
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (
+                !mobileMenuButton.contains(e.target) &&
+                !mobileMenu.contains(e.target)
+            ) {
+                closeMobileMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 1024) {
+                closeMobileMenu();
+            }
+        });
+
+        // Load About us
+    fetch('AboutUs.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('AboutUs').innerHTML = data;
+      });
+
+        // Load top_creators.html into the div with id="footer"
+    fetch('top-collections.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-collections').innerHTML = data;
+      });
+
+        // Load top_creators.html into the div with id="top-creators"
+    fetch('top-creators.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-creators').innerHTML = data;
+      });
+
+        // Load roadmap.html into the div with id="roadmap"
+    fetch('roadmap.html')  
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('roadmap').innerHTML = data;
+      });
+
+    </script>
+</body>
+</html>
+

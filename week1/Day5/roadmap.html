@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Map Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                        mono: ['"Space Mono"', "monospace"],
+                        worksans: ['"Work Sans"', "sans-serif"],
+                    },
+                    screens: {
+                        'xs': '340px',
+                        '3xl': '1770px',
+                    },
+                    fontSize: {
+                        '60': '60px',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    colors: {
+                        'custom-bg': 'rgba(218, 143, 77, 0.09)',
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .timeline-line {
+            background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+        }
+        
+        .dotted-arrow-left {
+            border-top: 3px dotted #fbbf24;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .dotted-arrow-left::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #fbbf24;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dotted-arrow-right {
+            border-top: 3px dotted #fbbf24;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .dotted-arrow-right::after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-right: 12px solid #fbbf24;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .righty-border {
+            position: relative;
+            border-left: 8px solid white;
+            transition: all 0.4s ease;
+        }
+        
+        .righty-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 8px;
+            width: 50%;
+            background: linear-gradient(to left, black, orange, white);
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+        
+        .righty-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 8px;
+            width: 50%;
+            background: linear-gradient(to left, black, orange, white);
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+        
+        .lefty_border {
+            position: relative;
+            border-right: 8px solid white;
+            transition: all 0.4s ease;
+        }
+        
+        .lefty_border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 8px;
+            width: 50%;
+            background: linear-gradient(to right, black, orange, white);
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+        
+        .lefty_border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 8px;
+            width: 50%;
+            background: linear-gradient(to right, black, orange, white);
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+        
+        body {
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            background-color: #1a1a1a;
+        }
+        
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(251, 191, 36, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
+            }
+        }
+        
+        /* Timeline item animations */
+        .timeline-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Hover effects */
+        .timeline-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .timeline-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(251, 191, 36, 0.2);
+        }
+        
+        .timeline-card:hover .card-content {
+            background: rgba(55, 65, 81, 0.4);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+        
+        .timeline-card:hover .righty-border::before,
+        .timeline-card:hover .righty-border::after {
+            width: 70%;
+            background: linear-gradient(to left, #fbbf24, #f59e0b, white);
+        }
+        
+        .timeline-card:hover .lefty_border::before,
+        .timeline-card:hover .lefty_border::after {
+            width: 70%;
+            background: linear-gradient(to right, #fbbf24, #f59e0b, white);
+        }
+        
+        /* Circle node animations */
+        .timeline-node {
+            transition: all 0.3s ease;
+            animation: glow 2s infinite;
+        }
+        
+        .timeline-item:hover .timeline-node {
+            transform: scale(1.3);
+            animation: pulse 1s infinite;
+        }
+        
+        /* Arrow hover effects */
+        .timeline-item:hover .dotted-arrow-left,
+        .timeline-item:hover .dotted-arrow-right {
+            border-top-color: #f59e0b;
+            transform: scale(1.1);
+        }
+        
+        .timeline-item:hover .dotted-arrow-left::after {
+            border-left-color: #f59e0b;
+        }
+        
+        .timeline-item:hover .dotted-arrow-right::after {
+            border-right-color: #f59e0b;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timeline-card {
+                margin: 0 auto;
+                max-width: 90%;
+            }
+            
+            .timeline-card:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .timeline-card {
+                max-width: 95%;
+            }
+        }
+        
+        @media (max-width: 340px) {
+            .timeline-card {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-black text-white overflow-x-hidden">
+    <div class="container mx-auto px-2 sm:px-4 py-8 sm:py-12 max-w-[1770px] min-w-[340px]">
+        <!-- Title -->
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 bg-gradient-to-r text-white">
+            Road Map
+        </h1>
+        
+        <!-- Timeline Container -->
+        <div class="relative w-full">
+            <!-- Central Timeline Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 timeline-line h-full"></div>
+            
+            <!-- Timeline Items -->
+            <div class="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12">
+                
+                <!-- January - Brief (Left) -->
+                <div class="timeline-item relative flex items-center mt-8">
+                    <!-- Card -->
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] ml-0 md:ml-[calc(5%-25px)] mt-4 sm:mt-6 md:mt-7">
+                        <div class="relative lefty_border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">January</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Brief</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute right-[47%] lg:right-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-right w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+
+                <!-- February - Research (Right) -->
+                <div class="timeline-item relative flex items-center justify-end">
+                    <!-- Card -->
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] mr-0 md:mr-[calc(5%-25px)]">
+                        <div class="righty-border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">February</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Research</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute left-[47%] lg:left-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-left w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+
+                <!-- March - Discovery (Left) -->
+                <div class="timeline-item relative flex items-center">
+                    <!-- Card -->
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] ml-0 md:ml-[calc(5%-25px)]">
+                        <div class="lefty_border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">March</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Discovery</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute right-[47%] lg:right-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-right w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+
+                <!-- April - Design (Right) -->
+                <div class="timeline-item relative flex items-center justify-end">
+                    <!-- Card -->
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] mr-0 md:mr-[calc(5%-25px)]">
+                        <div class="righty-border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">April</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Design</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute left-[47%] lg:left-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-left w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+
+                <!-- May - Testing (Left) -->
+                <div class="timeline-item relative flex items-center">
+                    <!-- Card -->
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] ml-0 md:ml-[calc(5%-25px)]">
+                        <div class="lefty_border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">May</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Testing</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute right-[47%] lg:right-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-right w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+
+                <!-- June - Launch & Feedback (Right) -->
+                <div class="timeline-item relative flex items-center justify-end">
+                    <div class="timeline-card relative w-full md:w-[calc(45%)] lg:w-[calc(40%+50px)] mr-0 md:mr-[calc(5%-25px)]">
+                        <div class="righty-border rounded-lg p-2 sm:p-3 md:p-[12px]">
+                            <div class="card-content bg-gray-800 bg-opacity-20 backdrop-blur-sm border border-gray-600 rounded-lg p-4 sm:p-5 md:p-6 relative transition-all duration-300">
+                                <div class="text-amber-400 text-xs sm:text-sm font-medium mb-2">June</div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">Launch & Feedback</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lorem ipsum dolor sit amet consectetur. Elit massa urna
+                                    vitae semper quam. Morbi quis rhoncus ipsum. Vestibulum
+                                    bibendum ligula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dotted Arrow (Hidden on mobile) -->
+                    <div class="hidden md:block absolute left-[47%] lg:left-[47%] top-1/2 transform -translate-y-1/2">
+                        <div class="dotted-arrow-left w-16 lg:w-24"></div>
+                    </div>
+                    
+                    <!-- Circle Node -->
+                    <div class="timeline-node absolute left-1/2 transform -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-amber-400 rounded-full z-10"></div>
+                </div>
+                
+            </div>
+        </div>
+
+        <button 
+        onclick="window.location.href='index.html'"
+        class=" bottom-6 right-6 
+               w-48 h-14 
+               sm:w-44 sm:h-12 
+               md:w-48 md:h-14 
+               lg:w-50 lg:h-14
+               bg-gray-700 hover:bg-gray-800 
+               text-white font-semibold 
+               rounded-lg shadow-lg hover:shadow-xl 
+               transition-all duration-300 ease-in-out 
+               transform hover:scale-105 
+               focus:outline-none focus:ring-4 focus:ring-blue-300 
+               active:scale-95
+               text-sm sm:text-base
+               z-50"
+        aria-label="Navigate to home page"
+    >
+        🏠 Home
+    </button>
+    </div>
+</body>
+</html>

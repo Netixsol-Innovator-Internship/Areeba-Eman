@@ -1,0 +1,192 @@
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    maxWidth: {
+                        'custom': '1770px',
+                    },
+                    minWidth: {
+                        'custom': '340px',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(232, 142, 3, 0.3)' },
+                            '100%': { boxShadow: '0 0 20px rgba(232, 142, 3, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<div class="bg-black text-white min-h-screen">
+    <div class="min-w-custom max-w-custom mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8 lg:py-12">
+        <!-- Header Section -->
+        <div class="text-center mb-6 sm:mb-8 lg:mb-12">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 lg:mb-4 px-2">Top Collections</h1>
+            <p class="text-gray-400 text-sm sm:text-base lg:text-lg px-4 sm:px-6">The largest and unique Super rare NFT marketplace for crypto-collectibles</p>
+        </div>
+
+        <!-- Collections Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-[15px] mb-6 sm:mb-8 lg:mb-[55px] justify-items-center">
+            <!-- Card 1 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25);"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-pulse"></div>
+                    <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image1.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25); animation-delay: 0.5s;"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-puls"></div>
+                   <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image22.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25); animation-delay: 1s;"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-pulse"></div>
+                    <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image 33.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25); animation-delay: 1.5s;"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-pulse"></div>
+                    <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image4.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25); animation-delay: 2s;"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-pulse"></div>
+                    <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image5.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="group w-full max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[434px] aspect-[4/5] sm:aspect-[434/500] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-1 hover:border-orange-400 hover:shadow-2xl cursor-pointer animate-float" 
+                 style="background-color: rgba(232, 142, 3, 0.25); animation-delay: 2.5s;"
+                 onmouseover="this.style.backgroundColor='rgba(232, 142, 3, 0.4)'"
+                 onmouseout="this.style.backgroundColor='rgba(232, 142, 3, 0.25)'">
+                <div class="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-4 h-4 sm:w-4 sm:h-4 bg-gray-500 rounded-full group-hover:animate-puls"></div>
+                    <span class="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">Created By <br><span class="text-orange-400 group-hover:text-orange-300">James Watson</span></span>
+                </div>
+                
+                <div class="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300 transform group-hover:scale-110">
+                        <img src="images/image6.png" 
+                             alt="NFT Character" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                
+                <div class="text-left mt-14">
+                    <h3 class="text-base sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 group-hover:text-orange-300 transition-colors duration-300">NFts Collections</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">Created by <span class="text-orange-400 group-hover:text-orange-300">James Watson</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explore More Button -->
+        <div class="flex justify-center px-4">
+            <button class="group w-full max-w-[180px] sm:max-w-[198px] h-10 sm:h-12 lg:h-[56px] bg-gradient-to-r from-gray-700 to-gray-500 hover:from-gray-500 hover:to-gray-700 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-gray-500/50 text-sm sm:text-base">
+                <span class="group-hover:animate-pulse">Explore More</span>
+            </button>
+        </div>
+    </div>
+</div>

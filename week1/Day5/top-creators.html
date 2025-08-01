@@ -1,0 +1,353 @@
+
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ping-delayed {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Animation classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+
+        .animate-ping-delayed {
+            animation: ping-delayed 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+
+        /* Initial hidden state */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Custom hover effects */
+        .creator-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .creator-card:hover {
+            transform: scale(1.05);
+            background-color: #3A3730;
+            box-shadow: 0 25px 50px -12px rgba(251, 146, 60, 0.3);
+        }
+
+        .creator-card:hover .rank-number {
+            color: white;
+        }
+
+        .creator-card:hover .avatar-container {
+            transform: scale(1.1) rotate(6deg);
+            box-shadow: 0 10px 25px rgba(251, 146, 60, 0.6);
+        }
+
+        .creator-card:hover .avatar-border {
+            opacity: 1;
+        }
+
+        .creator-card:hover .creator-name {
+            background: linear-gradient(to right, rgb(251, 146, 60), rgb(245, 158, 11));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .creator-card:hover .sales-amount {
+            color: rgb(251, 146, 60);
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .creator-card:hover .sales-text {
+            color: rgb(209, 213, 219);
+        }
+
+        .creator-card:hover .floating-particle {
+            opacity: 1;
+        }
+
+        .creator-card:hover .glow-border {
+            background: linear-gradient(to right, 
+                rgba(251, 146, 60, 0.25), 
+                rgba(245, 158, 11, 0.25), 
+                rgba(234, 179, 8, 0.25)
+            );
+        }
+
+        /* Avatar and particle effects */
+        .avatar-container {
+            transition: all 0.5s ease-out;
+        }
+
+        .avatar-border {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .floating-particle {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .glow-border {
+            transition: all 0.5s ease-out;
+        }
+
+        .creator-name {
+            transition: all 0.3s ease-out;
+        }
+
+        .sales-amount {
+            transition: all 0.3s ease-out;
+        }
+
+        .sales-text {
+            transition: all 0.3s ease-out;
+        }
+
+        .rank-number {
+            transition: all 0.3s ease-out;
+        }
+    </style>
+
+<div class="bg-black text-white">
+    <div class="overflow-x-hidden bg-black text-white">
+        <section class="relative py-20 px-6">
+            <div class="max-w-[100vw] overflow-x-hidden">
+                <!-- Header -->
+                <div class="text-center mb-16 fade-in-element animate-fade-in-up">
+                    <h2 class="text-4xl md:text-5xl lg:text-[50.79px] font-bold text-white mb-6 leading-tight">
+                        Top Creators
+                    </h2>
+                    <p class="text-gray-400 text-lg md:text-[18.9px] leading-relaxed">
+                        Check-Out Top Rated Creators On The NFT Marketplace
+                    </p>
+                </div>
+
+                <!-- Cards Grid -->
+                <div class="flex flex-wrap justify-center gap-6">
+                    <!-- Card 1 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-100">
+                        <!-- Rank Number -->
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">1</div>
+                        
+                        <!-- Glowing Border Effect -->
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+
+                        <!-- Avatar -->
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <!-- Rotating border effect -->
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr1.png" alt="Alex Chen" class="w-full h-full object-cover rounded-full">
+                        </div>
+
+                        <!-- Name -->
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Alex Chen</h3>
+
+                        <!-- Sales -->
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">34.53 ETH</span>
+                        </p>
+
+                        <!-- Floating particles -->
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-200">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">2</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr2.png" alt="Sarah Kim" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Sarah Kim</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">28.91 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-300">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">3</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr3.png" alt="Mike Johnson" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Mike Johnson</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">25.47 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-400">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">4</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-red-600 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr4.png" alt="Emma Davis" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Emma Davis</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">22.18 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-500">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">5</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr5.png" alt="David Wilson" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">David Wilson</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">19.85 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-600">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">6</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-500 to-amber-600 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr6.png" alt="Lisa Brown" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Lisa Brown</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">17.32 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-700">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">7</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr7.png" alt="Tom Garcia" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Tom Garcia</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">15.76 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8 -->
+                    <div class="w-full sm:w-[45%] lg:w-[30%] xl:w-[23%] h-[278px] md:h-[321.75px] bg-[#2E2C25] rounded-2xl p-8 flex flex-col items-center justify-center relative creator-card cursor-pointer fade-in-element animate-fade-in-up delay-800">
+                        <div class="absolute top-4 left-4 text-gray-500 text-lg font-medium rank-number">8</div>
+                        <div class="absolute inset-0 rounded-2xl glow-border -z-10"></div>
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-red-400 to-orange-600 mb-6 flex items-center justify-center overflow-hidden avatar-container relative">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-orange-300/30 to-transparent avatar-border animate-spin-slow"></div>
+                            <img src="images/cr8.png" alt="Anna Miller" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="text-white text-2xl md:text-[29.7px] font-semibold mb-3 leading-tight creator-name">Anna Miller</h3>
+                        <p class="text-gray-400 text-sm sales-text">
+                            Total Sales: <span class="text-white font-semibold sales-amount">13.94 ETH</span>
+                        </p>
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-400 rounded-full floating-particle animate-ping"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-amber-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 200ms;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-yellow-400 rounded-full floating-particle animate-ping-delayed" style="animation-delay: 400ms;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Trigger animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in-element');
+            elements.forEach(element => {
+                element.classList.add('animate-fade-in-up');
+            });
+        });
+    </script>
