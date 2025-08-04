@@ -175,6 +175,26 @@ footer a {
   color: hsl(259, 100%, 65%);
 }
 
+.clear-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#clear {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: hsl(259, 100%, 65%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#clear:hover {
+  background-color: hsl(259, 100%, 50%);
+}
+
 @media (max-width: 480px) {
   .container {
     padding: 20px;

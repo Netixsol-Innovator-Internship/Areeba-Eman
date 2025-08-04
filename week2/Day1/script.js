@@ -157,3 +157,30 @@ document.getElementById("calculate").addEventListener("click", function () {
   animateValue("months", 0, ageMonth, 1000);
   animateValue("days", 0, ageDay, 1000);
 });
+
+// Remove error styles and messages when any input is focused
+["day", "month", "year"].forEach((id) => {
+  const input = document.getElementById(id);
+  input.addEventListener("focus", () => {
+    const group = input.parentElement;
+    const error = group.querySelector(".error-message");
+    if (error) error.remove();
+
+    input.style.borderColor = ""; // Reset border
+    group.querySelector("label").style.color = ""; // Reset label color
+  });
+});
+
+// Clear all inputs and output values
+document.getElementById("clear").addEventListener("click", () => {
+  ["day", "month", "year"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+
+  document.getElementById("years").textContent = "--";
+  document.getElementById("months").textContent = "--";
+  document.getElementById("days").textContent = "--";
+
+  // Optional: remove any errors
+  document.querySelectorAll(".error-message").forEach(el => el.remove());
+});
