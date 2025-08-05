@@ -8,6 +8,8 @@ button.addEventListener("click",() =>{
         e.classList.remove('dot');
     })
     document.getElementById('num').innerText = '0';
+
+    button.classList.add('disabled');
 })
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -73,6 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
       box.remove();
     });
   });
+   num.innerText = '0';
+    button.disabled = true;
 });
 
 
