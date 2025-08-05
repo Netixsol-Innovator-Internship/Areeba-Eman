@@ -1,16 +1,23 @@
-let button = document.getElementById("read");
+let button = document.getElementById('read');
 
-button.addEventListener("click",() =>{
+button.addEventListener('click', () => {
     document.querySelectorAll('.single-box').forEach(e => {
         e.classList.remove('unseen');
-    })
+        
+    });
+    
     document.querySelectorAll('.dot').forEach(e => {
         e.classList.remove('dot');
-    })
+        
+    });
     document.getElementById('num').innerText = '0';
 
-    button.classList.add('disabled');
+
+button.classList.add('disabled');
+
 })
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const notifBoxes = document.querySelectorAll(".single-box");
@@ -24,24 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Make each notification clickable
-  notifBoxes.forEach(box => {
-    box.addEventListener("click", () => {
-      if (box.classList.contains("unseen")) {
-        box.classList.remove("unseen");
-        const dot = box.querySelector(".dot");
-        if (dot) dot.style.display = "none";
-        updateCount();
-      }
+    notifBoxes.forEach(box => {
+        box.addEventListener("click", () => {
+            if (box.classList.contains("unseen")) {
+                box.classList.remove("unseen");
+                const dot = box.querySelector(".dot");
+                if (dot) dot.style.display = "none";
+                updateCount();
+            }
+        });
     });
-  })
+    
+   const boxes = document.querySelectorAll(".single-box");
 
-
-    const boxes = document.querySelectorAll(".single-box");
-
-    boxes.forEach((box, index) => {
-        box.style.animationDelay = `${index * 0.1}s`;
-    });
-
+  boxes.forEach((box, index) => {
+    box.style.animationDelay = `${index * 0.1}s`;
+  });
 });
 
 
@@ -75,17 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
       box.remove();
     });
   });
-   num.innerText = '0';
-    button.disabled = true;
 });
 
 
-// Dark-mode
 
-  const toggleBtn = document.getElementById("toggleBtn");
+// dark mode toggle
+const toggleBtn = document.getElementById("toggleBtn");
 
   toggleBtn.addEventListener("change", function () {
     document.body.classList.toggle("dark-mode");
   });
 
-
+  
