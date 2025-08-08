@@ -1,0 +1,26 @@
+[
+  {
+    "name": "St Glx",
+    "location": "South London",
+    "date": "24th September, 2023",
+    "image": "images/dp.png",
+    "stars": "images/stars.png",
+    "text": "The positive aspect was undoubtedly the efficiency of the service. The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying."
+  },
+  {
+    "name": "Jane Doe",
+    "location": "North London",
+    "date": "10th October, 2023",
+    "image": "images/dp.png",
+    "stars": "images/stars.png",
+    "text": "Amazing burgers and really fast service. Loved it! The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying."
+  },
+  {
+    "name": "Mark Taylor",
+    "location": "East London",
+    "date": "5th November, 2023",
+    "image": "images/dp.png",
+    "stars": "images/stars.png",
+    "text": "Nice ambiance, friendly staff, and delicious fries! The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying."
+  }
+]

@@ -1,0 +1,711 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+header {
+    /* height: 60px; */
+    max-width: 1740px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 60px;
+    
+}
+
+.header-logo {
+    flex: 1;
+}
+.header-logo img{
+    height: 25px;
+    width: auto;
+    margin-left: 15px;
+}
+
+nav {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar{
+     display: flex;
+    gap: 1.1rem;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.cart {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bar .active{
+    background-color: #FC8A06;
+    border-radius: 40px;
+}
+
+.cart span{
+    background-color: #03081F;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.cart a{
+    text-decoration: none;
+    color: #03081F;
+    padding: 15px 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+/* Header ends  */
+/* hero  */
+.hero{
+   display: flex;
+   justify-content: center;
+   position: relative;
+   height: 410px;
+}
+
+.hero-section{
+    background-image:  linear-gradient(rgba(3, 8, 31, 0.9), rgba(3, 8, 31, 0.9)),url(images/hero-img-1.png);
+    background-position: center;
+    background-size: cover ;
+    border-radius: 7px;
+    width: 90%;
+    height: 380px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+.right-hero{
+    position: relative;
+    max-width: 500px;
+
+}
+
+.right-hero img{
+   max-width: 480px;
+   width: 100%;
+   height: auto;
+   border-radius: 7px;
+   display: block;
+}
+
+.left-hero{
+   width: 55%;
+   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+.left-hero-bottom{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.min-order, .delivery{
+    display: flex;
+    border-radius: 35px;
+    border: 1px solid white;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.right-hero .overlay-img{
+    height: 100px;
+    width: auto;
+    position: absolute;
+    bottom: 15px;   /* Push it below the main image */
+    left : -30px;    /* Push it to the side of the main image */
+  
+}
+
+.time-cont{
+    width: 270px;
+    height: 50px;
+    background-color: #FC8A06;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    position: absolute;
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    gap: 1rem;
+    bottom: 2px;
+    left: 67px;
+}
+/* hero-section ends  */
+
+.heading-search{
+    margin: 20px 90px;
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+.search{
+ height: 60px;
+ width: 270px;
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ border-radius: 30px;
+ border: 1px solid black;
+ padding: 20px;
+ gap: 1rem;
+}
+
+.offers{
+    width: 100%;
+    background-color: #FC8A06;
+    height: 80px;
+
+}
+
+.offers-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 70px;
+    padding: 30px 0;
+}
+.offers-options a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* offers closed */
+
+/* New Containes Burgers */
+.container-burgers {
+    margin: 20px 70px;
+    overflow-x: hidden;    
+}
+.container-burgers h1{
+    margin-bottom: 20px;
+}
+.burgers{
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 12px;
+   padding-left: 16px;
+   padding-bottom: 25px;
+}
+
+.burger-box{
+   width: 100%;
+  max-width: 380px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+}
+.right{
+    position: relative;
+}
+.right img{
+    margin-top: 10px;
+    width: 140px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.left p{
+    font-size: 12px;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+.plus-cont{
+ width: 70px;
+height: 70px;
+background-color: rgba(255, 255, 255, 0.7); /* white with 30% opacity */
+
+position: absolute;
+right: 0px;
+bottom: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border-top-left-radius: 45px;
+border-bottom-right-radius: 10px;
+
+
+}
+.plus-cont img{
+    width: 50px;
+    height: auto;
+}
+
+/* burgers ending */
+
+/* customer-reviews */
+
+.customer-reviews{
+    background-color: #D9D9D9;
+    color: black;
+    margin: 40px 0;
+    padding: 70px;
+    position: relative;
+   
+}
+
+.review-headings{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.arrows{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.arrows img{
+    width: 60px;
+    height: 60px;
+}
+.reviews-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.reviews{
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  animation: scrollReviews 30s linear infinite;
+  animation-play-state: running;
+  margin: 20px auto;
+}
+
+.reviews:hover {
+  animation-play-state: paused;
+}
+
+.reviews::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -100%;
+  height: 100%;
+  width: 40%;
+  pointer-events: none;
+  background: linear-gradient(to left, #D9D9D9 0%, transparent 100%);
+  z-index: 1;
+}
+
+.review-box {
+  flex: 0 0 auto;
+  width: 350px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Keyframe animation */
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+.review-box{
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between items */
+}
+
+.top-right img {
+  width: 40px;
+  height: 40px;
+}
+
+.top-right hr {
+  height: 45px;       /* vertical line height */
+  width: 3px;         /* narrow width */
+  background-color: #FC8A06;
+  border: 1px solid #FC8A06;
+
+}
+
+.top-right p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.top-right p span {
+  color: #FC8A06;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* === TOP LEFT === */
+.top-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  font-size: 12px;
+}
+
+.top-left img {
+  width: 80px;
+  margin-bottom: 5px;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.time-info span {
+  font-size: 16px;
+}
+
+.bottom p{
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.img-review{
+    position: absolute;
+    bottom: -15%;
+    right: 45%;
+}
+.img-review img{
+    border-radius: 10px;
+}
+/* Reviews ends */
+
+
+
+/* Similar Restaurents */
+.other-resturents{
+    margin:  80px 70px 60px;
+}
+.resturents-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+.resturents-options img{
+    width: 190px;
+    height: auto;
+}
+
+/* end */
+
+/* extra-details */
+
+.extra-details{
+    background-color: #D9D9D9;
+    width: 100%;
+    padding:  5rem 4.7rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.portion-1{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem
+}
+.portion-1 img{
+    width: 249px;
+    height: auto;
+}
+.play-stores{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.play-stores img{
+    width: 150px;
+    height: auto;
+    
+}
+.portion-1 p{
+    font-size: 14px;
+}
+/* portion-2 */
+.portion-2{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* width: 30%; */
+}
+.input-email{
+    position: relative;
+}
+.input-email input{
+    width: 300px;
+    height: 50px;
+    background-color: #bcbcbc;
+    border: none;
+    border-radius: 45px;
+    padding: 10px 25px;
+    color: black;
+    font-size: 15px;
+    
+}
+.input-email button{
+    height: 50px;
+    width: 100px;
+    background-color: #FC8A06;
+    border: none;
+    border-radius: 45px; 
+    position: absolute;
+    right: 0; /* aligns to right edge of input */
+    top: 0;
+    font-size: 15px;
+    color: white;
+}
+.social-icons{
+    margin-left: 25px;
+}
+.social-icons img{
+    width: 30px;
+    height: auto;
+}
+.portion-2 p{
+    margin-left: 25px;
+}
+.portion-3{
+    /* width: 35%; */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.legal-pages{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.important-links{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.legal-pages a,
+.important-links a{
+    color: black;
+    font-size: 15px;
+}
+
+
+
+/* Footer */
+
+footer{
+    background-color: #03081F;
+    padding: 1.4rem 4.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+.foot-left{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* footer end */
+
+
+
+
+/* ...Your existing CSS remains untouched above this point... */
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+  }
+  .left-hero {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .right-hero img {
+    max-width: 100%;
+  }
+  .heading-search {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 20px;
+  }
+  .offers-options {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 20px;
+  }
+  .burgers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .reviews {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .extra-details {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .foot-left {
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 20px;
+  }
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hero {
+    height: auto;
+  }
+  .container-burgers {
+    margin: 20px;
+  }
+  .burgers {
+    grid-template-columns: 1fr;
+  }
+  .reviews {
+    grid-template-columns: 1fr;
+  }
+  .resturents-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .extra-details {
+    padding: 2rem;
+  }
+  .input-email input {
+    width: 100%;
+  }
+  .input-email button {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-bar a,
+  .cart a {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+  .time-cont {
+    width: 200px;
+    padding: 5px 15px;
+    left: 30px;
+  }
+  .search {
+    width: 100%;
+    padding: 10px;
+  }
+  .play-stores img {
+    width: 120px;
+  }
+  .portion-1 img {
+    width: 180px;
+  }
+  .arrows img {
+    width: 40px;
+    height: 40px;
+  }
+  .img-review {
+    display: none;
+  }
+}
+
+@media (min-width: 1441px) {
+  .container-burgers,
+  .offers-options,
+  .extra-details,
+  .other-resturents,
+  .customer-reviews,
+  header {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}

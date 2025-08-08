@@ -1,0 +1,1063 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+header {
+    /* height: 60px; */
+    max-width: 1740px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 60px;
+    
+}
+
+.header-logo {
+    flex: 1;
+}
+.header-logo img{
+    height: 25px;
+    width: auto;
+    margin-left: 15px;
+}
+
+nav {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar{
+     display: flex;
+    gap: 1.1rem;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.cart {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bar .active{
+    background-color: #FC8A06;
+    border-radius: 40px;
+}
+
+.cart span{
+    background-color: #03081F;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.cart a{
+    text-decoration: none;
+    color: #03081F;
+    padding: 15px 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+/* Header ends  */
+/* hero  */
+.hero{
+   display: flex;
+   justify-content: center;
+   position: relative;
+   height: 410px;
+}
+
+.hero-section{
+    background-image:  linear-gradient(rgba(3, 8, 31, 0.9), rgba(3, 8, 31, 0.9)),url(images/hero-img-1.png);
+    background-position: center;
+    background-size: cover ;
+    border-radius: 7px;
+    width: 90%;
+    height: 380px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+.right-hero{
+    position: relative;
+    max-width: 500px;
+
+}
+
+.right-hero img{
+   max-width: 480px;
+   width: 100%;
+   height: auto;
+   border-radius: 7px;
+   display: block;
+}
+
+.left-hero{
+   width: 55%;
+   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+.left-hero-bottom{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.min-order, .delivery{
+    display: flex;
+    border-radius: 35px;
+    border: 1px solid white;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.right-hero .overlay-img{
+    height: 100px;
+    width: auto;
+    position: absolute;
+    bottom: 15px;   /* Push it below the main image */
+    left : -30px;    /* Push it to the side of the main image */
+  
+}
+
+.time-cont{
+    width: 270px;
+    height: 50px;
+    background-color: #FC8A06;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    position: absolute;
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    gap: 1rem;
+    bottom: 2px;
+    left: 67px;
+}
+/* hero-section ends  */
+
+.heading-search{
+    margin: 20px 90px;
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+.search{
+ height: 60px;
+ width: 270px;
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ border-radius: 30px;
+ border: 1px solid black;
+ padding: 20px;
+ gap: 1rem;
+}
+
+.offers{
+    width: 100%;
+    background-color: #FC8A06;
+    height: 80px;
+
+}
+
+.offers-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 70px;
+    padding: 30px 0;
+}
+.offers-options a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* offers closed */
+
+/* New Containes Burgers */
+.container-burgers {
+    margin: 20px 70px;
+    overflow-x: hidden;    
+}
+.container-burgers h1{
+    margin-bottom: 20px;
+}
+.burgers{
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 12px;
+   padding-left: 16px;
+   padding-bottom: 25px;
+}
+
+.burger-box{
+   width: 100%;
+  max-width: 380px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+}
+.right{
+    position: relative;
+}
+.right img{
+    margin-top: 10px;
+    width: 140px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.left p{
+    font-size: 12px;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+.plus-cont{
+ width: 70px;
+height: 70px;
+background-color: rgba(255, 255, 255, 0.7); /* white with 30% opacity */
+
+position: absolute;
+right: 0px;
+bottom: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border-top-left-radius: 45px;
+border-bottom-right-radius: 10px;
+
+
+}
+.plus-cont img{
+    width: 50px;
+    height: auto;
+}
+
+/* burgers ending */
+
+/* customer-reviews */
+
+.customer-reviews{
+    background-color: #D9D9D9;
+    color: black;
+    margin: 40px 0;
+    padding: 70px;
+    position: relative;
+   
+}
+
+.review-headings{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.arrows{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.arrows img{
+    width: 60px;
+    height: 60px;
+}
+
+.reviews{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.review-box{
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between items */
+}
+
+.top-right img {
+  width: 40px;
+  height: 40px;
+}
+
+.top-right hr {
+  height: 45px;       /* vertical line height */
+  width: 3px;         /* narrow width */
+  background-color: #FC8A06;
+  border: 1px solid #FC8A06;
+
+}
+
+.top-right p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.top-right p span {
+  color: #FC8A06;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* === TOP LEFT === */
+.top-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  font-size: 12px;
+}
+
+.top-left img {
+  width: 80px;
+  margin-bottom: 5px;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.time-info span {
+  font-size: 16px;
+}
+
+.bottom p{
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.img-review{
+    position: absolute;
+    bottom: -15%;
+    right: 45%;
+}
+.img-review img{
+    border-radius: 10px;
+}
+
+/* Similar Restaurents */
+.other-resturents{
+    margin:  80px 70px 60px;
+}
+.resturents-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+.resturents-options img{
+    width: 190px;
+    height: auto;
+}
+
+/* end */
+
+/* extra-details */
+
+.extra-details{
+    background-color: #D9D9D9;
+    width: 100%;
+    padding:  5rem 4.7rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.portion-1{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem
+}
+.portion-1 img{
+    width: 249px;
+    height: auto;
+}
+.play-stores{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.play-stores img{
+    width: 150px;
+    height: auto;
+    
+}
+.portion-1 p{
+    font-size: 14px;
+}
+/* portion-2 */
+.portion-2{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* width: 30%; */
+}
+.input-email{
+    position: relative;
+}
+.input-email input{
+    width: 300px;
+    height: 50px;
+    background-color: #bcbcbc;
+    border: none;
+    border-radius: 45px;
+    padding: 10px 25px;
+    color: black;
+    font-size: 15px;
+    
+}
+.input-email button{
+    height: 50px;
+    width: 100px;
+    background-color: #FC8A06;
+    border: none;
+    border-radius: 45px; 
+    position: absolute;
+    right: 0; /* aligns to right edge of input */
+    top: 0;
+    font-size: 15px;
+    color: white;
+}
+.social-icons{
+    margin-left: 25px;
+}
+.social-icons img{
+    width: 30px;
+    height: auto;
+}
+.portion-2 p{
+    margin-left: 25px;
+}
+.portion-3{
+    /* width: 35%; */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.legal-pages{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.important-links{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.legal-pages a,
+.important-links a{
+    color: black;
+    font-size: 15px;
+}
+
+
+
+/* Footer */
+
+footer{
+    background-color: #03081F;
+    padding: 1.4rem 4.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+.foot-left{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* footer end */
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's East London</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="images/fav-removebg-preview.png">
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="images/logo.png" alt="">
+        </div>
+        <nav>
+            <div class="nav-bar">
+                <a href="" class="">Home</a>
+                <a href="" class="">Special Offers</a>
+                <a href="" class="active">Restaurents</a>
+                <a href="" class="">Track Order</a>
+            </div>
+        </nav>
+            <div class="cart">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <a href="">Cart</a>
+            </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container hero">
+        <div class="hero-section">
+            <div class="left-hero">
+                <div class="left-hero-heading">
+                    <p>I'm lovin' it!</p>
+                    <h1>McDonald's East London</h1>
+                </div>
+                <div class="left-hero-bottom">
+                    <div class="min-order">
+                        <span class="material-symbols-outlined">order_approve</span>
+                        <p>Minimum Order:12GBP</p>
+                    </div>
+                    <div class="delivery">
+                        <span class="material-symbols-outlined">directions_bike</span>
+                        <p>delivery in 20-25 mins</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-hero">
+                <img  class="overlay-img"src="images/overlay-img.png" alt="">
+                <img  src="images/hero-img-1.png" alt="">
+                
+            </div>           
+        </div>
+        <div class="time-cont">
+            <span class="material-symbols-outlined">clock_loader_40</span>
+            <p>Open Until 3:00 AM</p>
+        </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <div class="heading-search">
+            <h2>All Offers from McDonald’s East London</h2>
+            <div class="search">
+                <span class="material-symbols-outlined">search</span>
+                <p>Search from Menu</p>
+            </div>
+        </div>
+        <div class="offers">
+                <div class="offers-options">
+                    <a href="">Offers</a>
+                    <a href="">Burgers</a>
+                    <a href="">Fries</a>
+                    <a href="">Snacks</a>
+                    <a href="">Salads</a>
+                    <a href="">Cold Drinks</a>
+                    <a href="">Happy Meal®</a>
+                    <a href="">Desserts </a>
+                    <a href="">Hot drinks</a>
+                    <a href="">Sauces</a>
+                    <a href="">Orbit®</a>                           
+                </div>
+            </div>
+        
+    </div>
+
+    <!-- Burgers -->
+     <div class="container-burgers">
+        <h1>Burgers</h1>
+        <div class="burgers">
+            <div class="burger-box">
+                <div class="left">
+                    <h3>Royal Cheese Burger <br> with extra Fries</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/burger-img.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+     </div>
+
+     <!-- fries -->
+     <div class="container-burgers">
+        <h1 style="color: #FC8A06;">Fries</h1>
+        <div class="burgers">
+            <div class="burger-box">
+                <div class="left">
+                    <h3>Royal Cheese Burger <br> with extra Fries</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 1 (2).png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 2.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 3.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 4.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 5.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/fries 6.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+     </div>
+
+     <!-- cold drinks -->
+     <div class="container-burgers">
+        <h1 style="color: #FC8A06;">Cold Drinks</h1>
+        <div class="burgers">
+            <div class="burger-box">
+                <div class="left">
+                    <h3>Royal Cheese Burger <br> with extra Fries</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 1.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 2.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 3.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 4.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 5.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="burger-box">
+                <div class="left">
+                    <h3>The classics for 3</h3>
+                    <p>1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium</p>
+                    <h3>GBP 23.10</h3>
+                </div>
+                <div class="right">
+                        <img src="images/drinks 6.png" alt="">
+                        <div class="plus-cont">
+                            <img src="images/plus.png" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+     </div>
+
+     <!-- reviews  -->
+     <div class="customer-reviews">
+        <div class="review-headings">
+            <h1>Customer Reviews</h1>
+            <div class="arrows">
+                <a href=""><img src="images/arrow 1.png" alt=""></a>
+                <a href=""><img src="images/arrow 2.png" alt=""></a>
+            </div>
+        </div>
+
+        <div class="reviews">
+            <div class="review-box">
+                <div class="top">
+                    <div class="top-right">
+                        <img src="images/dp.png" alt="">
+                        <hr>
+                        <p>St Glx <br><span>South London</span></p>
+                    </div>
+                    <div class="top-left">
+                        <img src="images/stars.png" alt="">
+                        <div class="time-info">
+                            <span class="material-symbols-outlined">nest_clock_farsight_analog</span>
+                        <p>24th September, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p>The positive aspect was undoubtedly the efficiency
+                         of the service. The queue moved quickly, the staff was 
+                         friendly, and the food was up to the usual McDonald's 
+                         standard – hot and satisfying.</p>
+                </div>
+            </div>
+
+
+            <div class="review-box">
+                <div class="top">
+                    <div class="top-right">
+                        <img src="images/dp.png" alt="">
+                        <hr>
+                        <p>St Glx <br><span>South London</span></p>
+                    </div>
+                    <div class="top-left">
+                        <img src="images/stars.png" alt="">
+                        <div class="time-info">
+                            <span class="material-symbols-outlined">nest_clock_farsight_analog</span>
+                        <p>24th September, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p>The positive aspect was undoubtedly the efficiency
+                         of the service. The queue moved quickly, the staff was 
+                         friendly, and the food was up to the usual McDonald's 
+                         standard – hot and satisfying.</p>
+                </div>
+            </div>
+
+
+            <div class="review-box">
+                <div class="top">
+                    <div class="top-right">
+                        <img src="images/dp.png" alt="">
+                        <hr>
+                        <p>St Glx <br><span>South London</span></p>
+                    </div>
+                    <div class="top-left">
+                        <img src="images/stars.png" alt="">
+                        <div class="time-info">
+                            <span class="material-symbols-outlined">nest_clock_farsight_analog</span>
+                        <p>24th September, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p>The positive aspect was undoubtedly the efficiency
+                         of the service. The queue moved quickly, the staff was 
+                         friendly, and the food was up to the usual McDonald's 
+                         standard – hot and satisfying.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="img-review">
+                    <img src="images/overlay-img.png" alt="">
+        </div>
+     </div>
+
+     <!-- Other Resturents -->
+      <div class="other-resturents">
+        <h1>Similar Restaurants</h1>
+        <div class="resturents-options">
+            <img src="images/Group 16.png" alt="">
+            <img src="images/Group 17.png" alt="">
+            <img src="images/Group 18.png" alt="">
+            <img src="images/Group 19.png" alt="">
+            <img src="images/Group 20.png" alt="">
+            <img src="images/Group 21.png" alt="">
+        </div>
+      </div>
+
+      <!-- extra-details -->
+       <div class="extra-details">
+        <div class="portion-1">
+            <img src="images/LOGO 2.png" alt="">
+            <div class="play-stores">
+                <img src="images/Group.png" alt="">
+                <img src="images/Group (1).png" alt="">
+            </div>
+            <p>Company # 490039-445, Registered with <br> House of companies.</p>
+        </div>
+
+        <div class="portion-2">
+            <h4>Get Exclusive Deals in your Inbox</h4>
+            <div class="input-email">
+                <input type="text" placeholder="youremail@gmail.com">
+                <button>Subscribe</button>
+            </div>
+            <p>we wont spam, read our <span>email policy</span></p>
+            <div class="social-icons">
+                <img src="images/Facebook.png" alt="">
+                <img src="images/Instagram.png" alt="">
+                <img src="images/TikTok.png" alt="">
+                <img src="images/Snapchat.png" alt="">
+            </div>
+        </div>
+        <div class="portion-3">
+            <div class="legal-pages">
+                <h4>Legal Pages</h4>
+                <a href="">Terms and conditions</a>
+                <a href="">Privacy</a>
+                <a href="">Cookies</a>
+                <a href="">Modern Slavery Statement</a>
+            </div>
+            <div class="important-links">
+                <h4>Important Links</h4>
+                <a href="">Get help</a>
+                <a href="">Add your restaurant</a>
+                <a href="">Sign up to deliver</a>
+                <a href="">Create a business account</a>
+            </div>
+        </div>
+       </div>
+
+    <footer>
+        <div class="foot-right">
+            <a href="">Order.uk Copyright 2025, All Rights Reserved</a>
+        </div>
+        <div class="foot-left">
+            <a href="">Privacy Policy</a>
+            <a href="">Terms</a>
+            <a href="">Pricing</a>
+            <a href="">Do not sell or share my personal information</a>
+                                         
+        </div>
+    </footer>
+    
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

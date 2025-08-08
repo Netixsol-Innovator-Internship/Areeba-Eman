@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Royal Cheese Burger with extra Fries",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium",
+    "price": "GBP 23.10",
+    "image": "images/drinks 1.png",
+    "plusIcon": "images/plus.png"
+  },
+  {
+    "title": "The classics for 3",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks",
+    "price": "GBP 23.10",
+    "image": "images/drinks 2.png",
+    "plusIcon": "images/plus.png"
+  },
+  {
+    "title": "The classics for 3",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium sized French Fries , 3 cold drinks",
+    "price": "GBP 23.10",
+    "image": "images/drinks 3.png",
+    "plusIcon": "images/plus.png"
+  },
+  {
+    "title": "The classics for 3",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium",
+    "price": "GBP 23.10",
+    "image": "images/drinks 4.png",
+    "plusIcon": "images/plus.png"
+  },
+  {
+    "title": "The classics for 3",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium",
+    "price": "GBP 23.10",
+    "image": "images/drinks 5.png",
+    "plusIcon": "images/plus.png"
+  },
+  {
+    "title": "The classics for 3",
+    "description": "1 McChicken™, 1 Big Mac™,  1 Royal Cheeseburger, 3 medium",
+    "price": "GBP 23.10",
+    "image": "images/drinks 6.png",
+    "plusIcon": "images/plus.png"
+  }
+]
