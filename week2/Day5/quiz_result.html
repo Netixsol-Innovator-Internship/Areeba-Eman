@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Quiz-Result</title>
+
+    <link href="./output.css" rel="stylesheet">
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("/fonts/inter.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      :root {
+        --font-inter: "Inter", ui-sans-serif, system-ui, -apple-system,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+      }
+      .font-inter {
+        font-family: var(--font-inter);
+      }
+    </style>
+  </head>
+  <body class="font-inter text-neutral-900 overflow-x-hidden antialiased">
+    <div class="min-h-dvh overflow-x-hidden bg-white">
+      <!-- Page container with max width 1720px  -->
+      <header class="border-b bg-white">
+        <div
+          class="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4"
+        >
+          <!-- Brand  -->
+          <a href="#" class="flex items-center gap-2 shrink-0">
+            <!-- Logo image (use your own src); using a placeholder here  -->
+            <!-- <img
+              src="images/logo.png"
+              alt="QuizMaster logo"
+              class="h-5 w-5 rounded"
+            /> -->
+            <!-- Brand text exactly 18px at all sizes  -->
+            <span class="text-[18px] font-semibold tracking-tight"
+              >Quiz App</span
+            >
+          </a>
+
+          <!-- Desktop nav  -->
+          <nav
+            class="hidden md:flex items-center gap-8 text-sm text-neutral-700"
+            aria-label="Main"
+          >
+            <a href="#" class="hover:text-neutral-900 transition-colors"
+              >Home</a
+            >
+            <a href="#" class="hover:text-neutral-900 transition-colors"
+              >Quizzes</a
+            >
+            <a href="#" class="hover:text-neutral-900 transition-colors"
+              >Leaderboard</a
+            >
+            <a href="#" class="hover:text-neutral-900 transition-colors"
+              >Profile</a
+            >
+            <a href="#" class="hover:text-neutral-900 transition-colors"
+              ><img src="images/bellicon.png" alt=""
+            /></a>
+            <img
+              src="images/profilepic.png"
+              alt="User avatar"
+              class="h-8 w-8 rounded-full ring-1 ring-neutral-200"
+            />
+          </nav>
+
+          <!-- Mobile menu (HTML-only with <details>)  -->
+          <details class="relative md:hidden">
+            <summary
+              class="list-none inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+            >
+              <span class="sr-only">Open menu</span>
+              <!-- Simple menu icon using placeholder  -->
+              <img src="images/Hamburger_icon.svg.png" alt="" class="h-4 w-4" />
+              <!-- Menu -->
+            </summary>
+            <div
+              class="absolute right-0 mt-2 w-48 rounded-md border bg-white shadow-lg p-2 z-50"
+            >
+              <a
+                href="#"
+                class="block rounded px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="block rounded px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+                >Quizzes</a
+              >
+              <a
+                href="#"
+                class="block rounded px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+                >Leaderboard</a
+              >
+              <a
+                href="#"
+                class="block rounded px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+                >Profile</a
+              >
+            </div>
+          </details>
+        </div>
+      </header>
+
+      <!-- Main   -->
+      <main class="w-full">
+        <section
+          class="mx-auto w-full max-w-[960px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10"
+        >
+          <!-- Title -->
+          <h1
+            class="text-center text-xl sm:text-2xl font-semibold tracking-tight"
+          >
+            Quiz Results
+          </h1>
+
+          <!-- Progress -->
+          <div class="mx-auto mt-6 w-full max-w-3xl">
+            <div
+              class="flex items-center justify-between text-[11px] sm:text-xs text-neutral-800"
+            >
+              <span>Quiz Completed</span>
+              <span id="completion-text" class="text-neutral-600">100%</span>
+            </div>
+            <div class="mt-2 h-[6px] w-full rounded-full bg-neutral-200">
+              <div
+                id="result-progress-fill"
+                class="h-[6px] rounded-full bg-neutral-900"
+                style="width: 100%"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Score card -->
+          <div
+            class="mx-auto mt-6 w-full max-w-3xl rounded-md bg-neutral-100 px-5 py-4"
+          >
+            <p class="text-sm font-bold text-neutral-700">Score</p>
+            <p id="score-value" class="mt-1 text-lg font-semibold">8/10</p>
+          </div>
+
+          <!-- Message -->
+          <p
+            class="mx-auto mt-6 max-w-3xl text-center text-xs sm:text-sm text-neutral-600 leading-relaxed"
+          >
+            Congratulations! You’ve completed the quiz.
+          </p>
+
+          <!-- Actions -->
+          <div class="mt-6 flex flex-col items-center gap-3">
+            <button
+              type="button"
+              id="primary-action"
+              class="inline-flex h-9 items-center justify-center rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              Review Answers
+            </button>
+            <button
+              type="button"
+              id="secondary-action"
+              class="inline-flex h-9 items-center justify-center rounded-md border border-neutral-200 bg-neutral-100 px-3 text-xs text-neutral-800 hover:bg-neutral-200"
+            >
+              Take Another Quiz
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- App script  -->
+    <script src="js/quiz-app.js"></script>
+  </body>
+</html>

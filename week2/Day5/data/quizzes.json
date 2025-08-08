@@ -1,0 +1,429 @@
+{
+  "quizzes": [
+    {
+      "id": "html",
+      "title": "HTML",
+      "description": "Structure the web with semantic markup.",
+      "image": "images/html-img.png",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What does HTML stand for?",
+          "options": [
+            "HyperText Markup Language",
+            "Home Tool Markup Language",
+            "Hyperlinks and Text Markup Language",
+            "Hyper Transfer Markup Language"
+          ],
+          "answer": 0
+        },
+        {
+          "id": 2,
+          "question": "Which tag represents the largest heading?",
+          "options": ["<h6>", "<head>", "<h1>", "<header>"],
+          "answer": 2
+        },
+        {
+          "id": 3,
+          "question": "Which element is used to create a hyperlink?",
+          "options": ["<a>", "<link>", "<href>", "<url>"],
+          "answer": 0
+        },
+        {
+          "id": 4,
+          "question": "Which attribute is required on an <img> element to display an image?",
+          "options": ["alt", "src", "title", "width"],
+          "answer": 1
+        },
+        {
+          "id": 5,
+          "question": "Which of the following is a semantic HTML element?",
+          "options": ["<div>", "<span>", "<article>", "<b>"],
+          "answer": 2
+        },
+        {
+          "id": 6,
+          "question": "Which tag defines a row in a table?",
+          "options": ["<td>", "<tr>", "<th>", "<table>"],
+          "answer": 1
+        },
+        {
+          "id": 7,
+          "question": "What is the correct HTML5 doctype?",
+          "options": [
+            "<!DOCTYPE HTML5>",
+            "<!DOCTYPE html>",
+            "<!DOCTYPE HTML PUBLIC>",
+            "<doctype html>"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 8,
+          "question": "Which element creates an ordered list?",
+          "options": ["<ul>", "<list>", "<ol>", "<li>"],
+          "answer": 2
+        },
+        {
+          "id": 9,
+          "question": "Which input type validates email format?",
+          "options": ["text", "email", "mail", "address"],
+          "answer": 1
+        },
+        {
+          "id": 10,
+          "question": "Which element contains metadata like title and meta tags?",
+          "options": ["<head>", "<header>", "<meta>", "<section>"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "description": "Style your pages with modern CSS.",
+      "image": "images/css-img.jpg",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What does CSS stand for?",
+          "options": [
+            "Creative Style Sheets",
+            "Computer Styled Sections",
+            "Cascading Style Sheets",
+            "Colorful Style Sheets"
+          ],
+          "answer": 2
+        },
+        {
+          "id": 2,
+          "question": "How do you select an element with id=\"main\"?",
+          "options": ["main", ".main", "#main", "*main"],
+          "answer": 2
+        },
+        {
+          "id": 3,
+          "question": "Which property changes the text color?",
+          "options": ["font-color", "text-color", "color", "font-style"],
+          "answer": 2
+        },
+        {
+          "id": 4,
+          "question": "How do you create a flex container?",
+          "options": [
+            "display: inline;",
+            "display: flex;",
+            "position: flex;",
+            "flex: container;"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 5,
+          "question": "Center a block horizontally with fixed width:",
+          "options": [
+            "text-align: center;",
+            "margin: 0 auto;",
+            "justify-content: center;",
+            "align-items: center;"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 6,
+          "question": "Which pseudo-class styles an element on hover?",
+          "options": [":focus", ":active", ":visited", ":hover"],
+          "answer": 3
+        },
+        {
+          "id": 7,
+          "question": "Which unit is relative to the root font size?",
+          "options": ["em", "rem", "px", "%"],
+          "answer": 1
+        },
+        {
+          "id": 8,
+          "question": "Correct media query for min-width 768px?",
+          "options": [
+            "@media (min: 768px)",
+            "@media (min-width: 768px)",
+            "@media screen >= 768px",
+            "@media width >= 768px"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 9,
+          "question": "Which positioning removes the element from normal flow and positions it relative to the viewport?",
+          "options": ["absolute", "relative", "sticky", "fixed"],
+          "answer": 3
+        },
+        {
+          "id": 10,
+          "question": "How do you use a CSS custom property?",
+          "options": [
+            "var(primary)",
+            "var(--primary)",
+            "--primary()",
+            "prop(--primary)"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript",
+      "description": "Add interactivity with JavaScript.",
+      "image": "images/js-img.png",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Which keyword declares a block-scoped variable?",
+          "options": ["var", "let", "define", "const var"],
+          "answer": 1
+        },
+        {
+          "id": 2,
+          "question": "Which operator checks both value and type?",
+          "options": ["==", "=", "===", "!="],
+          "answer": 2
+        },
+        {
+          "id": 3,
+          "question": "Which method adds an item to the end of an array?",
+          "options": ["push()", "pop()", "shift()", "unshift()"],
+          "answer": 0
+        },
+        {
+          "id": 4,
+          "question": "What is the typeof null?",
+          "options": ["null", "undefined", "object", "string"],
+          "answer": 2
+        },
+        {
+          "id": 5,
+          "question": "Arrow function syntax is:",
+          "options": [
+            "function => () {}",
+            "() => {}",
+            "=> () {}",
+            "() <= {}"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 6,
+          "question": "setTimeout is used to:",
+          "options": [
+            "Repeat a task every X ms",
+            "Delay a function once",
+            "Block the thread",
+            "Create a Promise"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 7,
+          "question": "JSON.parse() does what?",
+          "options": [
+            "Converts object to string",
+            "Converts string to number",
+            "Parses JSON string to object",
+            "Parses HTML to DOM"
+          ],
+          "answer": 2
+        },
+        {
+          "id": 8,
+          "question": "Which defines a class?",
+          "options": [
+            "object {}",
+            "class Person {}",
+            "def class {}",
+            "class: Person"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 9,
+          "question": "Which method attaches a success handler to a Promise?",
+          "options": [".catch()", ".then()", ".finally()", ".success()"],
+          "answer": 1
+        },
+        {
+          "id": 10,
+          "question": "Which array method returns a new array with transformed items?",
+          "options": ["forEach", "map", "reduce", "filterInPlace"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "tailwind",
+      "title": "Tailwind CSS",
+      "description": "Utility-first styling with Tailwind.",
+      "image": "images/tailwind-img.jfif",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Tailwind is primarily a ____ framework.",
+          "options": ["component", "utility-first", "BEM", "inline-style"],
+          "answer": 1
+        },
+        {
+          "id": 2,
+          "question": "Which class centers text?",
+          "options": ["center", "text-center", "align-center", "content-center"],
+          "answer": 1
+        },
+        {
+          "id": 3,
+          "question": "Add margin-top 1rem:",
+          "options": ["mt-2", "mt-4", "m-4t", "pt-4"],
+          "answer": 1
+        },
+        {
+          "id": 4,
+          "question": "Apply styles from the md breakpoint and up:",
+          "options": ["md()", "screen-md:", "md:", "bp-md:"],
+          "answer": 2
+        },
+        {
+          "id": 5,
+          "question": "Create a flex container:",
+          "options": ["flex", "flexbox", "d-flex", "display-flex"],
+          "answer": 0
+        },
+        {
+          "id": 6,
+          "question": "Make element take full width:",
+          "options": ["w-100", "w-full", "width-full", "full-w"],
+          "answer": 1
+        },
+        {
+          "id": 7,
+          "question": "Horizontal padding 1.5rem:",
+          "options": ["p-6", "px-6", "py-6", "plr-6"],
+          "answer": 1
+        },
+        {
+          "id": 8,
+          "question": "Add rounded corners:",
+          "options": ["rounded", "radius", "curve", "corner"],
+          "answer": 0
+        },
+        {
+          "id": 9,
+          "question": "Class for blue button background (600 shade):",
+          "options": ["bg-blue", "bg-blue-600", "text-blue-600", "btn-blue"],
+          "answer": 1
+        },
+        {
+          "id": 10,
+          "question": "Enable styles in dark mode:",
+          "options": ["theme:dark", "dark:", "mode-dark:", "if-dark:"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "react",
+      "title": "React",
+      "description": "Build interfaces with components and hooks.",
+      "image": "images/react-img.svg",
+      "questions": [
+        {
+          "id": 1,
+          "question": "React is mainly used for building:",
+          "options": [
+            "Databases",
+            "User interfaces",
+            "Servers",
+            "Operating systems"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 2,
+          "question": "Components typically return:",
+          "options": ["HTML strings", "JSX", "CSS", "JSON"],
+          "answer": 1
+        },
+        {
+          "id": 3,
+          "question": "Which hook adds state to a function component?",
+          "options": ["useContext", "useEffect", "useState", "useRef"],
+          "answer": 2
+        },
+        {
+          "id": 4,
+          "question": "Props are used to:",
+          "options": [
+            "Manage local state",
+            "Pass data from parent to child",
+            "Register events globally",
+            "Trigger re-render manually"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 5,
+          "question": "Keys in lists help React:",
+          "options": [
+            "Apply CSS",
+            "Identify elements",
+            "Create portals",
+            "Optimize network requests"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 6,
+          "question": "Which hook runs side effects?",
+          "options": ["useMemo", "useEffect", "useLayout", "useCache"],
+          "answer": 1
+        },
+        {
+          "id": 7,
+          "question": "Use which attribute for CSS classes in JSX?",
+          "options": ["class", "className", "classList", "styleClass"],
+          "answer": 1
+        },
+        {
+          "id": 8,
+          "question": "How do you render a list of items?",
+          "options": [
+            "items.each()",
+            "for (item of items)",
+            "items.map()",
+            "items.render()"
+          ],
+          "answer": 2
+        },
+        {
+          "id": 9,
+          "question": "For sharing state across many components, use:",
+          "options": [
+            "CSS Modules",
+            "Context API",
+            "Service Workers",
+            "Web Components"
+          ],
+          "answer": 1
+        },
+        {
+          "id": 10,
+          "question": "A controlled input in React means:",
+          "options": [
+            "The browser controls it",
+            "Value is stored in state and updated via onChange",
+            "It is disabled",
+            "It has validation"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}
