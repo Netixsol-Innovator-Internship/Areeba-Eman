@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZAIZA Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "brand-blue": "#2196F3",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <div class="text-xl font-bold text-gray-900">
+              AZAIZA
+              <div class="text-xs font-normal text-gray-600 -mt-1">
+                DESIGN STUDIO
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="#"
+                class="group relative text-gray-900 hover:text-brand-blue px-3 py-2 text-sm font-medium transition-colors"
+              >
+                Home
+                <span
+                  class="absolute left-1/2 -translate-x-1/2 bottom-0 w-0 h-[2px] transition-all duration-300 group-hover:w-[80px]"
+                  style="
+                    background: linear-gradient(
+                      83.21deg,
+                      #3b0066 -130.25%,
+                      #175fc4 -5.2%,
+                      #00e1e7 140.51%,
+                      #00f7e0 172.5%,
+                      #00ffdd 192.89%
+                    );
+                  "
+                >
+                </span>
+              </a>
+              <div class="relative group">
+                <button
+                  class="text-gray-900 hover:text-brand-blue px-3 py-2 text-sm font-medium flex items-center transition-colors relative"
+                >
+                  About Us
+                  <svg
+                    class="ml-1 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+
+                  <!-- Gradient underline -->
+                  <span
+                    class="absolute left-0 bottom-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full"
+                    style="
+                      background: linear-gradient(
+                        83.21deg,
+                        #3b0066 -130.25%,
+                        #175fc4 -5.2%,
+                        #00e1e7 140.51%,
+                        #00f7e0 172.5%,
+                        #00ffdd 192.89%
+                      );
+                    "
+                  >
+                  </span>
+                </button>
+              </div>
+              <div class="relative group">
+                <button
+                  class="relative text-gray-900 hover:text-brand-blue px-3 py-2 text-sm font-medium flex items-center transition-colors"
+                >
+                  Features
+                  <svg
+                    class="ml-1 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+
+                  <!-- Gradient underline -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 bottom-0 w-0 h-[2px] transition-all duration-300 group-hover:w-[80px]"
+                    style="
+                      background: linear-gradient(
+                        83.21deg,
+                        #3b0066 -130.25%,
+                        #175fc4 -5.2%,
+                        #00e1e7 140.51%,
+                        #00f7e0 172.5%,
+                        #00ffdd 192.89%
+                      );
+                    "
+                  >
+                  </span>
+                </button>
+              </div>
+
+              <div class="relative group">
+                <button
+                  class="relative text-gray-900 hover:text-brand-blue px-3 py-2 text-sm font-medium flex items-center transition-colors"
+                >
+                  Our Services
+                  <svg
+                    class="ml-1 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+
+                  <!-- Gradient underline -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 bottom-0 w-0 h-[2px] transition-all duration-300 group-hover:w-[80px]"
+                    style="
+                      background: linear-gradient(
+                        83.21deg,
+                        #3b0066 -130.25%,
+                        #175fc4 -5.2%,
+                        #00e1e7 140.51%,
+                        #00f7e0 172.5%,
+                        #00ffdd 192.89%
+                      );
+                    "
+                  >
+                  </span>
+                </button>
+              </div>
+              <div class="relative group">
+                <a
+                  href="#"
+                  class="relative text-gray-900 hover:text-brand-blue px-3 py-2 text-sm font-medium transition-colors"
+                >
+                  Why AZAI
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 bottom-0 w-0 h-[2px] transition-all duration-300 group-hover:w-[80px]"
+                    style="
+                      background: linear-gradient(
+                        83.21deg,
+                        #3b0066 -130.25%,
+                        #175fc4 -5.2%,
+                        #00e1e7 140.51%,
+                        #00f7e0 172.5%,
+                        #00ffdd 192.89%
+                      );
+                    "
+                  >
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Contact Button -->
+          <div class="hidden md:block">
+            <button
+              style="
+                background: linear-gradient(
+                  83.21deg,
+                  #3b0066 -130.25%,
+                  #175fc4 -5.2%,
+                  #00e1e7 140.51%,
+                  #00f7e0 172.5%,
+                  #00ffdd 192.89%
+                );
+              "
+              class="hover:bg-blue-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Contact Us
+            </button>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-900 hover:text-brand-blue p-2 rounded-md transition-colors"
+            >
+              <svg
+                id="hamburger-icon"
+                class="bg-[#E7F3FA] rounded p-1 h-8 w-8 text-brand-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+              <svg
+                id="close-icon"
+                class="h-6 w-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu overlay -->
+      <div
+        id="mobile-menu"
+        class="md:hidden fixed inset-0 z-50 bg-white transform translate-x-full transition-transform duration-300 ease-in-out"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Mobile header -->
+          <div
+            class="flex justify-between items-center h-16 px-4 border-b border-gray-100"
+          >
+            <div class="text-xl font-bold text-gray-900">
+              AZAIZA
+              <div class="text-xs font-normal text-gray-600 -mt-1">
+                DESIGN STUDIO
+              </div>
+            </div>
+            <button
+              id="mobile-close-button"
+              class="text-gray-900 hover:text-brand-blue p-2 rounded-md transition-colors"
+            >
+              <svg
+                class="bg-[#E7F3FA] rounded p-1 h-8 w-8 text-brand-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile navigation links -->
+          <div class="flex-1 px-4 py-6 space-y-1">
+            <a
+              href="#"
+              class="block px-3 py-3 text-base font-medium text-gray-900 hover:text-brand-blue hover:bg-gray-50 rounded-md transition-colors"
+              >Home</a
+            >
+
+            <div
+              class="block px-3 py-3 text-base font-medium text-gray-900 hover:text-brand-blue hover:bg-gray-50 rounded-md transition-colors"
+            >
+              <button
+                class="flex items-center justify-between w-full"
+                onclick="toggleSubmenu('about-submenu')"
+              >
+                About Us
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <div
+              class="block px-3 py-3 text-base font-medium text-gray-900 hover:text-brand-blue hover:bg-gray-50 rounded-md transition-colors"
+            >
+              <button
+                class="flex items-center justify-between w-full"
+                onclick="toggleSubmenu('features-submenu')"
+              >
+                Features
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <div
+              class="block px-3 py-3 text-base font-medium text-gray-900 hover:text-brand-blue hover:bg-gray-50 rounded-md transition-colors"
+            >
+              <button
+                class="flex items-center justify-between w-full"
+                onclick="toggleSubmenu('services-submenu')"
+              >
+                Our Services
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <a
+              href="#"
+              class="block px-3 py-3 text-base font-medium text-gray-900 hover:text-brand-blue hover:bg-gray-50 rounded-md transition-colors"
+              >Why AZAI</a
+            >
+          </div>
+
+          <!-- Mobile Contact Button -->
+          <div class="px-4 py-6 border-t border-gray-100">
+            <button
+              class="w-full bg-brand-blue hover:bg-blue-600 text-white px-6 py-3 rounded-md text-base font-medium transition-colors"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileCloseButton = document.getElementById("mobile-close-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const hamburgerIcon = document.getElementById("hamburger-icon");
+      const closeIcon = document.getElementById("close-icon");
+
+      function openMobileMenu() {
+        mobileMenu.classList.remove("translate-x-full");
+        mobileMenu.classList.add("translate-x-0");
+        document.body.style.overflow = "hidden";
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.add("translate-x-full");
+        mobileMenu.classList.remove("translate-x-0");
+        document.body.style.overflow = "auto";
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+
+      mobileMenuButton.addEventListener("click", openMobileMenu);
+      mobileCloseButton.addEventListener("click", closeMobileMenu);
+
+      // Close mobile menu when clicking outside
+      mobileMenu.addEventListener("click", function (e) {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close mobile menu on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeMobileMenu();
+        }
+      });
+
+      // Submenu toggle function (placeholder for dropdown functionality)
+      function toggleSubmenu(submenuId) {
+        console.log("Toggle submenu:", submenuId);
+        // Add submenu functionality here if needed
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 768) {
+          closeMobileMenu();
+        }
+      });
+    </script>
+  </body>
+</html>
