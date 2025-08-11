@@ -12,7 +12,9 @@ app.use(express.json());
 
 // In-memory tasks array
 let tasks = [
-  { id: 1, title: "Learn Express", completed: false }
+  { id: 1, title: "This is task 1", completed: false },
+  { id: 2, title: "This is task 2", completed: true },
+  
 ];
 
 // GET /api/tasks - get all tasks
@@ -148,6 +150,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://192.168.18.96:${PORT}`);
 });
