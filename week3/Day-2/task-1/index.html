@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<!-- Fixed body background colors for proper light/dark mode -->
+<body class="bg-white dark:bg-black overflow-x-hidden text-black dark:text-white transition-colors duration-300 min-h-screen overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between px-6 lg:px-12 py-6">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+           <div class="flex items-center space-x-2">
+  <!-- SVG shown in light mode -->
+  <div class="w-12 h-8  hidden dark:block">
+    <img src="images/Logo.svg" alt="Logo" class="w-full h-full" />
+  </div>
+
+  <!-- PNG shown in dark mode -->
+  <div class="w-12 h-8 dark:hidden ">
+    <img src="images/logoo2.svg" alt="Logo" class="w-full h-full" />
+  </div>
+</div>
+
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+            <!-- Fixed navigation link colors for light/dark mode -->
+            <a href="#" class="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Home</a>
+            <a href="#" class="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Portfolio</a>
+            <a href="#" class="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Skills</a>
+            <a href="#" class="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">About Me</a>
+        </div>
+
+        <!-- Right Side Controls -->
+        <div class="flex items-center space-x-4">
+            <!-- Dark/Light Mode Toggle -->
+            <div class="relative">
+                <!-- Fixed toggle button positioning and initial state -->
+                <button id="themeToggle" class="w-12 h-6 bg-yellow-400 rounded-full relative transition-colors duration-300 focus:outline-none">
+                    <div id="toggleCircle" class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-transform duration-300 transform"></div>
+                </button>
+            </div>
+            
+            <!-- Contact Button -->
+            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                Contact Me
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex items-center justify-between px-6 lg:px-8 py-12 lg:py-8 min-h-[calc(100vh-120px)]">
+        
+        <!-- Left Content -->
+        <div class="flex-1 max-w-2xl relative">
+            <!-- Main Heading -->
+            <div class="mb-4">
+                <!-- Fixed heading colors for light/dark mode -->
+                <h1 class="text-6xl lg:text-8xl font-black text-black dark:text-white leading-none mb-4">
+                    PRODUCT
+                    <br>
+                    DESIGNER
+                </h1>
+                
+                <!-- Name with Gradient -->
+                <h2 class="text-4xl lg:text-6xl font-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent leading-none mb-6">
+                    CRISTIAN MUNOZ
+                </h2>
+                
+                <!-- Moved Diamond Icon after the name to avoid being in front of PRODUCT -->
+                <div class="hidden lg:block absolute right-[5%] top-0 text-black dark:text-white">
+                    <svg width="100" height="161" viewBox="0 0 160 161" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M80 160.5C79.84 116.372 44.0844 80.6483 0 80.6483C44.1828 80.6483 80 44.7642 80 0.5C80.1593 44.6284 115.916 80.3517 160 80.3517C115.817 80.3517 80 116.236 80 160.5Z"/>
+                    </svg>
+                    </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex items-center space-x-4 mb-8">
+                
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded  flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded  flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded  flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded  flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.169 1.858-.896 3.433-2.173 4.71C13.938 14.146 12.4 14.8 10.76 14.8c-.779 0-1.518-.18-2.175-.49.111.014.224.02.337.02 1.282 0 2.451-.424 3.382-1.142-.6-.010-1.145-.395-1.432-.953.086.015.173.024.263.024.125 0 .249-.016.367-.05-.65-.127-1.133-.689-1.133-1.367v-.018c.188.104.404.166.633.174-.38-.247-.63-.668-.63-1.146 0-.252.07-.49.189-.694.694.827 1.726 1.371 2.891 1.428-.024-.104-.037-.212-.037-.323 0-.784.658-1.424 1.468-1.424.423 0 .804.173 1.072.45.334-.064.649-.184.932-.348-.110.334-.343.614-.646.79.297-.034.580-.112.843-.227-.197.288-.447.541-.735.745z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-black dark:border-white rounded  flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.747 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001.012.001z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Download CV Button -->
+            
+            <button class="bg-gray-900 w-[70%] hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-white dark:text-white px-6 py-3 text-sm font-medium transition-colors flex items-center justify-center space-x-2">
+                <span>Download Curriculum Vitae</span>
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-6 4h12v2H6v-2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Right Image - Hidden on medium and smaller screens -->
+        <div class="hidden lg:block flex-1  max-w-lg ml-12">
+            <img src="images/colorful-vintage-collage-design 1.png" alt="Creative collage artwork" class="w-full h-auto object-cover">
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const toggleCircle = document.getElementById('toggleCircle');
+        const html = document.documentElement;
+
+        // Initialize theme (starts in dark mode)
+        let isDark = true;
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            
+            if (isDark) {
+                // Dark mode
+                html.classList.add('dark');
+                themeToggle.classList.remove('bg-gray-300');
+                themeToggle.classList.add('bg-yellow-400');
+                toggleCircle.classList.remove('translate-x-6');
+                toggleCircle.classList.add('translate-x-0');
+            } else {
+                // Light mode
+                html.classList.remove('dark');
+                themeToggle.classList.remove('bg-yellow-400');
+                themeToggle.classList.add('bg-gray-300');
+                toggleCircle.classList.remove('translate-x-0');
+                toggleCircle.classList.add('translate-x-6');
+            }
+        });
+    </script>
+</body>
+</html>
