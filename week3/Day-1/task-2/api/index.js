@@ -1,14 +1,19 @@
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('../swagger.json');
 
 
 const express = require('express');
 const app = express();
-const PORT = 3000;
+// const PORT = 3000;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json());
+
+
+app.get('/', (req, res) => {
+  res.send('API is working!');
+});
 
 // In-memory tasks array
 let tasks = [
@@ -150,7 +155,9 @@ app.use((err, req, res, next) => {
   });
 });
 
+// module.exports = (req, res) => app(req, res);
+module.exports = app;
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://192.168.18.96:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://192.168.18.96:${PORT}`);
+// });

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Task Manager API",
+    "title": "API",
     "version": "1.0.0",
     "description": "A simple Task Manager API with CRUD operations"
   },
