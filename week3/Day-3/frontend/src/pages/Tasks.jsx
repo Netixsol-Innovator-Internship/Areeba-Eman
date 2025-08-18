@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api";
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const fetchTasks = async () => {
     try {
       const res = await API.get("/api/tasks");
-      setTasks(res.data);
+      setTasks(res.data); // backend sends array
     } catch (err) {
-      console.error("Error fetching tasks:", err);
+      console.error("Error fetching tasks:", err.response?.data || err.message);
     }
   };
 
@@ -44,13 +46,29 @@ export default function Tasks() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // remove token
+    navigate("/login"); // redirect to login page
+  };
+
   useEffect(() => {
     fetchTasks();
   }, []);
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">My Tasks</h1>
+      {/* Header with Logout */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">My Tasks</h1>
+        <button
+          onClick={handleLogout}
+          className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+        >
+          Logout
+        </button>
+      </div>
+
+      {/* Add Task Form */}
       <form onSubmit={addTask} className="flex gap-2 mb-4">
         <input
           value={title}
@@ -62,28 +80,34 @@ export default function Tasks() {
           Add
         </button>
       </form>
+
+      {/* Task List */}
       <ul className="space-y-2">
-        {tasks.map((t) => (
-          <li
-            key={t._id}
-            className="flex justify-between items-center border p-2 rounded"
-          >
-            <span
-              onClick={() => toggleTask(t._id, t.completed)}
-              className={`cursor-pointer ${
-                t.completed ? "line-through text-gray-500" : ""
-              }`}
+        {Array.isArray(tasks) && tasks.length > 0 ? (
+          tasks.map((t) => (
+            <li
+              key={t._id}
+              className="flex justify-between items-center border p-2 rounded"
             >
-              {t.title}
-            </span>
-            <button
-              onClick={() => deleteTask(t._id)}
-              className="bg-red-500 text-white px-2 py-1 rounded"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+              <span
+                onClick={() => toggleTask(t._id, t.completed)}
+                className={`cursor-pointer ${
+                  t.completed ? "line-through text-gray-500" : ""
+                }`}
+              >
+                {t.title}
+              </span>
+              <button
+                onClick={() => deleteTask(t._id)}
+                className="bg-red-500 text-white px-2 py-1 rounded"
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        ) : (
+          <p className="text-gray-500">No tasks found or failed to load.</p>
+        )}
       </ul>
     </div>
   );

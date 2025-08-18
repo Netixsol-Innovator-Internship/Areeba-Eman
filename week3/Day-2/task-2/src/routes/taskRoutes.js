@@ -10,6 +10,7 @@ const {
 } = require("../controllers/taskController")
 const auth = require("../middleware/auth")
 const validateRequest = require("../middleware/validateRequest")
+const Task = require("../models/Task");
 
 const router = express.Router()
 
@@ -113,7 +114,11 @@ const getTasksValidation = [
  *       401:
  *         description: Unauthorized
  */
-router.get("/", getTasksValidation, validateRequest, getTasks)
+router.get("/", async (req, res) => {
+  const tasks = await Task.find({ user: req.user.id });
+  res.json(tasks);
+});
+
 
 /**
  * @swagger

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Signup = () => {
     setError("");
 
     try {
-      const response = await fetch("https://areeba-week3-day2-backend.vercel.app/api/users/register", {
+      const response = await fetch(`${API_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

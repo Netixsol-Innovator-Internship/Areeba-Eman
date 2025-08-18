@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,15 +16,15 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch("https://areeba-week3-day2-backend.vercel.app/api/users/login", {
+        const response = await fetch(`${API_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData), // use formData directly
-      });
+        body: JSON.stringify(formData),
+});
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.data.token);
         alert("Login successful!");
         navigate("/tasks");
       } else {

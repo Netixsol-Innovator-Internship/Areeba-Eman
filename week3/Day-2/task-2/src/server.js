@@ -15,8 +15,27 @@ const app = express()
 // Connect to MongoDB
 connectDB()
 
+// CORS configuration — allow frontend origin(s)
+const allowedOrigins = [
+  'http://localhost:5000',
+  'http://localhost:5173',
+  'https://areeba-week3-day2-backend.vercel.app',
+  'https://areeba-week3day3-frontend.vercel.app'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for this origin' + origin));
+    }
+  },
+  credentials: true
+}));
+
 // Middleware
-app.use(cors())
+// app.use(cors())
 app.use(express.json({ limit: "10mb" }))
 app.use(express.urlencoded({ extended: true }))
 

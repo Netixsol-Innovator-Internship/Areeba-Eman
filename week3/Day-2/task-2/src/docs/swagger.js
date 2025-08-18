@@ -37,12 +37,23 @@ const swaggerDefinition = {
       url: "https://opensource.org/licenses/MIT",
     },
   },
+  // servers: [
+  //   {
+  //     url: process.env.NODE_ENV === "production" ? `https://${process.env.VERCEL_URL}` : "https://areeba-week3-day2-backend.vercel.app",
+  //     description: process.env.NODE_ENV === "production" ? "Production server" : "Development server",
+  //   },
+  // ],
+
   servers: [
-    {
-      url: process.env.NODE_ENV === "production" ? `https://${process.env.VERCEL_URL}` : "https://task-2-areeba-eman4-areeba-emans-projects-8cfadb20.vercel.app",
-      description: process.env.NODE_ENV === "production" ? "Production server" : "Development server",
-    },
-  ],
+  {
+    url: "https://areeba-week3-day2-backend.vercel.app/", // always use production domain
+    description: "Production server",
+  },
+  {
+    url: "http://localhost:5000",
+    description: "Local development server",
+  },
+],
   components: {
     securitySchemes: {
       bearerAuth: {
