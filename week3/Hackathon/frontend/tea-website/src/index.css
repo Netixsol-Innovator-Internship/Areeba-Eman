@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+@import "tailwindcss";
+
+.font-prosto {
+    font-family: 'Prosto One', cursive;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}

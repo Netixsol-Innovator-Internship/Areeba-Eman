@@ -1,0 +1,1299 @@
+[
+  {
+    "name": "Assam Bold",
+    "slug": "assam-bold",
+    "description": "A strong and malty black tea from Assam, India.",
+    "ingredients": ["Black tea leaves"],
+    "caffeine": "High Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Deep Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["India"],
+      "flavor": ["Spicy", "Malty"],
+      "qualities": ["Energy"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 12 },
+      { "weight": "250g", "price": 28 }
+    ],
+    "images": ["cinamen_chai_tea_8.jpg"],
+    "stock": 50
+  },
+  {
+    "name": "Darjeeling First Flush",
+    "slug": "darjeeling-first-flush",
+    "description": "A delicate black tea with floral and fruity notes from Darjeeling.",
+    "ingredients": ["Darjeeling tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "90°C",
+      "time": "3 mins",
+      "colorNote": "Light Golden"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["India"],
+      "flavor": ["Floral", "Fruity"],
+      "qualities": ["Relax"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 10 },
+      { "weight": "200g", "price": 35 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 40
+  },
+  {
+    "name": "Earl Grey Classic",
+    "slug": "earl-grey-classic",
+    "description": "A timeless black tea blend infused with bergamot citrus flavor.",
+    "ingredients": ["Black tea leaves", "Bergamot oil"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Citrus", "Floral"],
+      "qualities": ["Relax"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 15 },
+      { "weight": "300g", "price": 38 }
+    ],
+    "images": ["chai.jpg"],
+    "stock": 70
+  },
+  {
+    "name": "English Breakfast",
+    "slug": "english-breakfast",
+    "description": "A robust black tea blend that pairs well with milk and sugar.",
+    "ingredients": ["Black tea leaves"],
+    "caffeine": "High Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "100°C",
+      "time": "5 mins",
+      "colorNote": "Dark Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Sri Lanka"],
+      "flavor": ["Bitter", "Creamy"],
+      "qualities": ["Energy"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "150g", "price": 14 },
+      { "weight": "500g", "price": 42 }
+    ],
+    "images": ["oolong.jpg"],
+    "stock": 90
+  },
+  {
+    "name": "Russian Caravan",
+    "slug": "russian-caravan",
+    "description": "A smoky black tea blend with a unique bold flavor.",
+    "ingredients": ["Black tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Dark Brown"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Iran"],
+      "flavor": ["Spicy", "Smoky"],
+      "qualities": ["Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 16 },
+      { "weight": "250g", "price": 32 }
+    ],
+    "images": ["dark-roast-oolong.jpg"],
+    "stock": 55
+  },
+  {
+    "name": "Ceylon Sunrise",
+    "slug": "ceylon-sunrise",
+    "description": "A refreshing and brisk black tea from Sri Lanka.",
+    "ingredients": ["Ceylon tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "3 mins",
+      "colorNote": "Reddish Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Citrus", "Sweet"],
+      "qualities": ["Energy"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 11 },
+      { "weight": "250g", "price": 25 }
+    ],
+    "images": ["matcha.jpg"],
+    "stock": 60
+  },
+  {
+    "name": "Keemun Imperial",
+    "slug": "keemun-imperial",
+    "description": "A smooth and slightly smoky black tea from China.",
+    "ingredients": ["Keemun tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "90°C",
+      "time": "3 mins",
+      "colorNote": "Reddish Brown"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Iran"],
+      "flavor": ["Floral", "Fruity"],
+      "qualities": ["Relax"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 9 },
+      { "weight": "200g", "price": 30 }
+    ],
+    "images": ["white_tea.jpg"],
+    "stock": 35
+  },
+  {
+    "name": "Irish Breakfast",
+    "slug": "irish-breakfast",
+    "description": "A bold and hearty black tea blend with malty undertones.",
+    "ingredients": ["Black tea leaves"],
+    "caffeine": "High Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "100°C",
+      "time": "5 mins",
+      "colorNote": "Dark Copper"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["India"],
+      "flavor": ["Malty", "Bitter"],
+      "qualities": ["Energy"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 13 },
+      { "weight": "300g", "price": 36 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 75
+  },
+  {
+    "name": "Lapsang Souchong",
+    "slug": "lapsang-souchong",
+    "description": "A smoky black tea with a distinctive pine flavor.",
+    "ingredients": ["Black tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Dark Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Smoky", "Spicy"],
+      "qualities": ["Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 17 },
+      { "weight": "250g", "price": 33 }
+    ],
+    "images": ["rooibos.jpg"],
+    "stock": 45
+  },
+  {
+    "name": "Yunnan Gold",
+    "slug": "yunnan-gold",
+    "description": "A smooth black tea with golden tips and a honeyed flavor.",
+    "ingredients": ["Yunnan tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "90°C",
+      "time": "3 mins",
+      "colorNote": "Golden Amber"
+    },
+    "attributes": {
+      "collections": ["Black teas"],
+      "origin": ["Iran"],
+      "flavor": ["Sweet", "Fruity"],
+      "qualities": ["Smoothing"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 14 },
+      { "weight": "200g", "price": 34 }
+    ],
+    "images": ["black_tea.jpg"],
+    "stock": 52
+  },
+  {
+    "name": "Sencha Supreme",
+    "slug": "sencha-supreme",
+    "description": "A refreshing Japanese green tea with grassy notes and a smooth finish.",
+    "ingredients": ["Green tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Light Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Japan"],
+      "flavor": ["Grassy", "Sweet"],
+      "qualities": ["Detox"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 12 },
+      { "weight": "200g", "price": 32 }
+    ],
+    "images": ["cinamen_chai_tea_3.jpg"],
+    "stock": 60
+  },
+  {
+    "name": "Dragon Well (Longjing)",
+    "slug": "dragon-well",
+    "description": "A famous Chinese green tea with nutty, sweet, and grassy flavors.",
+    "ingredients": ["Green tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "75°C",
+      "time": "3 mins",
+      "colorNote": "Yellow Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Iran"],
+      "flavor": ["Grassy", "Nutty"],
+      "qualities": ["Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 18 },
+      { "weight": "250g", "price": 40 }
+    ],
+    "images": ["green_tea.jpg"],
+    "stock": 45
+  },
+  {
+    "name": "Jasmine Pearl",
+    "slug": "jasmine-pearl",
+    "description": "Delicate hand-rolled pearls of green tea scented with jasmine blossoms.",
+    "ingredients": ["Green tea leaves", "Jasmine flowers"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Golden Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["China"],
+      "flavor": ["Floral", "Sweet"],
+      "qualities": ["Relax"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 15 },
+      { "weight": "150g", "price": 35 }
+    ],
+    "images": ["herbal_tea.jpg"],
+    "stock": 52
+  },
+  {
+    "name": "Gunpowder Green",
+    "slug": "gunpowder-green",
+    "description": "A bold green tea with tightly rolled leaves and a smoky flavor.",
+    "ingredients": ["Green tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Dark Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Smoky", "Spicy"],
+      "qualities": ["Energy"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 10 },
+      { "weight": "250g", "price": 28 }
+    ],
+    "images": ["cinamen_chai_tea.jpg"],
+    "stock": 70
+  },
+  {
+    "name": "Hojicha Roasted",
+    "slug": "hojicha-roasted",
+    "description": "A Japanese roasted green tea with nutty and toasty flavors.",
+    "ingredients": ["Green tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "90°C",
+      "time": "2 mins",
+      "colorNote": "Amber Brown"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Japan"],
+      "flavor": ["Nutty", "Toasty"],
+      "qualities": ["Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 9 },
+      { "weight": "200g", "price": 25 }
+    ],
+    "images": ["teaware.jpg"],
+    "stock": 48
+  },
+  {
+    "name": "Genmaicha",
+    "slug": "genmaicha",
+    "description": "A Japanese green tea blended with roasted brown rice for a nutty taste.",
+    "ingredients": ["Green tea leaves", "Roasted rice"],
+    "caffeine": "Low Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Light Brown"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Japan"],
+      "flavor": ["Nutty", "Grassy"],
+      "qualities": ["Smoothing"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 11 },
+      { "weight": "250g", "price": 26 }
+    ],
+    "images": ["rooibos.jpg"],
+    "stock": 55
+  },
+  {
+    "name": "Mao Feng Green",
+    "slug": "mao-feng-green",
+    "description": "A delicate Chinese green tea with floral and fruity undertones.",
+    "ingredients": ["Green tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Pale Yellow Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Iran"],
+      "flavor": ["Floral", "Fruity"],
+      "qualities": ["Relax"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 14 },
+      { "weight": "200g", "price": 33 }
+    ],
+    "images": ["cinamen_chai_tea_4.jpg"],
+    "stock": 38
+  },
+  {
+    "name": "Kukicha Twig Tea",
+    "slug": "kukicha-twig-tea",
+    "description": "A light Japanese green tea made from stems and twigs with a creamy flavor.",
+    "ingredients": ["Green tea twigs and stems"],
+    "caffeine": "Low Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Pale Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Japan"],
+      "flavor": ["Creamy", "Grassy"],
+      "qualities": ["Smoothing"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 10 },
+      { "weight": "250g", "price": 24 }
+    ],
+    "images": ["cinamen_chai_tea_5.jpg"],
+    "stock": 64
+  },
+  {
+    "name": "Bancha Everyday Green",
+    "slug": "bancha-everyday-green",
+    "description": "A Japanese green tea with mild flavor, perfect for daily drinking.",
+    "ingredients": ["Bancha tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Light Yellow Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Japan"],
+      "flavor": ["Grassy", "Sweet"],
+      "qualities": ["Detox"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 8 },
+      { "weight": "200g", "price": 22 }
+    ],
+    "images": ["cinamen_chai_tea_6.jpg"],
+    "stock": 59
+  },
+  {
+    "name": "Moroccan Mint Green",
+    "slug": "moroccan-mint-green",
+    "description": "A refreshing blend of green tea and mint, popular in Morocco.",
+    "ingredients": ["Green tea leaves", "Mint leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "3 mins",
+      "colorNote": "Light Green"
+    },
+    "attributes": {
+      "collections": ["Green teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Minty", "Sweet"],
+      "qualities": ["Digestion"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 13 },
+      { "weight": "250g", "price": 29 }
+    ],
+    "images": ["cinamen_chai_tea_7.jpg"],
+    "stock": 67
+  },
+
+  {
+    "name": "Silver Needle",
+    "slug": "silver-needle",
+    "description": "A premium white tea made from young buds with delicate floral notes.",
+    "ingredients": ["White tea buds"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "3 mins",
+      "colorNote": "Pale Yellow"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["China"],
+      "flavor": ["Floral", "Sweet"],
+      "qualities": ["Relax"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 20 },
+      { "weight": "150g", "price": 45 }
+    ],
+    "images": ["dark-roast-oolong.jpg"],
+    "stock": 40
+  },
+  {
+    "name": "White Peony (Bai Mudan)",
+    "slug": "white-peony",
+    "description": "A white tea with a fuller flavor, combining buds and young leaves.",
+    "ingredients": ["White tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "3 mins",
+      "colorNote": "Golden Yellow"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["Iran"],
+      "flavor": ["Fruity", "Floral"],
+      "qualities": ["Smoothing"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 15 },
+      { "weight": "200g", "price": 40 }
+    ],
+    "images": ["oolong.jpg"],
+    "stock": 50
+  },
+  {
+    "name": "Darjeeling White",
+    "slug": "darjeeling-white",
+    "description": "A rare Indian white tea with delicate floral and grassy notes.",
+    "ingredients": ["Darjeeling white tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Light Golden"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["India"],
+      "flavor": ["Grassy", "Floral"],
+      "qualities": ["Detox"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 18 },
+      { "weight": "150g", "price": 42 }
+    ],
+    "images": ["cinamen_chai_tea_7.jpg"],
+    "stock": 45
+  },
+  {
+    "name": "Ceylon White",
+    "slug": "ceylon-white",
+    "description": "A rare white tea from Sri Lanka with citrus and honey notes.",
+    "ingredients": ["White tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "3 mins",
+      "colorNote": "Pale Amber"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Citrus", "Sweet"],
+      "qualities": ["Energy"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 16 },
+      { "weight": "200g", "price": 38 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 52
+  },
+  {
+    "name": "White Darjeeling Silver Tips",
+    "slug": "white-darjeeling-silver-tips",
+    "description": "A delicate Indian white tea with smooth fruity flavors.",
+    "ingredients": ["White tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Golden Green"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["India"],
+      "flavor": ["Fruity", "Sweet"],
+      "qualities": ["Smoothing"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 22 },
+      { "weight": "150g", "price": 46 }
+    ],
+    "images": ["cinamen_chai_tea_6.jpg"],
+    "stock": 35
+  },
+  {
+    "name": "Shou Mei",
+    "slug": "shou-mei",
+    "description": "A stronger flavored white tea with fruity and earthy notes.",
+    "ingredients": ["White tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "3 mins",
+      "colorNote": "Amber Brown"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["Iran"],
+      "flavor": ["Fruity", "Grassy"],
+      "qualities": ["Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 14 },
+      { "weight": "250g", "price": 32 }
+    ],
+    "images": ["citrus-rooibos.jpg"],
+    "stock": 58
+  },
+  {
+    "name": "White Moonlight",
+    "slug": "white-moonlight",
+    "description": "A smooth white tea with floral and creamy notes, grown in Yunnan.",
+    "ingredients": ["White tea leaves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Pale Yellow"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["China"],
+      "flavor": ["Floral", "Creamy"],
+      "qualities": ["Relax"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 19 },
+      { "weight": "150g", "price": 44 }
+    ],
+    "images": ["rooibos.jpg"],
+    "stock": 47
+  },
+  {
+    "name": "White Jasmine",
+    "slug": "white-jasmine",
+    "description": "A fragrant white tea scented with jasmine blossoms.",
+    "ingredients": ["White tea leaves", "Jasmine flowers"],
+    "caffeine": "Low Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Golden Yellow"
+    },
+    "attributes": {
+      "collections": ["White teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Floral", "Sweet"],
+      "qualities": ["Relax"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 12 },
+      { "weight": "200g", "price": 30 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 54
+  },
+  {
+    "name": "Classic Masala Chai",
+    "slug": "classic-masala-chai",
+    "description": "A traditional Indian masala chai blend with bold spices and strong black tea.",
+    "ingredients": ["Black tea", "Cardamom", "Cinnamon", "Cloves", "Ginger"],
+    "caffeine": "High Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Dark Brown"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["India"],
+      "flavor": ["Spicy", "Sweet"],
+      "qualities": ["Energy", "Digestion"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 12 },
+      { "weight": "250g", "price": 25 }
+    ],
+    "images": ["chai.jpg"],
+    "stock": 70
+  },
+  {
+    "name": "Cardamom Chai",
+    "slug": "cardamom-chai",
+    "description": "Fragrant chai infused with cardamom pods for a sweet and spicy flavor.",
+    "ingredients": ["Black tea", "Cardamom"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1.5 tsp per cup",
+      "temperature": "95°C",
+      "time": "3-4 mins",
+      "colorNote": "Amber"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["Pakistan"],
+      "flavor": ["Spicy", "Sweet"],
+      "qualities": ["Energy", "Smoothing"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "80g", "price": 9 },
+      { "weight": "200g", "price": 20 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 50
+  },
+  {
+    "name": "Ginger Chai",
+    "slug": "ginger-chai",
+    "description": "A warming chai blend with ginger for a zesty kick and improved digestion.",
+    "ingredients": ["Black tea", "Ginger", "Cinnamon"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "95°C",
+      "time": "5 mins",
+      "colorNote": "Golden Brown"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["India"],
+      "flavor": ["Spicy", "Citrus"],
+      "qualities": ["Digestion", "Energy"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 11 },
+      { "weight": "300g", "price": 28 }
+    ],
+    "images": ["cinamen_chai_tea_5.jpg"],
+    "stock": 60
+  },
+  {
+    "name": "Kashmiri Chai",
+    "slug": "kashmiri-chai",
+    "description": "A creamy pink chai made with green tea, milk, and spices, popular in Pakistan.",
+    "ingredients": ["Green tea", "Cardamom", "Cinnamon", "Almonds"],
+    "caffeine": "Low Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "90°C",
+      "time": "6 mins",
+      "colorNote": "Pink"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["Pakistan"],
+      "flavor": ["Floral", "Creamy"],
+      "qualities": ["Relax", "Smoothing"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "150g", "price": 15 },
+      { "weight": "300g", "price": 30 }
+    ],
+    "images": ["cinamen_chai_tea_4.jpg"],
+    "stock": 40
+  },
+  {
+    "name": "Tulsi Chai",
+    "slug": "tulsi-chai",
+    "description": "Herbal chai infused with holy basil (tulsi) for a soothing and calming effect.",
+    "ingredients": ["Black tea", "Tulsi leaves", "Cloves"],
+    "caffeine": "Low Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1.5 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Light Brown"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["India"],
+      "flavor": ["Floral", "Minty"],
+      "qualities": ["Relax", "Detox"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 10 },
+      { "weight": "250g", "price": 22 }
+    ],
+    "images": ["cinamen_chai_tea_3.jpg"],
+    "stock": 55
+  },
+  {
+    "name": "Vanilla Chai",
+    "slug": "vanilla-chai",
+    "description": "Smooth chai blended with vanilla for a creamy sweet-spice balance.",
+    "ingredients": ["Black tea", "Vanilla beans", "Cinnamon"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "95°C",
+      "time": "4-5 mins",
+      "colorNote": "Golden Brown"
+    },
+    "attributes": {
+      "collections": ["Chai"],
+      "origin": ["South Africa"],
+      "flavor": ["Sweet", "Creamy"],
+      "qualities": ["Energy", "Smoothing"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 12 },
+      { "weight": "200g", "price": 23 }
+    ],
+    "images": ["cinamen_chai_tea_2.jpg"],
+    "stock": 65
+  },
+  {
+    "name": "Organic Culinary Matcha",
+    "slug": "organic-culinary-matcha",
+    "description": "Rich matcha powder perfect for baking, smoothies, and lattes.",
+    "ingredients": ["Green tea powder"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Bright Green"
+    },
+    "attributes": {
+      "collections": ["Matcha"],
+      "origin": ["Japan"],
+      "flavor": ["Grassy", "Creamy"],
+      "qualities": ["Energy", "Digestion"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 15 },
+      { "weight": "100g", "price": 28 }
+    ],
+    "images": ["rooibos.jpg"],
+    "stock": 120
+  },
+  {
+    "name": "Matcha Latte Blend",
+    "slug": "matcha-latte-blend",
+    "description": "Smooth and creamy matcha blend designed for lattes.",
+    "ingredients": ["Green tea powder", "Coconut milk powder"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Creamy Green"
+    },
+    "attributes": {
+      "collections": ["Matcha"],
+      "origin": ["Japan"],
+      "flavor": ["Creamy", "Sweet"],
+      "qualities": ["Energy", "Smoothing"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "200g", "price": 20 },
+      { "weight": "400g", "price": 38 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 150
+  },
+  {
+    "name": "Vanilla Matcha",
+    "slug": "vanilla-matcha",
+    "description": "A delightful blend of pure matcha and natural vanilla for a smooth flavor.",
+    "ingredients": ["Green tea powder", "Vanilla extract"],
+    "caffeine": "Medium Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "80°C",
+      "time": "2 mins",
+      "colorNote": "Light Green"
+    },
+    "attributes": {
+      "collections": ["Matcha"],
+      "origin": ["Japan"],
+      "flavor": ["Sweet", "Creamy"],
+      "qualities": ["Relax", "Smoothing"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 18 },
+      { "weight": "100g", "price": 32 }
+    ],
+    "images": ["cinamen_chai_tea_4.jpg"],
+    "stock": 100
+  },
+  {
+    "name": "Mint Matcha",
+    "slug": "mint-matcha",
+    "description": "Refreshing matcha infused with cooling mint leaves.",
+    "ingredients": ["Green tea powder", "Mint"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "85°C",
+      "time": "2 mins",
+      "colorNote": "Bright Green"
+    },
+    "attributes": {
+      "collections": ["Matcha"],
+      "origin": ["Japan"],
+      "flavor": ["Minty", "Grassy"],
+      "qualities": ["Digestion", "Energy"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 16 },
+      { "weight": "120g", "price": 28 }
+    ],
+    "images": ["matcha.jpg"],
+    "stock": 110
+  },
+  {
+    "name": "Chamomile Calm",
+    "slug": "chamomile-calm",
+    "description": "A calming herbal tea made from chamomile flowers.",
+    "ingredients": ["Chamomile flowers"],
+    "caffeine": "No Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tbsp per cup",
+      "temperature": "100°C",
+      "time": "5 mins",
+      "colorNote": "Golden Yellow"
+    },
+    "attributes": {
+      "collections": ["Herbal teas"],
+      "origin": ["Egypt"],
+      "flavor": ["Floral", "Sweet"],
+      "qualities": ["Relax", "Sleep"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 8 },
+      { "weight": "150g", "price": 18 }
+    ],
+    "images": ["cinamen_chai_tea_4.jpg"],
+    "stock": 60
+  },
+  {
+    "name": "Peppermint Fresh",
+    "slug": "peppermint-fresh",
+    "description": "A refreshing herbal tea made with pure peppermint leaves.",
+    "ingredients": ["Peppermint leaves"],
+    "caffeine": "No Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tbsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Light Green"
+    },
+    "attributes": {
+      "collections": ["Herbal teas"],
+      "origin": ["India"],
+      "flavor": ["Minty", "Grassy"],
+      "qualities": ["Digestion", "Relax"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 7 },
+      { "weight": "200g", "price": 22 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 80
+  },
+  {
+    "name": "Hibiscus Zest",
+    "slug": "hibiscus-zest",
+    "description": "A tart and fruity tea made from dried hibiscus petals.",
+    "ingredients": ["Hibiscus petals"],
+    "caffeine": "No Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "2 tsp per cup",
+      "temperature": "95°C",
+      "time": "6 mins",
+      "colorNote": "Deep Red"
+    },
+    "attributes": {
+      "collections": ["Herbal teas"],
+      "origin": ["Iran"],
+      "flavor": ["Citrus", "Fruity"],
+      "qualities": ["Detox", "Energy"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "100g", "price": 10 },
+      { "weight": "250g", "price": 20 }
+    ],
+    "images": ["cinamen_chai_tea_1.jpg"],
+    "stock": 50
+  },
+  {
+    "name": "Lemongrass Glow",
+    "slug": "lemongrass-glow",
+    "description": "A zesty herbal infusion with fresh lemongrass stalks.",
+    "ingredients": ["Lemongrass"],
+    "caffeine": "No Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tbsp per cup",
+      "temperature": "95°C",
+      "time": "5 mins",
+      "colorNote": "Pale Yellow"
+    },
+    "attributes": {
+      "collections": ["Herbal teas"],
+      "origin": ["Pakistan"],
+      "flavor": ["Citrus", "Grassy"],
+      "qualities": ["Digestion", "Detox"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 6 },
+      { "weight": "200g", "price": 18 }
+    ],
+    "images": ["cinamen_chai_tea.jpg"],
+    "stock": 70
+  },
+  {
+    "name": "Classic Oolong",
+    "slug": "classic-oolong",
+    "description": "A traditional semi-oxidized tea with a balance of floral and creamy notes.",
+    "ingredients": ["Oolong tea leaves"],
+    "caffeine": "Medium Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "90°C",
+      "time": "3 mins",
+      "colorNote": "Amber"
+    },
+    "attributes": {
+      "collections": ["Oolong"],
+      "origin": ["China"],
+      "flavor": ["Floral", "Creamy"],
+      "qualities": ["Digestion", "Relax"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 12 },
+      { "weight": "100g", "price": 22 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 75
+  },
+  {
+    "name": "Dark Roast Oolong",
+    "slug": "dark-roast-oolong",
+    "description": "A rich roasted oolong with a nutty and slightly smoky flavor.",
+    "ingredients": ["Roasted Oolong tea leaves"],
+    "caffeine": "High Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "95°C",
+      "time": "4 mins",
+      "colorNote": "Dark Amber"
+    },
+    "attributes": {
+      "collections": ["Oolong"],
+      "origin": ["Taiwan"],
+      "flavor": ["Bitter", "Nutty"],
+      "qualities": ["Energy"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 14 },
+      { "weight": "120g", "price": 26 }
+    ],
+    "images": ["dark-roast-oolong.jpg"],
+    "stock": 60
+  },
+  {
+    "name": "Classic Rooibos",
+    "slug": "classic-rooibos",
+    "description": "Naturally caffeine-free rooibos with earthy and slightly sweet flavor.",
+    "ingredients": ["Rooibos leaves"],
+    "caffeine": "No Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "100°C",
+      "time": "6 mins",
+      "colorNote": "Deep Red"
+    },
+    "attributes": {
+      "collections": ["Rooibos"],
+      "origin": ["South Africa"],
+      "flavor": ["Sweet", "Grassy"],
+      "qualities": ["Relax"],
+      "allergens": ["Nut-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 9 },
+      { "weight": "150g", "price": 20 }
+    ],
+    "images": ["lemon_palm_tissanes.jpg"],
+    "stock": 80
+  },
+  {
+    "name": "Vanilla Rooibos",
+    "slug": "vanilla-rooibos",
+    "description": "A smooth rooibos blend with sweet vanilla notes.",
+    "ingredients": ["Rooibos leaves", "Vanilla"],
+    "caffeine": "No Caffeine",
+    "organic": false,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "100°C",
+      "time": "5 mins",
+      "colorNote": "Ruby Red"
+    },
+    "attributes": {
+      "collections": ["Rooibos"],
+      "origin": ["South Africa"],
+      "flavor": ["Sweet", "Creamy"],
+      "qualities": ["Relax", "Smoothing"],
+      "allergens": ["Soy-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 11 },
+      { "weight": "200g", "price": 23 }
+    ],
+    "images": ["vanilla-rooibos.jpg"],
+    "stock": 55
+  },
+  {
+    "name": "Citrus Rooibos",
+    "slug": "citrus-rooibos",
+    "description": "Refreshing rooibos blend with a zesty citrus twist.",
+    "ingredients": ["Rooibos leaves", "Orange peel"],
+    "caffeine": "No Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tsp per cup",
+      "temperature": "100°C",
+      "time": "6 mins",
+      "colorNote": "Reddish Brown"
+    },
+    "attributes": {
+      "collections": ["Rooibos"],
+      "origin": ["South Africa"],
+      "flavor": ["Citrus", "Fruity"],
+      "qualities": ["Detox", "Digestion"],
+      "allergens": ["Gluten-free"]
+    },
+    "variants": [
+      { "weight": "50g", "price": 10 },
+      { "weight": "150g", "price": 21 }
+    ],
+    "images": ["citrus-rooibos.jpg"],
+    "stock": 70
+  },
+  {
+    "name": "Lemon Balm Tisane",
+    "slug": "lemon-balm-tisane",
+    "description": "A soothing caffeine-free tisane made with lemon balm leaves.",
+    "ingredients": ["Lemon Balm Leaves"],
+    "caffeine": "No Caffeine",
+    "organic": true,
+    "steepingInstructions": {
+      "servingSize": "1 tbsp per cup",
+      "temperature": "95°C",
+      "time": "5 mins",
+      "colorNote": "Light Green"
+    },
+    "attributes": {
+      "collections": ["Tisanes"],
+      "origin": ["Iran"],
+      "flavor": ["Citrus", "Floral"],
+      "qualities": ["Relax", "Smoothing"],
+      "allergens": ["Lactose-free"]
+    },
+    "variants": [
+      { "weight": "40g", "price": 7 },
+      { "weight": "100g", "price": 15 }
+    ],
+    "images": ["lemon_palm_tissanes.jpg"],
+    "stock": 50
+  }
+]
