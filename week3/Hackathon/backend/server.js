@@ -13,7 +13,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "./swagger-output.json" with { type: "json" };
 
-const MONGO_URI='mongodb+srv://areebaeman:areebaemanhello@cluster0.9kz2ofl.mongodb.net/'
+const MONGO_URI='mongodb+srv://areebasajjad00:areebaemanhello@cluster0.uitxdku.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 // yeh env mn put kr ky process sy yahan pr lena ha
 
 const app = express();
@@ -23,10 +23,12 @@ app.use(express.json());
 
 // ✅ CORS Setup
 const allowedOrigins = [
-  "http://localhost:5173",
+  "http://localhost:3000",
   "https://areeba-week3-hackathon-frontend.vercel.app",
-  "https://areeba-hackathon-week3-backend.vercel.app"
+  "https://areeba-week-3-hackathon-backend.vercel.app"
 ];
+
+// app.use(cors({}));
 
 app.use(
   cors({
@@ -54,7 +56,7 @@ if (!mongoURI) {
 }
 
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoURI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err.message);

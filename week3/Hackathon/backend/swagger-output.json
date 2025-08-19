@@ -5,7 +5,7 @@
     "description": "In-memory CRUD API for tasks",
     "version": "1.0.0"
   },
-  "host": "areeba-hackathon-week3-backend.vercel.app",
+  "host": "areeba-week-3-hackathon-backend.vercel.app",
   "basePath": "/",
   "schemes": [
     "https"

@@ -15,7 +15,7 @@ const Hero = () => {
           {/* Top hero section */}
           <div className='w-full grid grid-cols-1 mb-24 md:grid-cols-2 mx-0 gap-12 lg:gap-32 overflow-x-hidden'>
             <div className='w-[100%]'>
-              <img className='h-[628px] w-full  object-cover' src="./assets/home/topHeroImg/Landing-Main-Image.png" alt="" />
+              <img className='h-[628px] w-full  object-cover' src="./heroimage/Landing-Main-Image.png" alt="" />
             </div>
             <div className='flex flex-col justify-center px-3 md:pl-0 md:pr-18'>
               <div className="flex md:block flex-col items-center justify-center px-6 sm:px-0" >

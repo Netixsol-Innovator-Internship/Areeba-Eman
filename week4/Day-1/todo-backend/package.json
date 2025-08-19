@@ -1,15 +1,16 @@
 {
   "name": "todo-backend",
   "version": "1.0.0",
-  "private": true,
-  "proxy": "http://localhost:5000",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon src/index.ts"
+    "start": "node dist/index.js",
+  "dev": "nodemon src/index.ts",
+  "build": "tsc"
   },
-  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,7 +24,6 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.3.0",
-    "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"

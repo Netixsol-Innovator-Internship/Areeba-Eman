@@ -12,6 +12,7 @@ export const getAllProducts = async () => {
 export const getAllCollections = async () => {
   try {
     const res = await api.get("/products/collections");
+    console.log(res.data)
     return res.data;
   } catch (error) {
     return error?.response;

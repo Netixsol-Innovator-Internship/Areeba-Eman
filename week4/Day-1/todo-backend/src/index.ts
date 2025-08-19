@@ -44,4 +44,5 @@ app.delete("/api/tasks/:id", (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+// app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+export default app;

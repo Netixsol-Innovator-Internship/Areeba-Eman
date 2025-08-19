@@ -46,7 +46,7 @@ const swaggerDefinition = {
 
   servers: [
   {
-    url: "https://areeba-hackathon-week3-backend.vercel.app", // always use production domain
+    url: "https://areeba-week-3-hackathon-backend.vercel.app", // always use production domain
     description: "Production server",
   },
   {
