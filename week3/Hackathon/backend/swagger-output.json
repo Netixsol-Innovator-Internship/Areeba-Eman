@@ -5,10 +5,10 @@
     "description": "In-memory CRUD API for tasks",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "areeba-hackathon-week3-backend.vercel.app",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "BearerAuth": {
