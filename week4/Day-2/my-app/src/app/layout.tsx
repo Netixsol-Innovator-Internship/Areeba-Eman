@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eesha's Project",
+  title: "Job Listing",
   description: "JOB LISTING APP",
     icons: {
     icon: "/favicon.png",
