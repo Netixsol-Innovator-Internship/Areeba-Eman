@@ -1,45 +1,53 @@
-// Create Product
-
+// import Product from "../models/productModel.js";
 import Product from "../models/Product.js";
+
 import { errors, success } from "../utils/responses.js";
 
-import fs from "fs";
-
+// ✅ Create Product
 export const createProduct = async (req, res) => {
   try {
-    let data = req.body;
+    const {
+      name,
+      slug,
+      description,
+      ingredients,
+      caffeine,
+      organic,
+      attributes,
+      variants,
+      stock
+    } = req.body;
 
-    // Attach images paths
-    if (req.files) {
-      data.images = req.files.map((file) => file.path);
-    }
+    // Parse JSON fields (since they come as strings from form-data)
+    const parsedIngredients = JSON.parse(ingredients);
+    const parsedAttributes = JSON.parse(attributes);
+    const parsedVariants = JSON.parse(variants);
 
-    let { name, slug } = data;
-    const existingProduct = await Product.findOne({
-      $or: [{ name }, { slug }],
+    // Get uploaded image filenames
+    const imageFiles = req.files.map(file => file.filename);
+
+    const newProduct = new Product({
+      name,
+      slug,
+      description,
+      ingredients: parsedIngredients,
+      caffeine,
+      organic: organic === "true",
+      attributes: parsedAttributes,
+      variants: parsedVariants,
+      images: imageFiles,
+      stock
     });
-    if (existingProduct) {
-      return res.status(400).json({
-        success: false,
-        message:
-          existingProduct.name === name
-            ? "Product name already exists"
-            : "Product slug already exists",
-      });
-    }
 
-    const product = await Product.create(data);
-    return res.status(201).json({
-      success: true,
-      data: product,
-      message: "Product created successfully",
-    });
+    await newProduct.save();
+
+    res.status(201).json({ success: true, data: newProduct });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-// Fetching all Products
 
+// ✅ Get All Products
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Product.aggregate([
@@ -64,7 +72,7 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-// Get product by ID
+// ✅ Get Product by ID
 export const getProductByID = async (req, res) => {
   try {
     let { id } = req.params;
@@ -91,8 +99,7 @@ export const getProductByID = async (req, res) => {
   }
 };
 
-// Get Products by Slag
-
+// ✅ Get Product by Slug
 export const getProductBySlug = async (req, res) => {
   try {
     const { slug } = req.params;
@@ -120,56 +127,104 @@ export const getProductBySlug = async (req, res) => {
   }
 };
 
-// Filter Products
-
-export const getFilteredProductsByOption = async (req, res) => {
+// ✅ Update Product (Role-Based Field Control)
+export const updateProductById = async (req, res) => {
   try {
-    let filteredQuery = req.query;
+    const { id } = req.params;
+    const userRole = req.user.role; // coming from protect middleware
+    let data = req.body;
 
-    let query = {};
-
-    if (filteredQuery.caffeine) {
-      query.caffeine = filteredQuery.caffeine;
-    }
-    if (filteredQuery.organic) {
-      query.organic = filteredQuery.organic == "true";
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
     }
 
-    const attributes = [
-      "collections",
-      "origin",
-      "flavor",
-      "qualities",
-      "allergies",
-    ];
-    attributes.forEach((key) => {
-      if (filteredQuery[key]) {
-        query[`attributes.${key}`] = filteredQuery[key];
-      }
-    });
+    // Handle file uploads if any
+    if (req.files && req.files.length > 0) {
+      data.images = req.files.map((file) => file.path);
+    }
 
-    const products = await Product.find(query);
-    if (products.length > 0) {
-      return res.status(200).json({
-        success: true,
-        data: products,
-        message: success.PRODUCTS_RETRIEVED,
+    // Role-based restrictions
+    if (userRole === "admin") {
+      // Admin can only update name & price
+      const { name, price } = data;
+      if (name) product.name = name;
+      if (price) product.price = price;
+    } else if (userRole === "superAdmin") {
+      // SuperAdmin can update everything
+      Object.keys(data).forEach((key) => {
+        product[key] = data[key];
       });
+    } else {
+      return res.status(403).json({ success: false, message: "Not authorized" });
     }
-    return res.status(400).json({
-      success: false,
-      data: null,
-      message: errors.PRODUCT_NOT_FOUND,
+
+    await product.save();
+
+    return res.status(200).json({
+      success: true,
+      data: product,
+      message: "Product updated successfully",
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
-// Filter Options
+// ✅ Delete Product (Only SuperAdmin)
+export const deleteProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userRole = req.user.role;
+
+    if (userRole !== "superAdmin") {
+      return res.status(403).json({ success: false, message: "Only superAdmin can delete products" });
+    }
+
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+
+    await product.deleteOne();
+
+    return res.status(200).json({
+      success: true,
+      message: "Product deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ✅ Delete All Products (SuperAdmin only)
+export const deleteAllProducts = async (req, res) => {
+  try {
+    const userRole = req.user.role;
+    if (userRole !== "superAdmin") {
+      return res.status(403).json({ success: false, message: "Not authorized" });
+    }
+
+    await Product.deleteMany({});
+    return res.status(200).json({
+      success: true,
+      message: "All products deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+//try
+// ✅ Extra (Collections, Filters) - placeholders if you need them
+// export const getCollections = async (req, res) => {
+//   try {
+//     const collections = await Product.distinct("attributes.collections");
+//     res.status(200).json({ success: true, collections });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
 
 export const getAvailableFilterOptions = async (req, res) => {
   try {
@@ -201,17 +256,50 @@ export const getAvailableFilterOptions = async (req, res) => {
   }
 };
 
-// Delete all products
 
-export const deleteAllProducts = async (req, res) => {
+
+export const getFilteredProductsByOption = async (req, res) => {
   try {
-    const result = await Product.deleteMany({});
-    return res.status(200).json({
-      success: true,
-      deletedCount: result.deletedCount,
-      message: "All products have been deleted successfully",
+    let filteredQuery = req.query;
+    let query = {};
+
+    if (filteredQuery.caffeine) {
+      query.caffeine = filteredQuery.caffeine;
+    }
+    if (filteredQuery.organic) {
+      query.organic = filteredQuery.organic == "true";
+    }
+
+    const attributes = [
+      "collections",
+      "origin",
+      "flavor",
+      "qualities",
+      "allergies",
+    ];
+    attributes.forEach((key) => {
+      if (filteredQuery[key]) {
+        query[`attributes.${key}`] = filteredQuery[key];
+      }
+    });
+
+    const products = await Product.find(query);
+
+    if (products.length > 0) {
+      return res.status(200).json({
+        success: true,
+        data: products,
+        message: "Products retrieved successfully ✅",
+      });
+    }
+
+    return res.status(404).json({
+      success: false,
+      data: null,
+      message: "No products found ❌",
     });
   } catch (error) {
+    console.error("Filter error:", error);
     res.status(500).json({
       success: false,
       message: error.message,
@@ -219,94 +307,7 @@ export const deleteAllProducts = async (req, res) => {
   }
 };
 
-// Delete by Id
-export const deleteProductById = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
 
-    if (!product) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Product not found" });
-    }
-
-    // Delete images from filesystem
-    if (product.images && product.images.length > 0) {
-      product.images.forEach((imgPath) => {
-        if (fs.existsSync(imgPath)) {
-          fs.unlinkSync(imgPath);
-        }
-      });
-    }
-
-    await product.deleteOne();
-
-    return res
-      .status(200)
-      .json({ success: true, message: "Product deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-// Update By ID
-
-export const updateProductById = async (req, res) => {
-  try {
-    let data = req.body;
-
-    // Parse JSON if frontend sends nested objects
-    // if (typeof data.attributes === "string") {
-    //   data.attributes = JSON.parse(data.attributes);
-    // }
-    // if (typeof data.variants === "string") {
-    //   data.variants = JSON.parse(data.variants);
-    // }
-
-    const product = await Product.findById(req.params.id);
-
-    if (!product) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Product not found" });
-    }
-
-    // If new images are uploaded → delete old ones first
-    if (req.files && req.files.length > 0) {
-      if (product.images && product.images.length > 0) {
-        product.images.forEach((imgPath) => {
-          if (fs.existsSync(imgPath)) {
-            fs.unlinkSync(imgPath);
-          }
-        });
-      }
-
-      data.images = req.files.map((file) => file.path);
-    }
-
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
-      data,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-
-    return res.status(200).json({
-      success: true,
-      data: updatedProduct,
-      message: "Product updated successfully",
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-
-
-
-// Get collections
 
 export const getCollections = async (req, res) => {
   try {
@@ -343,5 +344,43 @@ export const getCollections = async (req, res) => {
       message: "Failed to fetch collections",
       error: error.message
     });
+  }
+};
+
+
+
+
+
+
+
+// extraaaaaaaaaaaaaaa
+// ✅ Get All Collections
+// export const getCollections = async (req, res) => {
+//   try {
+//     const collections = await Product.distinct("collection"); // or your actual logic
+//     res.json({ success: true, collections });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// ✅ Get Products by Collection
+export const getProductsByCollection = async (req, res) => {
+  try {
+    const { collectionName } = req.params;
+
+    if (!collectionName) {
+      return res.status(400).json({ success: false, message: "Collection name is required" });
+    }
+
+    const products = await Product.find({ "attributes.collections": collectionName });
+
+    if (!products || products.length === 0) {
+      return res.status(404).json({ success: false, message: "No products found for this collection" });
+    }
+
+    res.status(200).json({ success: true, data: products });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };

@@ -1,56 +1,20 @@
-import { toast } from "react-toastify";
-import api from "./api";
+// src/services/cartServices.js
+let cart = [];
 
-export const addToCart = async (data) => {
-  try {
-    console.log(data);
-    const res = await api.post("/cart", data);
-    return res.data;
-  } catch (error) {
-    return  error.response.data
-  }
+export const getCartProducts = () => {
+  return cart;
 };
 
-export const getCartProducts = async () => {
-  try {
-    const res = await api.get("/cart");
-    return res.data;
-  } catch (error) {
-    return  error.response.data
-  }
+export const increaseQuantity = (id) => {
+  const item = cart.find((product) => product.id === id);
+  if (item) item.quantity += 1;
 };
 
-
-export const increaseQuantity = async (id) => {
-  try {
-    console.log(id)
-    const res = await api.patch(`/cart/increase/${id}`,);
-    return res.data;
-  } catch (error) {
-    return toast.error(error?.response?.data?.message)
-  }
+export const decreaseQuantity = (id) => {
+  const item = cart.find((product) => product.id === id);
+  if (item && item.quantity > 1) item.quantity -= 1;
 };
 
-
-export const decreaseQuantity = async (id) => {
-  try {
-    console.log(id)
-    const res = await api.patch(`/cart/decrease/${id}`,);
-    return res.data;
-  } catch (error) {
-    return  toast.error(error?.response?.data?.message)
-  }
-};
-
-
-export const removeItemFromCart = async (id) => {
-  try {
-    console.log(id)
-    const res = await api.delete(`/cart/${id}`,);
-    return res.data;
-  } catch (error) {
-    return (
-      toast.error(error?.response?.data?.message)
-    );
-  }
+export const removeItemFromCart = (id) => {
+  cart = cart.filter((product) => product.id !== id);
 };

@@ -1,35 +1,37 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
-import swaggerUi from "swagger-ui-express";
-import swaggerFile from "./swagger-output.json" with { type: "json" };
 
-const MONGO_URI='mongodb+srv://areebasajjad00:areebaemanhello@cluster0.uitxdku.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-// yeh env mn put kr ky process sy yahan pr lena ha
+import { errorHandler } from "./middlewares/errorHandler.js";
+
+// NEW: ensure super admin (no seeder)
+import bcrypt from "bcryptjs";
+import User from "./models/User.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Middleware to parse JSON requests
-app.use(express.json());
-
+// adding cors
 // ✅ CORS Setup
 const allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost:5173",
   "https://areeba-week3-hackathon-frontend.vercel.app",
   "https://areeba-week-3-hackathon-backend.vercel.app"
 ];
-
-// app.use(cors({}));
-
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -40,44 +42,94 @@ app.use(
       }
     },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-// ✅ Static files
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// ✅ MongoDB Connection
-const mongoURI = MONGO_URI;
-if (!mongoURI) {
-  console.error("❌ MONGO_URI is missing in .env file");
-  process.exit(1);
-}
 
-mongoose
-  .connect(mongoURI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1);
-  });
 
-// ✅ Swagger Docs
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 
-// ✅ Routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
 
-// ✅ Global Error Handler
+// Errors
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+const createSuperAdmin = async () => {
+  try {
+    const superAdminEmail = 'superadmin@example.com';
+    const existingSuperAdmin = await User.findOne({ email: superAdminEmail });
 
+    if (!existingSuperAdmin) {
+      const hashedPassword = await bcrypt.hash('superpassword', 10);
+
+      await User.create({
+        name: 'Super Admin',
+        email: superAdminEmail,
+        password: hashedPassword,
+        role: 'superAdmin',
+      });
+
+      console.log('✅ Super Admin created:', superAdminEmail);
+    } else {
+      console.log('✅ Super Admin already exists:', superAdminEmail);
+    }
+  } catch (error) {
+    console.error('❌ Error creating Super Admin:', error.message);
+  }
+};
+
+// ensure predefined superAdmin exists (runs at startup)
+const ensureSuperAdmin = async () => {
+  const email = process.env.SUPERADMIN_EMAIL || "super@teaapp.com";
+  const password = process.env.SUPERADMIN_PASSWORD || "SuperTea@123";
+  const name = process.env.SUPERADMIN_NAME || "Tea SuperAdmin";
+
+  let user = await User.findOne({ email });
+  if (!user) {
+    const hashed = await bcrypt.hash(password, 10);
+    await User.create({ name, email, password: hashed, role: "superAdmin" });
+    console.log("✅ Created predefined superAdmin:", email);
+  } else if (user.role !== "superAdmin") {
+    user.role = "superAdmin";
+    await user.save();
+    console.log("✅ Elevated existing user to superAdmin:", email);
+  } else {
+    console.log("ℹ️ SuperAdmin already exists:", email);
+  }
+};
+
+async function start() {
+  try {
+    await mongoose.connect(MONGO_URI, {
+      // add any options you prefer
+    });
+    console.log("✅ MongoDB connected");
+
+    await ensureSuperAdmin();
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Mongo/Server error:", err?.message);
+    process.exit(1);
+  }
+}
+start();
+app.use("/uploads", express.static("uploads"));
+
+createSuperAdmin();
 export default app;

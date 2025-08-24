@@ -1,40 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import {
-  getFilterOptions,
-  getFilteredProducts,
-} from "../../services/productService";
+  useGetFilterOptionsQuery,
+  useLazyGetFilteredProductsQuery,
+} from "../../redux/slices/productApiSlice";
 
 const Sidebar = ({ onProductsFiltered }) => {
+  const { data: filterOptions } = useGetFilterOptionsQuery();
+  const [getFilteredProducts] = useLazyGetFilteredProductsQuery();
+
   const [enabled, setEnabled] = useState(false);
-  const [filterOptions, setFilterOptions] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [openSections, setOpenSections] = useState({});
 
   useEffect(() => {
-    const fetchOptions = async () => {
-      let result = await getFilterOptions();
-      setFilterOptions(result);
-
+    if (filterOptions?.attributes) {
       const initialOpenState = {};
-      result.attributes?.forEach((attr) => {
-        initialOpenState[attr._id] = false; 
+      filterOptions.attributes.forEach((attr) => {
+        initialOpenState[attr._id] = false;
       });
       initialOpenState["caffeine"] = false;
       setOpenSections(initialOpenState);
-    };
-    fetchOptions();
-  }, []);
+    }
+  }, [filterOptions]);
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
-      const result = await getFilteredProducts(selectedFilters);
+      const result = await getFilteredProducts(selectedFilters).unwrap();
       if (result?.success) {
         onProductsFiltered(result.data);
       }
     };
     fetchFilteredProducts();
-  }, [selectedFilters, enabled, onProductsFiltered]);
+  }, [selectedFilters, enabled]);
 
   const handleCheckboxChange = (category, value) => {
     setSelectedFilters((prev) => {
@@ -52,7 +50,7 @@ const Sidebar = ({ onProductsFiltered }) => {
 
   const toggleSection = (sectionId) => {
     setOpenSections((prev) => ({
-      ...prev,
+       ...prev,
       [sectionId]: !prev[sectionId],
     }));
   };

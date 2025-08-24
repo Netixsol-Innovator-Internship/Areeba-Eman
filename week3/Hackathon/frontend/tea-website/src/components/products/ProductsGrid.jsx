@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-// import { products } from '../../constants/gernal'
+// import { products } from '../../constants/gernal';
 import ProductCard from "./ProductCard";
 import { useNavigate } from "react-router-dom";
 

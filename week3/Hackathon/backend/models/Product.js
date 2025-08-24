@@ -5,6 +5,10 @@ const productSchema = new mongoose.Schema(
     name: { type: String, required: true, unique: true },
     slug: { type: String, unique: true, lowercase: true },
     description: { type: String, required: true },
+
+    // ✅ NEW FIELD
+    collection: { type: String, required: true },
+
     caffeine: {
       type: String,
       enum: ["Low Caffeine", "High Caffeine", "Medium Caffeine", "No Caffeine"],
@@ -40,4 +44,5 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+export default Product;

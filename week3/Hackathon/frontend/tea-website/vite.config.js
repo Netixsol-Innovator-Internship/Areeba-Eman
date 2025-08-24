@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      "/api": "https://areeba-week-3-hackathon-backend.vercel.app",
+    },
+  },
 })
