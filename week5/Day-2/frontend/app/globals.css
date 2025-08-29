@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+}
+
+.dark {
+  --bg: 17 24 39;
+  --fg: 229 231 235;
+}
+
+html, body, #__next { height: 100%; }
+body { background-color: rgb(var(--bg)); color: rgb(var(--fg)); }
+.gradient-card {
+  background: linear-gradient(135deg, #ff80b5, #9089fc, #1a78ff);
+}
