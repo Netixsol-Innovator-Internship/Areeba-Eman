@@ -41,7 +41,6 @@ export default function SignupPage() {
 
   return (
     <div>
-      <Navbar />
       <main className="flex justify-center items-center min-h-[70vh]">
         <div className="w-[400px] bg-white shadow-md rounded-lg border p-6">
           
@@ -108,7 +107,6 @@ export default function SignupPage() {
           </form>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

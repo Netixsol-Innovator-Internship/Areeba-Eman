@@ -8,7 +8,7 @@ import { toggleLike, checkIfLiked } from '@/services/likes';
 
 export default function CommentCard({ comment, onReply } : { comment: any, onReply?: (c:any)=>void }) {
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(comment.likesCount ?? 0);
+  const [likes, setLikes] = useState<number>(comment.likesCount ?? 0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

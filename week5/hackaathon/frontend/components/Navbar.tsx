@@ -214,7 +214,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link href="/register" className="bg-white text-[#0b2c69] px-3 py-1 rounded hover:bg-gray-100 transition">
+              <Link href="/signup" className="bg-white text-[#0b2c69] px-3 py-1 rounded hover:bg-gray-100 transition">
                 Signup
               </Link>
             </li>

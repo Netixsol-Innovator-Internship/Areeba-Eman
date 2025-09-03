@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useGetCarsQuery, useSubmitBidMutation } from "../features/api/apiSlice";
+import { useGetCarsQuery, useCreateBidMutation } from "../features/api/apiSlice";
 import CarCard from "../components/CarCard";
 
 export default function LandingPage() {
@@ -8,7 +8,7 @@ export default function LandingPage() {
   const liveFilters = { ...filters, status: "live" };
 
   const { data: cars = [], isLoading, error } = useGetCarsQuery(liveFilters);
-  const [submitBid] = useSubmitBidMutation();
+  const [submitBid] = useCreateBidMutation();
 
   const handleBid = async (carId: string) => {
     const amount = prompt("Enter your bid amount:");

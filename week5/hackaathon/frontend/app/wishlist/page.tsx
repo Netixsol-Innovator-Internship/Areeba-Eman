@@ -78,7 +78,7 @@ function WishlistCarCard({ car }: { car: any }) {
 
   const handleBid = () => {
     if (isSoldOut) return;
-    router.push(`/createBids?carId=${car._id}`);
+    router.push(`/createBids?id=${car._id}`);
   };
 
   return (

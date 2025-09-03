@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <div className="space-y-4">
       <Card className="gradient-card text-white p-6">
-        <h1 className="text-2xl font-bold">Welcome {user?.user?.username|| 'Guest'} 👋</h1>
+        <h1 className="text-2xl font-bold">Welcome {user?.username|| 'Guest'} 👋</h1>
         <p>Share a thought and see real-time updates with Socket.IO.</p>
       </Card>
 

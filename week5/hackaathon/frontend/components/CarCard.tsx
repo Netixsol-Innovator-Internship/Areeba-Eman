@@ -87,7 +87,7 @@ export default function CarCard({ car, bidButton = true, onBid }: CarCardProps) 
 
       {bidButton && (
         <button
-          onClick={() => router.push(`/createBids?carId=${car.id}`)}   // ⬅️ Navigate to createBid
+          onClick={() => router.push(`/createBids?id=${car.id}`)}   // ⬅️ Navigate to createBid
           className="mt-auto w-full py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
         >
           Submit Bid

@@ -2,14 +2,14 @@ import { NestFactory } from "@nestjs/core"
 import { ValidationPipe } from "@nestjs/common"
 import { AppModule } from "./app.module"
 import { join } from 'path';
-import { NestExpressApplication } from '@nestjs/platform-express'; // ✅ import this
+import { NestExpressApplication } from '@nestjs/platform-express'; 
 
 async function bootstrap() {
   // const app = await NestFactory.create(AppModule)
- const app = await NestFactory.create<NestExpressApplication>(AppModule); // ✅ cast
+ const app = await NestFactory.create<NestExpressApplication>(AppModule); 
   // Enable CORS for frontend
   app.enableCors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: process.env.FRONTEND_URL || "http://192.168.18.96:3000",
     credentials: true,
   })
 

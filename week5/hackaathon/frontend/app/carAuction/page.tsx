@@ -24,9 +24,9 @@ export default function CarAuctionPage() {
 
   const [submitBid] = useSubmitBidMutation()
 
-  const goToCreateBid = async (carId: string) => {
-    router.push(`/createBids?carId=${carId}`)
-  }
+  const goToCreateBid = (carId: string) => {
+  router.push(`/createBids?id=${carId}`);
+};
 
   // Check if car is in wishlist
   const isCarWishlisted = (carId: string) => {
