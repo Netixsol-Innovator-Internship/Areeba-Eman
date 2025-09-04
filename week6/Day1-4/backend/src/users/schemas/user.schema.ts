@@ -18,5 +18,6 @@ export class User {
   @Prop({ default: 0 }) otpResendCount?: number;
   @Prop() otpResendWindowStart?: Date;
   @Prop({ default: false }) isDeleted?: boolean;
+  @Prop({ default: 0 }) loyaltyPoints: number; // NEW: Loyalty Points
 }
 export const UserSchema = SchemaFactory.createForClass(User);

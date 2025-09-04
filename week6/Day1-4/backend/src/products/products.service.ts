@@ -1,18 +1,38 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Model } from 'mongoose';
 import { Product, ProductDocument } from './schemas/product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { NotificationsService } from '../notifications/notifications.service';
+
 @Injectable()
 export class ProductsService {
   private LOW_STOCK_THRESHOLD = Number(process.env.LOW_STOCK_THRESHOLD || 5);
-  constructor(@InjectModel(Product.name) private model: Model<ProductDocument>, private notifications: NotificationsService) {}
-  create(dto: CreateProductDto) { return this.model.create(dto); }
-  async update(id: string, dto: Partial<CreateProductDto>) {
-    const p = await this.model.findByIdAndUpdate(id, dto, { new: true }); if (!p) throw new NotFoundException('Product not found'); return p;
+
+  constructor(
+    @InjectModel(Product.name) private model: Model<ProductDocument>,
+    private notifications: NotificationsService
+  ) {}
+
+  async create(dto: CreateProductDto) {
+    if (!dto.loyaltyPoints) {
+      dto.loyaltyPoints = Math.floor(dto.price / 100);
+    }
+    return this.model.create(dto);
   }
-  async remove(id: string) { const p = await this.model.findByIdAndDelete(id); if (!p) throw new NotFoundException('Product not found'); return { message: 'Deleted' }; }
+
+  async update(id: string, dto: Partial<CreateProductDto>) {
+    const p = await this.model.findByIdAndUpdate(id, dto, { new: true });
+    if (!p) throw new NotFoundException('Product not found');
+    return p;
+  }
+
+  async remove(id: string) {
+    const p = await this.model.findByIdAndDelete(id);
+    if (!p) throw new NotFoundException('Product not found');
+    return { message: 'Deleted' };
+  }
+
   async findAll(query: any) {
     const filter: any = {};
     if (query.types) filter.types = query.types;
@@ -28,11 +48,19 @@ export class ProductsService {
     const items = await this.model.find(filter);
     if (query.color) {
       const color = query.color.toString().toLowerCase();
-      return items.filter(i => Array.from((i.imagesByColor || new Map()).keys()).map(k => k.toLowerCase()).includes(color));
+      return items.filter(i =>
+        Array.from((i.imagesByColor || new Map()).keys())
+          .map(k => k.toLowerCase())
+          .includes(color)
+      );
     }
     return items;
   }
-  findOne(id: string) { return this.model.findById(id); }
+
+  findOne(id: string) {
+    return this.model.findById(id);
+  }
+
   async attachImages(id: string, color: string, urls: string[]) {
     const p = await this.model.findById(id);
     if (!p) throw new NotFoundException('Product not found');
@@ -41,6 +69,7 @@ export class ProductsService {
     await p.save();
     return p;
   }
+
   async adjustStockOnOrder(id: string, qty: number) {
     const p = await this.model.findById(id);
     if (!p) throw new NotFoundException('Product not found');
@@ -48,28 +77,41 @@ export class ProductsService {
     p.stockQuantity -= qty;
     p.sales += qty;
     await p.save();
+
     try {
       if (p.stockQuantity <= 0) {
-        await this.notifications.notifyAdmins('productOutOfStock', { productId: p._id.toString(), name: p.name });
+        await this.notifications.notifyAdmins('productOutOfStock', {
+          productId: p._id.toString(),
+          name: p.name,
+        });
       } else if (p.stockQuantity <= this.LOW_STOCK_THRESHOLD) {
-        await this.notifications.notifyAdmins('productLowStock', { productId: p._id.toString(), name: p.name, stock: p.stockQuantity });
+        await this.notifications.notifyAdmins('productLowStock', {
+          productId: p._id.toString(),
+          name: p.name,
+          stock: p.stockQuantity,
+        });
       }
     } catch (e) {}
     return p;
   }
-  async updateSale(
-  id: string,
-  body: { sale: boolean; discount?: number; saleEnd?: Date }
-) {
-  return this.model.findByIdAndUpdate(
-    id,
-    {
-      sale: body.sale,
-      discount: body.discount ?? 0,
-      saleEnd: body.saleEnd ?? null,
-    },
-    { new: true }
-  );
+async updateSale(id: string, body: { sale: boolean; discount?: number; saleEnd?: Date }) {
+  const product = await this.model.findById(id);
+  if (!product) throw new NotFoundException('Product not found');
+
+  // Update fields explicitly
+  product.sale = body.sale;
+  if (body.discount !== undefined) product.discount = body.discount;
+  if (body.saleEnd !== undefined) product.saleEnd = body.saleEnd;
+
+  await product.save(); // triggers schema validations & virtuals
+
+  return product; // toJSON virtual will return correct salePrice
 }
-  async setAverageRating(id: string, avg: number) { await this.model.findByIdAndUpdate(id, { averageRating: avg }); }
+
+
+
+
+  async setAverageRating(id: string, avg: number) {
+    await this.model.findByIdAndUpdate(id, { averageRating: avg });
+  }
 }
