@@ -11,6 +11,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { MailerModule } from './mailer/mailer.module';
 import { SocketModule } from './socket/socket.module';
 import { AdminModule } from './admin/admin.module';
+// import { SocketGateway } from '../socket/socket.gateway'; 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -21,6 +22,7 @@ import { AdminModule } from './admin/admin.module';
     UsersModule,
     AuthModule,
     ProductsModule,
+    // SocketGateway,
     CartsModule,
     RatingsModule,
     OrdersModule,

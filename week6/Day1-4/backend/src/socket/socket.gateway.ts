@@ -1,6 +1,12 @@
 import { WebSocketGateway, WebSocketServer, SubscribeMessage, MessageBody, ConnectedSocket } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-@WebSocketGateway({ cors: { origin: true }, namespace: '/' })
+@WebSocketGateway({
+  cors: {
+    origin: ['http://localhost:3000'], //  frontend URL
+    methods: ['GET', 'POST'],
+  },
+  namespace: '/'
+})
 export class SocketGateway {
   @WebSocketServer() server: Server;
   handleConnection(client: Socket) {

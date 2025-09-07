@@ -27,11 +27,12 @@ export class OrdersController {
     return this.orders.listMine(req.user.sub);
   }
 
+  @Get('recent')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
-  @Get('recent')
-  recent(@Query('days') days: string) {
+  recent(@Query('days') days?: string, @Query('status') status?: OrderStatus) {
+    if (status) return this.orders.listByStatus(status);
     return this.orders.listRecent(Number(days || 4));
   }
 

@@ -110,7 +110,9 @@ const order = await this.model.create({
 
   listRecent(days = 4) {
     const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-    return this.model.find({ createdAt: { $gte: since } });
+     return this.model
+    .find({ createdAt: { $gte: since } })
+    .populate('userId', 'fullName email loyaltyPoints');
   }
 
   listTotal() {
@@ -122,7 +124,9 @@ const order = await this.model.create({
   }
 
   listMine(userId: string) {
-  return this.model.find({ userId: new Types.ObjectId(userId) });
+   return this.model
+    .find({ userId: new Types.ObjectId(userId) })
+    .populate('userId', 'fullName email loyaltyPoints');
   }
 
   listByStatus(status: OrderStatus) {

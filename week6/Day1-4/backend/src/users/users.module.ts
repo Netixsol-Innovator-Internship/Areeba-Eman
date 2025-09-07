@@ -4,5 +4,6 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { User, UserSchema } from './schemas/user.schema';
 import { MailerModule } from '../mailer/mailer.module';
-@Module({ imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), MailerModule], providers: [UsersService], controllers: [UsersController], exports: [UsersService], })
+import { SocketGateway } from '../socket/socket.gateway';
+@Module({ imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), MailerModule], providers: [UsersService, SocketGateway], controllers: [UsersController], exports: [UsersService], })
 export class UsersModule {}

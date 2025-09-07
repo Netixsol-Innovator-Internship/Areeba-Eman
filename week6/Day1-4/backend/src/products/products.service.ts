@@ -101,7 +101,7 @@ async updateSale(id: string, body: { sale: boolean; discount?: number; saleEnd?:
   // Update fields explicitly
   product.sale = body.sale;
   if (body.discount !== undefined) product.discount = body.discount;
-  if (body.saleEnd !== undefined) product.saleEnd = body.saleEnd;
+  if (body.saleEnd) product.saleEnd = new Date(body.saleEnd); // convert string to Date
 
   await product.save(); // triggers schema validations & virtuals
 
