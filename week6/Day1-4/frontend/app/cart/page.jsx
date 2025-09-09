@@ -22,7 +22,7 @@ export default function CartPage() {
     const id = productId?._id || productId
     const { data: p } = useGetProductByIdQuery(id, { skip: !id })
     const img = p ? (Object.values(p.imagesByColor || {})[0]?.[0] || null) : null;
-    const src = img ? (img.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}${img}` : img) : '/placeholder.png'
+    const src = img ? (img.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'}${img}` : img) : '/placeholder.png'
     return (
       <div className="flex gap-3 items-center">
         <img src={src} className="w-20 h-20 object-cover rounded" alt={p?.name || 'Product'} />

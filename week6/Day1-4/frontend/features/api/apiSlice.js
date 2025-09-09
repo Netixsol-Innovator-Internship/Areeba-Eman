@@ -4,7 +4,7 @@ import { logout } from '../authSlice'
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'http://192.168.18.96:4000',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token
       if (token) {

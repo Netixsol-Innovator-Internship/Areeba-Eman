@@ -9,7 +9,7 @@ import StartSaleModal from './startsalemodel/page.jsx'
 import CreateProductForm from '@/components/createproductform.jsx'
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
 
 export default function ProductsPage() {
   const { data: products = [], isLoading } = useGetProductsQuery()

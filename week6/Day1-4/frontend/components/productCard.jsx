@@ -3,7 +3,7 @@
 // import Image from 'next/image'
 // import { FaStar } from 'react-icons/fa'
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
 
 // export default function ProductCard({ product }) {
 //   const [loadingImg, setLoadingImg] = useState(true)
@@ -104,7 +104,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaStar } from 'react-icons/fa'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
 
 export default function ProductCard({ product }) {
   const [loadingImg, setLoadingImg] = useState(true)

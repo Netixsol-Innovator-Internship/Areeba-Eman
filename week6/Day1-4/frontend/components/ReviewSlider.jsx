@@ -7,7 +7,7 @@
 // import ReviewCard from './ReviewCard'
 // import io from 'socket.io-client'
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
 
 // export default function ReviewsSlider({ productId }) {
 // //   const { data: reviews = [], isLoading, refetch } = useGetProductRatingsQuery(productId, {
