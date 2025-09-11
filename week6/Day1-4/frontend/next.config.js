@@ -3,10 +3,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '192.168.18.96',
+        protocol: 'https',
+        hostname: 'easygoing-spontaneity-production.up.railway.app',
         port: '4000',
-        pathname: '/**',
+        pathname: '/uploads/**',
       },
     ],
   },

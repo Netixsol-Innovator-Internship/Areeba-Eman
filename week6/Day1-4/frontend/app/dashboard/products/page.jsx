@@ -9,7 +9,7 @@ import StartSaleModal from './startsalemodel/page.jsx'
 import CreateProductForm from '@/components/createproductform.jsx'
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
 
 export default function ProductsPage() {
   const { data: products = [], isLoading } = useGetProductsQuery()
@@ -38,13 +38,13 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
       <div className="relative w-full h-48 mb-2">
-        <Image
+        <img
           src={getFirstImage(product)}
           alt={product.name}
           fill
-          sizes="(max-width: 100px) 10vw, 90px"
-          className="object-cover rounded-lg"
-          onLoad={() => console.log(`${product.name} image loaded`)} // <-- updated from onLoadingComplete
+          // sizes="(max-width: 100px) 10vw, 90px"
+          className="object-cover rounded-lg w-full h-full"
+          // onLoad={() => console.log(`${product.name} image loaded`)} // <-- updated from onLoadingComplete
         />
       </div>
       <h2 className="text-xl font-bold">{product.name}</h2>

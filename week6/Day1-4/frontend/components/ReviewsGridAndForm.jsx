@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { useGetProductRatingsQuery, useAddRatingMutation } from '@/features/api/apiSlice'
 import { useSelector } from 'react-redux'
-import ReviewCard from './ReviewCard'
+import ReviewCard from './reviewCard'
 import { socket } from '@/lib/socket'
 
 export default function ReviewsGridAndForm({ productId }) {

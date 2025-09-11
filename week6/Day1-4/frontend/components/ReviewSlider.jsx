@@ -7,7 +7,7 @@
 // import ReviewCard from './ReviewCard'
 // import io from 'socket.io-client'
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
 
 // export default function ReviewsSlider({ productId }) {
 // //   const { data: reviews = [], isLoading, refetch } = useGetProductRatingsQuery(productId, {
@@ -86,7 +86,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGetAllReviewsQuery } from '@/features/api/apiSlice'
 import { socket } from '../lib/socket'
-import ReviewCard from './ReviewCard'
+import ReviewCard from './reviewCard'
 
 export default function ReviewSlider() {
   const { data: reviews = [] } = useGetAllReviewsQuery()

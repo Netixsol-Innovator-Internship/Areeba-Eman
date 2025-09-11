@@ -20,7 +20,7 @@
 
 //   // Initialize socket once
 //   useEffect(() => {
-//     socket = io('http://192.168.18.96:4000') // your backend socket.io server
+//     socket = io('https://easygoing-spontaneity-production.up.railway.app') // your backend socket.io server
 
 //     socket.on('userUpdated', (updatedUser) => {
 //       setUserList((prev) =>
@@ -103,7 +103,7 @@ export default function UsersPage() {
 
   // Initialize socket once
   useEffect(() => {
-    socket = io('http://192.168.18.96:4000')
+    socket = io('https://easygoing-spontaneity-production.up.railway.app')
 
     socket.on('userUpdated', (updatedUser) => {
       setUserList((prev) =>

@@ -42,9 +42,9 @@ const handleStartSale = async () => {
           className="w-full mb-2 border p-2"
         >
           <option value="">Select Product</option>
-          {products.filter(p => !p.sale).map(p => (
-            <option key={p._id} value={p._id}>{p.name}</option>
-          ))}
+          {(products ?? []).filter(p => !p.sale).map(p => (
+  <option key={p._id} value={p._id}>{p.name}</option>
+))}
         </select>
         <input
           type="number"

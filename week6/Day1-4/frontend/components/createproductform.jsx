@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCreateProductMutation } from '@/features/api/apiSlice'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.18.96:4000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
 
 export default function CreateProductForm() {
   const [form, setForm] = useState({

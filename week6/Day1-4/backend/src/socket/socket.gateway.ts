@@ -2,7 +2,7 @@ import { WebSocketGateway, WebSocketServer, SubscribeMessage, MessageBody, Conne
 import { Server, Socket } from 'socket.io';
 @WebSocketGateway({
   cors: {
-    origin: ['http://192.168.18.96:3000'], //  frontend URL
+    origin: ['https://week6-frontend.vercel.app'], //  frontend URL
     methods: ['GET', 'POST'],
   },
   namespace: '/'

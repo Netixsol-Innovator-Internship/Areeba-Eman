@@ -18,10 +18,12 @@ export class CheckoutDto {
 
   @ApiProperty({
     type: Object,
-    description: 'Payment information',
+    required: false,
+    description: 'Payment information (only if not using points)',
     example: { method: 'card', transactionId: 'TXN123456' },
   })
   @IsObject()
+  @IsOptional()
   paymentInfo: any;
 
   @ApiProperty({
