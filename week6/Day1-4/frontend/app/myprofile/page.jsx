@@ -37,7 +37,7 @@ export default function MyProfilePage() {
 
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-10">
-
+{/* trying */}
       {/* Profile Banner */}
       <div className="relative bg-gradient-to-r from-blue-300 to-pink-800 rounded-2xl shadow-lg text-white p-8">
         <div className="flex items-center gap-6">
