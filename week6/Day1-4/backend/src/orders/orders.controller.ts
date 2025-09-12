@@ -16,9 +16,10 @@ export class OrdersController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post('checkout')
-  checkout(@Body() body: CheckoutDto, @Req() req: any) {
-    return this.orders.checkout(req.user, body.addressInfo, body.paymentInfo, body.usePoints);
-  }
+async checkout(@Req() req, @Body() body: CheckoutDto) {
+  console.log('req.user:', req.user);
+  return this.orders.checkout(req.user.sub, body);
+}
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)

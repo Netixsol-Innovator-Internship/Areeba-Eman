@@ -1,18 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/cart/page": "app/cart/page.js",
-  "/dashboard/orders/[orderId]/page": "app/dashboard/orders/[orderId]/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/orders/page": "app/dashboard/orders/page.js",
-  "/dashboard/products/page": "app/dashboard/products/page.js",
-  "/dashboard/products/edit/[id]/page": "app/dashboard/products/edit/[id]/page.js",
-  "/dashboard/users/page": "app/dashboard/users/page.js",
-  "/dashboard/products/startsalemodel/page": "app/dashboard/products/startsalemodel/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
+  "/cart/page": "app/cart/page.js",
+  "/checkout/page": "app/checkout/page.js",
   "/products/[id]/page": "app/products/[id]/page.js",
-  "/verify-otp/page": "app/verify-otp/page.js",
-  "/products/page": "app/products/page.js",
-  "/signup/page": "app/signup/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/login/page": "app/login/page.js"
 }

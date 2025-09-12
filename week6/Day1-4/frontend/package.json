@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "2.2.7",
+    "@stripe/react-stripe-js": "^4.0.2",
+    "@stripe/stripe-js": "^7.9.0",
     "clsx": "2.1.1",
     "framer-motion": "^12.23.12",
     "js-cookie": "3.0.5",
@@ -21,8 +23,11 @@
     "swiper": "11.1.12"
   },
   "devDependencies": {
+    "@types/node": "24.3.1",
+    "@types/react": "18.3.24",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
-    "tailwindcss": "3.4.10"
+    "tailwindcss": "3.4.10",
+    "typescript": "5.9.2"
   }
 }

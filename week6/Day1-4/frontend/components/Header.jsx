@@ -57,8 +57,8 @@ export default function Header() {
                 <div>
                   <h4 className="font-semibold mb-1">Category</h4>
                   <ul className="text-sm space-y-1">
-                    <li><Link href="/shop?category=men" className="block px-2 py-1 rounded hover:bg-gray-100">Men</Link></li>
-                    <li><Link href="/shop?category=women" className="block px-2 py-1 rounded hover:bg-gray-100">Women</Link></li>
+                    <li><Link href="/products?category=men" className="block px-2 py-1 rounded hover:bg-gray-100">Men</Link></li>
+                    <li><Link href="/products?category=women" className="block px-2 py-1 rounded hover:bg-gray-100">Women</Link></li>
                   </ul>
                 </div>
 
@@ -66,10 +66,10 @@ export default function Header() {
                 <div className="mt-3">
                   <h4 className="font-semibold mb-1">Style</h4>
                   <ul className="text-sm space-y-1">
-                    <li><Link href="/shop?style=casual" className="block px-2 py-1 rounded hover:bg-gray-100">Casual</Link></li>
-                    <li><Link href="/shop?style=formal" className="block px-2 py-1 rounded hover:bg-gray-100">Formal</Link></li>
-                    <li><Link href="/shop?style=gym" className="block px-2 py-1 rounded hover:bg-gray-100">Gym</Link></li>
-                    <li><Link href="/shop?style=party" className="block px-2 py-1 rounded hover:bg-gray-100">Party</Link></li>
+                    <li><Link href="/products?style=casual" className="block px-2 py-1 rounded hover:bg-gray-100">Casual</Link></li>
+                    <li><Link href="/products?style=formal" className="block px-2 py-1 rounded hover:bg-gray-100">Formal</Link></li>
+                    <li><Link href="/products?style=gym" className="block px-2 py-1 rounded hover:bg-gray-100">Gym</Link></li>
+                    <li><Link href="/products?style=party" className="block px-2 py-1 rounded hover:bg-gray-100">Party</Link></li>
                   </ul>
                 </div>
 
@@ -77,11 +77,11 @@ export default function Header() {
                 <div className="mt-3">
                   <h4 className="font-semibold mb-1">Types</h4>
                   <ul className="text-sm space-y-1">
-                    <li><Link href="/shop?type=tshirt" className="block px-2 py-1 rounded hover:bg-gray-100">T-Shirts</Link></li>
-                    <li><Link href="/shop?type=jeans" className="block px-2 py-1 rounded hover:bg-gray-100">Jeans</Link></li>
-                    <li><Link href="/shop?type=shirts" className="block px-2 py-1 rounded hover:bg-gray-100">Shirts</Link></li>
-                    <li><Link href="/shop?type=hoodies" className="block px-2 py-1 rounded hover:bg-gray-100">Hoodies</Link></li>
-                    <li><Link href="/shop?type=shorts" className="block px-2 py-1 rounded hover:bg-gray-100">Shorts</Link></li>
+                    <li><Link href="/products?type=tshirt" className="block px-2 py-1 rounded hover:bg-gray-100">T-Shirts</Link></li>
+                    <li><Link href="/products?type=jeans" className="block px-2 py-1 rounded hover:bg-gray-100">Jeans</Link></li>
+                    <li><Link href="/products?type=shirts" className="block px-2 py-1 rounded hover:bg-gray-100">Shirts</Link></li>
+                    <li><Link href="/products?type=hoodies" className="block px-2 py-1 rounded hover:bg-gray-100">Hoodies</Link></li>
+                    <li><Link href="/products?type=shorts" className="block px-2 py-1 rounded hover:bg-gray-100">Shorts</Link></li>
                   </ul>
                 </div>
               </div>

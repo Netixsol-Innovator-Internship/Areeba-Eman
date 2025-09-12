@@ -21,7 +21,6 @@
 //   // Initialize socket once
 //   useEffect(() => {
 //     socket = io('https://easygoing-spontaneity-production.up.railway.app') // your backend socket.io server
-
 //     socket.on('userUpdated', (updatedUser) => {
 //       setUserList((prev) =>
 //         prev.map((u) => (u._id === updatedUser._id ? { ...u, ...updatedUser } : u))
@@ -103,7 +102,7 @@ export default function UsersPage() {
 
   // Initialize socket once
   useEffect(() => {
-    socket = io('https://easygoing-spontaneity-production.up.railway.app')
+    socket = io(process.env.NEXT_PUBLIC_API_URL)
 
     socket.on('userUpdated', (updatedUser) => {
       setUserList((prev) =>

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaStar } from 'react-icons/fa'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export default function ProductCard({ product }) {
   const [loadingImg, setLoadingImg] = useState(true)

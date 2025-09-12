@@ -26,7 +26,7 @@ export default function ProductDetailPage() {
       setSelectedColor(colors[0] ?? null)
       setSelectedSize(product.size?.[0] ?? null)
       const firstImage = Object.values(product.imagesByColor || {})[0]?.[0]
-      setMainImage(firstImage ? (firstImage.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'}${firstImage}` : firstImage) : '/placeholder.png')
+      setMainImage(firstImage ? (firstImage.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL}${firstImage}` : firstImage) : '/placeholder.png')
     }
   }, [product])
 
@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
           {colors.map((c) =>
             imagesForColor(c).map((img, idx) => {
               const src = img.startsWith('/uploads')
-                ? `${process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'}${img}`
+                ? `${process.env.NEXT_PUBLIC_API_URL}${img}`
                 : img
               return (
                 <button
@@ -141,7 +141,7 @@ export default function ProductDetailPage() {
             {colors.map((c) => (
               <button
                 key={c}
-                onClick={() => { setSelectedColor(c) ; const first = imagesForColor(c)[0]; if (first) setMainImage(first.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'}${first}` : first) }}
+                onClick={() => { setSelectedColor(c) ; const first = imagesForColor(c)[0]; if (first) setMainImage(first.startsWith('/uploads') ? `${process.env.NEXT_PUBLIC_API_URL}${first}` : first) }}
                 className={`w-8 h-8 rounded-full border-2 ${selectedColor === c ? 'ring-2 ring-offset-1' : ''}`}
                 title={c}
                 style={{
@@ -236,7 +236,7 @@ function SaleCountdown({ saleEnd }) {
 // import Image from 'next/image'
 // import { FaStar } from 'react-icons/fa'
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
+// const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 // export default function ProductDetailPage() {
 //   const { id } = useParams()

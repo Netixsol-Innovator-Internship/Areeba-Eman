@@ -4,14 +4,14 @@ import { logout } from '../authSlice'
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://easygoing-spontaneity-production.up.railway.app',
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
       headers.set('Content-Type', 'application/json')
-      return headers
+      return headers;
     },
   }),
   tagTypes: ['Users', 'Products', 'Orders', 'Ratings', 'Carts'],

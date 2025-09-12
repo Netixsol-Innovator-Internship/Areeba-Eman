@@ -7,7 +7,7 @@
 // import ReviewCard from './ReviewCard'
 // import io from 'socket.io-client'
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
+// const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 // export default function ReviewsSlider({ productId }) {
 // //   const { data: reviews = [], isLoading, refetch } = useGetProductRatingsQuery(productId, {

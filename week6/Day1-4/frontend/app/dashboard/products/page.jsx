@@ -9,7 +9,7 @@ import StartSaleModal from './startsalemodel/page.jsx'
 import CreateProductForm from '@/components/createproductform.jsx'
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://easygoing-spontaneity-production.up.railway.app'
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export default function ProductsPage() {
   const { data: products = [], isLoading } = useGetProductsQuery()

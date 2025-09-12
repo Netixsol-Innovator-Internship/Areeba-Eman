@@ -1,7 +1,8 @@
-import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Providers from '@/components/Providers'
+import './globals.css';
+import Providers from '@/components/Providers';
+import StripeProvider from './_providers/StripeProvider';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'E-Shop',
@@ -13,11 +14,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Providers>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <StripeProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </StripeProvider>
         </Providers>
       </body>
     </html>
-  )
+  );
 }
