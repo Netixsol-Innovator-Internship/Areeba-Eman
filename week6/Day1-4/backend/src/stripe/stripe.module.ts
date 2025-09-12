@@ -9,9 +9,9 @@ import Stripe from 'stripe';
       provide: 'STRIPE_CLIENT',
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const secretKey = config.get<string>('STRIPE_SECRET_KEY');
+        const secretKey = config.get<string>('STRIPE_KEY');
         if (!secretKey) {
-          throw new Error('STRIPE_SECRET_KEY is not defined!');
+          throw new Error('STRIPE_KEY is not defined!');
         }
         return new Stripe(secretKey, {
           apiVersion: '2025-08-27.basil',
