@@ -115,7 +115,7 @@ export default function Header() {
 
             {me ? (
               <div className="flex items-center gap-6">
-                <span className="font-medium">{me.fullName}</span>
+                <Link href="/myprofile" className="font-medium">{me.fullName}</Link>
                 <button
                   onClick={() => dispatch(logout())}
                   className="p-2 rounded-xl bg-red-400 hover:bg-red-500 text-white"

@@ -125,10 +125,22 @@ const items = await Promise.all(
     return this.model.find({ 'items.productId': new Types.ObjectId(productId) });
   }
 
-  listMine(userId: string) {
-   return this.model
-    .find({ userId: new Types.ObjectId(userId) })
-    .populate('userId', 'fullName email loyaltyPoints');
+  async listMine(userId: string) {
+    console.log("userId:",userId)
+    try{
+const result = await this.model
+    .find({
+  $or: [
+    { userId: new Types.ObjectId(userId) },
+    { userId: userId } // handle legacy string userIds
+  ]
+}).populate('userId', 'fullName email loyaltyPoints');
+    console.log("result:",result)
+    return result;
+    } catch(err){
+      console.log("err:",err)
+    }
+   
   }
 
   listByStatus(status: OrderStatus) {

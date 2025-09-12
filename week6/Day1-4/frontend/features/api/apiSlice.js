@@ -104,6 +104,20 @@ export const api = createApi({
       providesTags: ['Orders'],
     }),
 
+  getMyOrders: builder.query({
+  query: () => '/orders/mine',
+  transformResponse: (response) => {
+    console.log("Raw /orders/mine response:", response)
+    // Normalize response into an array
+    if (Array.isArray(response)) return response;
+    if (response?.items && Array.isArray(response.items)) return response.items;
+    if (response?.data && Array.isArray(response.data)) return response.data;
+
+    console.warn('Unexpected /orders/mine format:', response);
+    return [];
+  }
+}),
+
     // Fetch single order by ID
     getOrderById: builder.query({
       query: (orderId) => `/orders/${orderId}`,
@@ -223,4 +237,5 @@ export const {
   useChangeCartQtyMutation,
   useRemoveFromCartMutation,
   useCheckoutMutation,
+  useGetMyOrdersQuery,
 } = api
