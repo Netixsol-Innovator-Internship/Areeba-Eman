@@ -44,6 +44,7 @@ export default function MyProfilePage() {
           <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-3xl font-bold">
             {profile?.fullName?.[0] || "U"}
           </div>
+          {/* //helo */}
           <div>
             <h1 className="text-3xl font-semibold">{profile?.fullName}</h1>
             <p className="text-blue-100">{profile?.email}</p>
