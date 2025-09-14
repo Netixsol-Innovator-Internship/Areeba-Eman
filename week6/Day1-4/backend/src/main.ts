@@ -6,6 +6,8 @@ import * as dotenv from 'dotenv';
 import { json, urlencoded } from 'express';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import * as bodyParser from 'body-parser';
+
 dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -16,6 +18,9 @@ async function bootstrap() {
   app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads/' });
   const config = new DocumentBuilder().setTitle('E-commerce API').setDescription('OTP auth, roles, products').setVersion('1.0').addBearerAuth().build();
   const doc = SwaggerModule.createDocument(app, config);
+  app.use('/orders/webhook',
+  bodyParser.raw({ type: 'application/json' }),);
+
   SwaggerModule.setup('api', app, doc);
   const port = process.env.PORT || 4000;
   await app.listen(port);

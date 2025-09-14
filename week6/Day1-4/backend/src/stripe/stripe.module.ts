@@ -9,7 +9,7 @@ import Stripe from 'stripe';
       provide: 'STRIPE_CLIENT',
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const secretKey = config.get<string>('STRIPE_KEY');
+        const secretKey = config.get<string>('STRIPE_SECRET_KEY');
         if (!secretKey) {
           throw new Error('STRIPE_KEY is not defined!');
         }

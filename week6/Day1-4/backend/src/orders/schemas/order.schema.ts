@@ -7,31 +7,27 @@ export enum OrderStatus {
   DELIVERED = 'delivered',
   COMPLETED = 'completed',
   CANCELED = 'canceled',
+  PENDING = 'pending'
 }
 
 @Schema({ _id: false })
 export class OrderItem {
   @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
-  @ApiProperty({ type: String, description: 'Product ID' })
+  @ApiProperty({ type: String })
   productId: any;
 
   @Prop({ required: true })
-  @ApiProperty({ type: String, description: 'Product name' })
   name: string;
 
   @Prop({ required: true })
-  @ApiProperty({ type: Number, description: 'Unit price of the product' })
   unitPrice: number;
 
   @Prop({ required: true })
-  @ApiProperty({ type: Number, description: 'Quantity ordered' })
   quantity: number;
 
   @Prop({ required: true })
-  @ApiProperty({ type: Number, description: 'Line total = unitPrice * quantity' })
   lineTotal: number;
 }
-
 export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);
 
 @Schema({ timestamps: true })
@@ -43,23 +39,9 @@ export class Order {
   items: OrderItem[];
 
   @Prop({ type: Object, default: {} })
-  @ApiProperty({
-    type: Object,
-    example: {
-      street: '123 Main St',
-      city: 'New York',
-      state: 'NY',
-      zip: '10001',
-      country: 'USA',
-    },
-  })
   addressInfo: any;
 
   @Prop({ type: Object, default: {} })
-  @ApiProperty({
-    type: Object,
-    example: { method: 'card', transactionId: 'TXN123456' },
-  })
   paymentInfo: any;
 
   @Prop({ default: 0 })
@@ -74,8 +56,14 @@ export class Order {
   @Prop({ default: 0 })
   total: number;
 
-  @Prop({ type: String, enum: Object.values(OrderStatus), default: OrderStatus.ACTIVE })
+  @Prop({ type: String, enum: Object.values(OrderStatus), default: OrderStatus.PENDING })
   status: OrderStatus;
+
+  @Prop({ type: String })
+  stripeIntentId: string;
+
+  @Prop({ type: String, enum: ['pending', 'succeeded', 'failed'], default: 'pending' })
+  paymentStatus: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

@@ -7,19 +7,30 @@ import { Roles } from '../common/decorators/roles.decorator';
 import { Role } from '../common/enums/role.enum';
 import { CheckoutDto } from './dto/checkout.dto';
 import { OrderStatus } from './schemas/order.schema';
+import { Request } from '@nestjs/common';
+import { Headers } from '@nestjs/common';
+import type { RawBodyRequest } from '@nestjs/common';
 
 @ApiTags('orders')
 @Controller('orders')
 export class OrdersController {
   constructor(private orders: OrdersService) {}
 
+
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post('checkout')
-async checkout(@Req() req, @Body() body: CheckoutDto) {
-  console.log('req.user:', req.user);
-  return this.orders.checkout(req.user.sub, body);
-}
+  checkout(@Req() req, @Body() body: CheckoutDto) {
+    return this.orders.checkout(req.user.sub, body);
+  }
+
+  @Post('webhook')
+  async stripeWebhook(
+    @Headers('stripe-signature') sig: string,
+    @Req() req: RawBodyRequest<Request>,
+  ) {
+    return this.orders.handleStripeWebhook(sig, req.rawBody as Buffer);
+  }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
@@ -68,4 +79,10 @@ async checkout(@Req() req, @Body() body: CheckoutDto) {
   setStatus(@Param('orderId') id: string, @Param('status') s: OrderStatus) {
     return this.orders.updateStatus(id, s);
   }
+
+  @Patch(':id/pay')
+async payOrder(@Param('id') id: string) {
+  return this.orders.markOrderAsPaid(id);
+}
+
 }

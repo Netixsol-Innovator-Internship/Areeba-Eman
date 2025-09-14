@@ -188,7 +188,6 @@ removeFromCart: builder.mutation({
 }),
 
 checkout: builder.mutation({
-  // POST /orders/checkout
   query: (body) => ({
     url: '/orders/checkout',
     method: 'POST',
@@ -196,6 +195,23 @@ checkout: builder.mutation({
   }),
   invalidatesTags: [{ type: 'Carts', id: 'MINE' }, 'Orders'],
 }),
+
+createPaymentIntent: builder.mutation({
+  query: (orderId) => ({
+    url: `/orders/${orderId}/pay`,
+    method: 'PATCH'
+  }),
+}),
+
+confirmOrderPayment: builder.mutation({
+   query: ({ orderId, paymentInfo }) => ({
+    url: `/orders/${orderId}/pay`,
+    method: 'PATCH',
+    body: paymentInfo
+  }),
+  invalidatesTags: ['Orders'],
+}),
+
 
 
   // Add rating
@@ -238,4 +254,6 @@ export const {
   useRemoveFromCartMutation,
   useCheckoutMutation,
   useGetMyOrdersQuery,
+  useCreatePaymentIntentMutation,
+  useConfirmOrderPaymentMutation,
 } = api
