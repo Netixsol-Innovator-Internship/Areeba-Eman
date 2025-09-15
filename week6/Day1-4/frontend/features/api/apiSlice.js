@@ -5,12 +5,12 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
+    credentials: 'include', // important for cookies
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`)
-      }
-      headers.set('Content-Type', 'application/json')
+      // Only attach Authorization header for normal login (not OAuth)
+      const token = getState().auth.token;
+      if (token) headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
@@ -32,6 +32,9 @@ export const api = createApi({
     profile: builder.query({
       query: () => '/users/me',
     }),
+    // profile: builder.query({
+    //   query: () => '/auth/profile',
+    // }),
 
     getProducts: builder.query({
     query: (params) => {

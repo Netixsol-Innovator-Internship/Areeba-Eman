@@ -6,11 +6,13 @@ import { useRouter } from 'next/navigation'
 import { User, ShoppingCart, Search, Menu } from './icons'
 import { logout } from '@/features/authSlice'
 import { useState, useRef, useEffect } from 'react'
-import { useGetCartQuery } from '@/features/api/apiSlice'
+import { useGetCartQuery, api } from '@/features/api/apiSlice'
+
 
 export default function Header() {
   const token = useSelector((s) => s.auth.token)
-  const { data: me } = useProfileQuery(undefined, { skip: !token })
+  // const { data: me } = useProfileQuery(undefined, { skip: !token })
+  const { data: me } = useProfileQuery();
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -30,6 +32,17 @@ export default function Header() {
 
   const { data: cart } = useGetCartQuery(undefined, { skip: !token }) // skip if not logged
   const cartCount = cart?.items?.reduce((s, it) => s + (it.quantity || 0), 0) || 0
+
+  const handleLogout = async () => {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
+    method: 'GET',
+    credentials: 'include', // important to remove cookie
+  });
+
+  dispatch(logout()); // clear redux / localStorage
+  dispatch(api.util.resetApiState());
+};
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-gray-100 backdrop-blur">
@@ -117,7 +130,7 @@ export default function Header() {
               <div className="flex items-center gap-6">
                 <Link href="/myprofile" className="font-medium">{me.fullName}</Link>
                 <button
-                  onClick={() => dispatch(logout())}
+                  onClick={handleLogout}
                   className="p-2 rounded-xl bg-red-400 hover:bg-red-500 text-white"
                 >
                   Logout

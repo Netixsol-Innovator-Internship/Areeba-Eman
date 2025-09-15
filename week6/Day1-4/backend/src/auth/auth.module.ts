@@ -4,5 +4,26 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
-@Module({ imports: [UsersModule, JwtModule.register({})], providers: [AuthService, JwtStrategy], controllers: [AuthController], })
+import { GoogleStrategy } from './google.strategy';
+import { GithubStrategy } from './github.strategy';
+import { DiscordStrategy } from './discord.strategy';
+
+
+@Module({
+  imports: [
+    UsersModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '30d' }, // adjust as needed
+    }),
+  ],
+  providers: [
+    AuthService,
+    JwtStrategy,
+    GoogleStrategy,
+    GithubStrategy,
+    DiscordStrategy,
+  ],
+  controllers: [AuthController],
+})
 export class AuthModule {}

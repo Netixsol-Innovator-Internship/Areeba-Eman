@@ -7,6 +7,7 @@ import { json, urlencoded } from 'express';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 async function bootstrap() {
@@ -14,6 +15,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.enableCors({ origin: true, credentials: true });
   app.use(json({ limit: '10mb' }));
+  app.use(cookieParser());
   app.use(urlencoded({ extended: true }));
   app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads/' });
   const config = new DocumentBuilder().setTitle('E-commerce API').setDescription('OTP auth, roles, products').setVersion('1.0').addBearerAuth().build();

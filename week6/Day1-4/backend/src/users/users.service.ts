@@ -113,4 +113,101 @@ export class UsersService {
   async patch(userId: string, payload: any) { const allowed = ['fullName', 'email', 'username']; const update: any = {};
    for (const k of allowed) if (payload[k]) update[k] = payload[k]; return this.userModel.findByIdAndUpdate(userId, update, { new: true }).select('-password'); }
   async softDelete(userId: string) { return this.userModel.findByIdAndUpdate(userId, { isDeleted: true }, { new: true }).select('-password'); }
+  // async findOrCreateOAuthUser({
+  //   provider,
+  //   providerId,
+  //   email,
+  //   name,
+  //   avatar,
+  // }: {
+  //   provider: string;
+  //   providerId: string;
+  //   email: string;
+  //   name: string;
+  //   avatar: string;
+
+  // }) {
+  //   // 1. Check if a user exists with this providerId
+  //   let user = await this.userModel.findOne({ provider, providerId });
+    
+  //   if (!user) {
+  //     // 2. Check if a user exists with this email
+  //     user = await this.userModel.findOne({ email });
+      
+  //     if (user) {
+  //       // Link this OAuth provider to existing account
+  //       user.linkedAccounts = user.linkedAccounts || [];
+  //       if (!user.linkedAccounts.find((a) => a.provider === provider))
+  //         user.linkedAccounts.push({ provider, providerId });
+  //       await user.save();
+  //     } else {
+  //       // 3. Create a new user for this OAuth provider
+  //       user = await this.userModel.create({
+  //         email,
+  //         fullName: name,
+  //         avatar,
+  //         provider,
+  //         providerId,
+  //         password: null,       // no password for OAuth
+  //         username: null,       // optional username
+  //         roles: ['user'],      // default role
+  //         verified: true,       // consider OAuth email verified
+  //         linkedAccounts: [{ provider, providerId }],
+  //       });
+  //     }
+  //   }
+    
+  //   return user;
+  // }
+  async findOrCreateOAuthUser({
+  provider,
+  providerId,
+  email,
+  name,
+  avatar,
+}: {
+  provider: string;
+  providerId: string;
+  email: string;
+  name: string;
+  avatar: string;
+}) {
+  // 1. Check if a user exists with this providerId
+  let user = await this.userModel.findOne({ provider, providerId });
+
+  if (!user) {
+    // 2. Check if a user exists with this email
+    user = await this.userModel.findOne({ email });
+
+    if (user) {
+      // Link this OAuth provider to existing account
+      user.linkedAccounts = user.linkedAccounts || [];
+      if (!user.linkedAccounts.find((a) => a.provider === provider)) {
+        user.linkedAccounts.push({ provider, providerId });
+      }
+      await user.save();
+    } else {
+      // ✅ 3. Create a new user for this OAuth provider
+      const generatedUsername = `${provider}_${providerId}`; // make it unique
+
+      user = await this.userModel.create({
+        email,
+        fullName: name,
+        avatar,
+        provider,
+        providerId,
+        password: null,              // no password for OAuth
+        username: generatedUsername, // ✅ always unique
+        roles: ['user'],
+        verified: true,
+        linkedAccounts: [{ provider, providerId }],
+      });
+    }
+  }
+
+  return user;
+}
+
+
+
 }

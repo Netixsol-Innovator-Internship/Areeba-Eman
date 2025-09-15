@@ -158,7 +158,7 @@ export default function UsersPage() {
             <p><strong>Email:</strong> {u.email}</p>
             <p><strong>Role:</strong> {u.roles.join(', ')}</p>
             <p><strong>Loyalty Points:</strong> {u.loyaltyPoints}</p>
-            <p><strong>Orders:</strong> {u.orders?.length || 0}</p>
+            {/* <p><strong>Orders:</strong> {u.orders?.length || 0}</p> */}
 
             {canChangeRole && (
               <button
