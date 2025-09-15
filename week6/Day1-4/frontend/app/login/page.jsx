@@ -116,11 +116,11 @@ export default function LoginPage() {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`
   }
   const loginWithGithub = () => {
-    window.location.href = 'http://localhost:4000/auth/github';
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/github`;
   };
 
   const loginWithDiscord = () => {
-    window.location.href = 'http://localhost:4000/auth/discord';
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/discord`;
   };
 
 
