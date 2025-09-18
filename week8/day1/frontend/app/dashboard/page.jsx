@@ -1,6 +1,6 @@
 "use client";
 
-import ResumeCard from "../../components/ResumeCard";
+import ResumeCard from "../../components/resumeCard";
 import Link from "next/link";
 import { useGetCvsQuery } from "../../redux/apiSlice";
 
