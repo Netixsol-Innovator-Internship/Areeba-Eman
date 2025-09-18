@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
@@ -364,105 +366,224 @@ export default function CvEditPage() {
           ))}
         </div>
 
-        {/* MIDDLE PREVIEW */}
-        <div
-          className="w-2/4 border rounded p-6 min-h-screen overflow-y-auto"
-          style={{
-            backgroundColor: editorStyle.backgroundColor,
-            color: editorStyle.color,
-            fontSize: editorStyle.fontSize,
-            fontFamily: editorStyle.fontFamily,
-          }}
-        >
-          {formData.title ? (
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <div>
-                  <h1 className="text-3xl font-bold" style={{ color: editorStyle.headingColor }}>
-                    {formData.title}
-                  </h1>
-                  <p>{formData.personal.name}</p>
-                  <p>{formData.personal.email}</p>
-                  <p>{formData.personal.phone}</p>
-                  <p>{formData.personal.address}</p>
-                </div>
-                {formData.photoUrl && (
-                  <img
-                    src={formData.photoUrl}
-                    alt="Profile"
-                    className="w-28 h-28 object-cover rounded-full border"
-                  />
-                )}
-              </div>
-
-              <hr className="my-4" />
-
-              {/* summary */}
-              {formData.summary && (
-                <section className="mb-4">
-                  <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>
-                    Summary
-                  </h2>
-                  <p>{formData.summary}</p>
-                </section>
-              )}
-
-              {/* simple lists */}
-              {[
-                ["skills", "Skills"],
-                ["languages", "Languages"],
-                ["awards", "Awards"],
-                ["certificates", "Certificates"],
-                ["interests", "Interests"],
-              ].map(([key, label]) =>
-                formData[key]?.length > 0 ? (
-                  <section key={key} className="mb-4">
-                    <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>
-                      {label}
-                    </h2>
-                    <ul className="list-disc list-inside">
-                      {formData[key].map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </section>
-                ) : null
-              )}
-
-              {/* detailed sections */}
-              {[
-                ["education", "Education", ["degree", "institution", "startYear", "endYear"]],
-                ["experience", "Experience", ["company", "position", "startDate", "endDate", "description"]],
-                ["projects", "Projects", ["name", "description", "link"]],
-                ["publications", "Publications", ["title", "publisher", "date"]],
-                ["volunteering", "Volunteering", ["organization", "role", "startDate", "endDate"]],
-              ].map(([key, label, fields]) =>
-                formData[key]?.length > 0 ? (
-                  <section key={key} className="mb-4">
-                    <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>
-                      {label}
-                    </h2>
-                    <div className="space-y-2">
-                      {formData[key].map((entry, i) => (
-                        <div key={i} className="border-b pb-2">
-                          {fields.map((f) =>
-                            (entry && entry[f]) ? (
-                              <p key={f} className="text-sm">
-                                <span className="font-medium capitalize">{f}:</span> {entry[f]}
-                              </p>
-                            ) : null
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                ) : null
-              )}
-            </div>
-          ) : (
-            <p className="text-center text-gray-500 mt-20">Start filling fields on the left to preview your CV</p>
-          )}
+{/* MIDDLE PREVIEW */}
+<div
+  className="border rounded overflow-y-auto"
+  style={{
+    backgroundColor: editorStyle.backgroundColor,
+    color: editorStyle.color,
+    fontSize: editorStyle.fontSize,
+    fontFamily: editorStyle.fontFamily,
+    width: "210mm",     // A4 width
+    minHeight: "297mm", // A4 height
+    margin: "0 auto",
+    boxSizing: "border-box",
+    padding: "10mm",
+    overflowWrap: "break-word",
+    wordWrap: "break-word",
+    wordBreak: "break-word",
+  }}
+>
+  {formData.title ? (
+    <div className="cv-page" style={{ display: "block" }}>
+      {/* HEADER / Personal Info */}
+      <div className="flex justify-between items-center mb-6" style={{ pageBreakInside: "avoid" }}>
+        <div>
+          <h1 className="text-3xl font-bold" style={{ color: editorStyle.headingColor }}>
+            {formData.title}
+          </h1>
+          <hr className="mb-2 border-gray-300" />
+          <p>{formData.personal.name}</p>
+          <p>{formData.personal.email}</p>
+          <p>{formData.personal.phone}</p>
+          <p>{formData.personal.address}</p>
         </div>
+        {formData.photoUrl && (
+          <img
+            src={formData.photoUrl}
+            alt="Profile"
+            className="w-28 h-28 object-cover rounded-full border"
+          />
+        )}
+      </div>
+
+      {/* Summary */}
+      {formData.summary && (
+        <section className="mb-4" style={{ pageBreakInside: "avoid", pageBreakAfter: "auto" }}>
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>
+            Summary
+          </h2>
+          <hr className="mb-2 border-gray-300" />
+          <p>{formData.summary}</p>
+        </section>
+      )}
+
+      {/* Experience */}
+      {formData.experience?.length > 0 && (
+        <section className="mb-4" style={{ pageBreakInside: "avoid", pageBreakAfter: "auto" }}>
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Experience</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="space-y-2">
+            {formData.experience.map((entry, i) => (
+              <div key={i} className="flex justify-between  pb-2">
+                <div>
+                  <p className="text-sm"><strong>Position:</strong> {entry.position}</p>
+                  <p className="text-sm"><strong>Company:</strong> {entry.company}</p>
+                  {entry.description && <p className="text-sm mt-1">{entry.description}</p>}
+                </div>
+                <div className="text-sm text-right">
+                  {entry.startDate} - {entry.endDate}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Projects */}
+      {formData.projects?.length > 0 && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Projects</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="space-y-2">
+            {formData.projects.map((proj, i) => (
+              <div key={i} className="flex justify-between  pb-2">
+                <div>
+                  <p className="text-sm"><strong>{proj.name}</strong></p>
+                  {proj.description && <p className="text-sm">{proj.description}</p>}
+                  {proj.link && <a href={proj.link} target="_blank" className="text-blue-500 underline">{proj.link}</a>}
+                </div>
+                <div></div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Education */}
+      {formData.education?.length > 0 && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Education</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="space-y-2">
+            {formData.education.map((edu, i) => (
+              <div key={i} className="flex justify-between  pb-2">
+                <div>
+                  <p className="text-sm"><strong>{edu.degree}</strong> — {edu.institution}</p>
+                </div>
+                <div className="text-sm text-right">{edu.startYear} - {edu.endYear}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Publications */}
+      {formData.publications?.length > 0 && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Publications</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="space-y-2">
+            {formData.publications.map((pub, i) => (
+              <div key={i} className="flex justify-between  pb-2">
+                <div>{pub.title} — {pub.publisher}</div>
+                <div className="text-sm text-right">{pub.date}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Certifications & Awards */}
+      {(formData.certificates.length > 0 || formData.awards.length > 0) && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Certifications & Awards</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="grid grid-cols-2 gap-4">
+            {formData.certificates.length > 0 && (
+              <div>
+                <strong>Certificates:</strong>
+                <ul className="list-disc pl-5 mt-1">
+                  {formData.certificates.map((c, i) => <li key={i}>{c}</li>)}
+                </ul>
+              </div>
+            )}
+            {formData.awards.length > 0 && (
+              <div>
+                <strong>Awards:</strong>
+                <ul className="list-disc pl-5 mt-1">
+                  {formData.awards.map((a, i) => <li key={i}>{a}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Skills & Languages */}
+      {(formData.skills.length > 0 || formData.languages.length > 0) && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Skills & Languages</h2>
+          <hr className="mb-2 border-gray-300" />
+          <div className="grid grid-cols-2 gap-4">
+            {formData.skills.length > 0 && (
+              <div>
+                <strong>Skills:</strong>
+                <ul className="list-disc pl-5 mt-1">
+                  {formData.skills.map((skill, i) => <li key={i}>{skill}</li>)}
+                </ul>
+              </div>
+            )}
+            {formData.languages.length > 0 && (
+              <div>
+                <strong>Languages:</strong>
+                <ul className="list-disc pl-5 mt-1">
+                  {formData.languages.map((lang, i) => <li key={i}>{lang}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Interests */}
+      {formData.interests?.length > 0 && (
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Interests</h2>
+          <hr className="mb-2 border-gray-300" />
+          <ul className="list-disc pl-5 mt-1">
+            {formData.interests.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </section>
+      )}
+      {/* Volunteering */}
+        {formData.volunteering?.length > 0 && (
+          <section className="mb-4">
+            <h2 className="text-xl font-semibold mb-1" style={{ color: editorStyle.headingColor }}>Volunteering</h2>
+            <hr className="mb-2 border-gray-300" />
+            <div className="space-y-2">
+              {formData.volunteering.map((vol, i) => (
+                <div key={i} className="flex justify-between  pb-2">
+                  <div>
+                    <p className="text-sm"><strong>{vol.role}</strong> — {vol.organization}</p>
+                  </div>
+                  <div className="text-sm text-right">
+                    {vol.startDate} - {vol.endDate}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+
+    </div>
+  ) : (
+    <p className="text-center text-gray-500 mt-20">Start filling fields on the left to preview your CV</p>
+  )}
+</div>
+
+
 
         {/* RIGHT PANEL */}
         <div className="w-1/4 space-y-4 border rounded p-2 text-white">

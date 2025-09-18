@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+#cv * {
+  page-break-inside: avoid;
+  -webkit-page-break-inside: avoid;
+}
+
+
+#cv hr {
+  border: none;
+  border-top: 1px solid #000;
+  height: 0;
+  margin: 0.5rem 0;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .cv-container {
+    height: auto !important;
+  }
+}
+@media print {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .cv-page {
+    width: 210mm;         /* A4 width */
+    min-height: 297mm;     /* A4 height */
+    max-height: 297mm;     /* prevent overflow */
+    overflow: hidden;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+}

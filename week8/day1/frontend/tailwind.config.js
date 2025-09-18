@@ -8,5 +8,8 @@ module.exports = {
   theme: {
     extend: {},
   },
+  future: {
+    disableColorFunctionalNotation: true, // ✅ disable oklch() output
+  },
   plugins: [],
 };
