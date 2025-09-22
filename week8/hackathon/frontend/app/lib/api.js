@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:5000", // Your Nest backend URL
+  baseURL: "https://hackathonsproject-production.up.railway.app", // Your Nest backend URL
 });

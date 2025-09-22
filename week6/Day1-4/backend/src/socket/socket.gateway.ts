@@ -3,7 +3,7 @@ import { Server, Socket } from 'socket.io';
 @WebSocketGateway({
   cors: {
     origin: ['https://week6-frontend.vercel.app', 'http://localhost:3000'], //  frontend URL
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT'],
   },
   namespace: '/'
 })

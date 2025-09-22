@@ -13,7 +13,7 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  app.enableCors({ origin: true, credentials: true });
+  app.enableCors({ origin: 'https://week6-frontend.vercel.app', credentials: true });
   app.use(json({ limit: '10mb' }));
   app.use(cookieParser());
   app.use(urlencoded({ extended: true }));

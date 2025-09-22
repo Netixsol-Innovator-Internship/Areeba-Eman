@@ -42,8 +42,9 @@ export class AuthController {
   logout(@Res() res: Response) {
     res.clearCookie('jwt', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
+      domain: '.railway.app',
     });
     res.json({ message: 'Logged out' });
   }
@@ -66,8 +67,9 @@ export class AuthController {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
+      domain: '.railway.app', 
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -82,8 +84,9 @@ export class AuthController {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
+      domain: '.railway.app',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -97,8 +100,9 @@ export class AuthController {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+       domain: '.railway.app', 
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -110,7 +114,8 @@ export class AuthController {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+       domain: '.railway.app', 
+      secure: true,
       sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
