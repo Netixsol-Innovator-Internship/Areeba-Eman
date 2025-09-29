@@ -1,7 +1,7 @@
 import { Controller,Get,  Query, Post, UseInterceptors,UploadedFile, Body,UseGuards,} from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+// import { FileInterceptor } from '@nestjs/platform-express';
+// import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
@@ -25,20 +25,20 @@ export class ProductsController {
     return this.productsService.aiSearch(query);
   }
 
- @Post('upload')
-    @UseInterceptors(
-    FileInterceptor('file', {
-        storage: diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => {
-            const uniqueSuffix =
-            Date.now() + '-' + Math.round(Math.random() * 1e9);
-            cb(null, file.fieldname + '-' + uniqueSuffix + extname(file.originalname));
-        },
-        }),
-    }),
-    )
-    async uploadCsv(@UploadedFile() file: Express.Multer.File) {
-    return this.productsService.uploadCsv(file.path);
-    }
+//  @Post('upload')
+//     @UseInterceptors(
+//     FileInterceptor('file', {
+//         storage: diskStorage({
+//         destination: './uploads',
+//         filename: (req, file, cb) => {
+//             const uniqueSuffix =
+//             Date.now() + '-' + Math.round(Math.random() * 1e9);
+//             cb(null, file.fieldname + '-' + uniqueSuffix + extname(file.originalname));
+//         },
+//         }),
+//     }),
+//     )
+//     async uploadCsv(@UploadedFile() file: Express.Multer.File) {
+//     return this.productsService.uploadCsv(file.path);
+//     }
 }

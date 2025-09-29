@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000', // your Nest backend URL
+    baseUrl: 'https://hackathon9-backend.vercel.app', // your Nest backend URL
     prepareHeaders: (headers, { getState }: any) => {
       const token = (getState() as any).auth.token;
       if (token) {

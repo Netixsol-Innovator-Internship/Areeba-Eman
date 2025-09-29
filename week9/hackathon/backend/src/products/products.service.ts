@@ -81,24 +81,24 @@ export class ProductsService {
   return this.productModel.find({ $or: conditions });
 }
 
-  async uploadCsv(filePath: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const results: any[] = [];
+  // async uploadCsv(filePath: string): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     const results: any[] = [];
 
-      fs.createReadStream(filePath)
-        .pipe(csv())
-        .on('data', (data) => results.push(data))
-        .on('end', async () => {
-          try {
-            await this.productModel.insertMany(results);
-            fs.unlinkSync(filePath); // cleanup
-            resolve({ message: 'Products uploaded successfully' });
-          } catch (error) {
-            reject(new BadRequestException(error.message));
-          }
-        });
-    });
-  }
+  //     fs.createReadStream(filePath)
+  //       .pipe(csv())
+  //       .on('data', (data) => results.push(data))
+  //       .on('end', async () => {
+  //         try {
+  //           await this.productModel.insertMany(results);
+  //           fs.unlinkSync(filePath); // cleanup
+  //           resolve({ message: 'Products uploaded successfully' });
+  //         } catch (error) {
+  //           reject(new BadRequestException(error.message));
+  //         }
+  //       });
+  //   });
+  // }
 
 async aiSearch(userQuery: string) {
   const prompt = `
