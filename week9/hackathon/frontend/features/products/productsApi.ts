@@ -16,7 +16,7 @@ export interface Product {
 export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://hackathon9-backend.vercel.app',
+    baseUrl: process.env.NEXT_PUBLIC_API_URL, // your Nest backend UR
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {

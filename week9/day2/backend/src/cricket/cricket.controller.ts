@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+// import { FileInterceptor } from '@nestjs/platform-express';
 import { CricketService } from './cricket.service';
 
 
@@ -7,14 +7,14 @@ import { CricketService } from './cricket.service';
 export class CricketController {
   constructor(private cricketService: CricketService) {}
 
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
-  async uploadCSV(
-    @UploadedFile() file: Express.Multer.File,
-    @Body('type') type: string, // 'test' | 'odi' | 't20'
-  ) {
-    return this.cricketService.uploadCSV(file, type);
-  }
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('file'))
+  // async uploadCSV(
+  //   @UploadedFile() file: Express.Multer.File,
+  //   @Body('type') type: string, // 'test' | 'odi' | 't20'
+  // ) {
+  //   return this.cricketService.uploadCSV(file, type);
+  // }
 
   @Post('ask')
   async askQuestion(@Body('question') question: string) {
