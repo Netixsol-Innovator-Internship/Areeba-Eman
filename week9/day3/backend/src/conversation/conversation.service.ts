@@ -9,25 +9,24 @@ export class ConversationsService {
     @InjectModel(Conversation.name) private conversationModel: Model<Conversation>,
   ) {}
 
-  // ✅ Start a new chat
-//   async createChat(userId: string, chatId: string): Promise<Conversation> {
-//     const existing = await this.conversationModel.findOne({
-//       userId: userId.toString(),
-//       chatId,
-//     });
-// console.log("existing::",existing)
-//     if (existing) {
-//       return existing; // don't create duplicate chats
-//     }
+  async createChatIfNotExists(userId: string, chatId: string): Promise<Conversation> {
+    let conversation = await this.conversationModel.findOne({
+      userId: new Types.ObjectId(userId),
+      chatId,
+    });
 
-//     const conversation = new this.conversationModel({
-//       userId: userId.toString(),
-//       chatId,
-//       messages: [],
-//     });
+    if (!conversation) {
+      conversation = new this.conversationModel({
+        userId: new Types.ObjectId(userId),
+        chatId,
+        messages: [],
+      });
+      await conversation.save();
+    }
 
-//     return conversation.save();
-//   }
+    return conversation;
+  }
+
 
   // ✅ Save a new message into existing chat
 async saveMessage(

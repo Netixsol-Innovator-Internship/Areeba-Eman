@@ -9,7 +9,7 @@ export class Summary extends Document {
   @Prop({ required: true })
   chatId: string;
 
-  @Prop({ required: true })
+  @Prop()
   summary: string;
 }
 

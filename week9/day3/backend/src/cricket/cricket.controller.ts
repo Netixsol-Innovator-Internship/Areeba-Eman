@@ -24,71 +24,58 @@ export class CricketController {
     return this.cricketService.uploadCSV(file, type);
   }
 
- 
-  // @UseGuards(JwtAuthGuard)
-  // @Post('/ask')
-  // async askQuestion(
-  //   @Req() req,
-  //   @Body() body: { question: string; chatId: string }
-  // ) {
-  //   console.log("body:",body.question, body.chatId)
-
-  //   const userId = req.user.id;
-  //   console.log("userID",userId)
-  //   const result = await this.cricketService.ask(userId, body.chatId, body.question);
-  //   return {
-  //     answer: result.answer ?? 'No data found.',
-  //     history: result.history,
-  //     summary: result.summary,
-  //   };
-  // }
-@UseGuards(JwtAuthGuard)
-@Post('/ask')
+  @UseGuards(JwtAuthGuard)
+  @Post('/ask')
   async askQuestion(
-    @Req() req,
-    @Body('chatId') chatId: string,
-    @Body('question') question: string,
-  ) {
-    const userId = req.user.userId.toString();
-    console.log("chatId:",chatId);
-    if (!question || !question.trim()) {
-      throw new BadRequestException('Question cannot be empty.');
-    }
+  @Req() req,
+  @Body('chatId') chatId: string,
+  @Body('question') question: string,
+) {
+  const userId = req.user.userId;
 
-    try {
-      let isNewChat = false;
-
-      if (!chatId) {
-        console.log("chat id not found with::",chatId)
-        chatId = new Types.ObjectId().toString();
-        isNewChat = true;
-      }
-
-      const result = await this.cricketService.ask(userId, chatId, question);
-      console.log("result:",result)
-
-      await this.ConversationsService.saveMessage(
-        userId,
-        chatId,
-        question,
-        result.answer ?? 'No answer found.'
-      );
-
-
-      return {
-        answer: result.answer ?? 'No data found.',
-        text: result.text ?? '',
-        history: result.history,
-        summary: result.summary,
-        chatId,
-      };
-    } catch (err: any) {
-      console.error(err);
-      if (err.status === 429) {
-        return { answer: 'Quota exceeded for Gemini API. Please try again later.' };
-      }
-      return { answer: 'Error processing question.' };
-    }
+  if (!question?.trim()) {
+    throw new BadRequestException('Question cannot be empty.');
   }
+
+  // 🟢 Ensure chat exists here (single place)
+  if (!chatId) {
+    chatId = new Types.ObjectId().toString();
+  }
+  await this.ConversationsService.createChatIfNotExists(userId, chatId);
+
+  // 🟢 Call service
+  const result = await this.cricketService.ask(userId, chatId, question);
+let answerToSave;
+
+// if it's an array and more than 1 element → table (save as is)
+if (Array.isArray(result.answer) && result.answer.length > 1) {
+  answerToSave = result.answer;
+}
+// if it's an array with only 1 object → treat it as a "simple" answer → save LLM text
+else if (Array.isArray(result.answer) && result.answer.length === 1) {
+  answerToSave = result.text;  
+}
+// if it's not an array at all → just save text
+else {
+  answerToSave = result.text ?? 'No answer found.';
+}
+
+await this.ConversationsService.saveMessage(
+  userId,
+  chatId,
+  question,
+  answerToSave,
+);
+
+
+  return {
+    answer: result.answer ?? 'No data found.',
+    text: result.text ?? '',
+    history: result.history,
+    summary: result.summary,
+    chatId,
+  };
+}
+
 
 }

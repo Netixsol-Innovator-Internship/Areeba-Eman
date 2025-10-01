@@ -4,6 +4,20 @@ import { Model } from 'mongoose';
 import { Match } from './schemas/match.schema';
 import { Conversation } from 'src/conversation/schema/conversation.schema';
 import { Summary } from 'src/summary/schema/summary.schema';
+import moment from "moment";
+
+function extractAndNormalizeDate(question: string): string | null {
+  // Try to parse date in multiple formats
+  const date = moment(question, [
+    "DD/MM/YYYY", "MM/DD/YYYY", "YYYY-MM-DD",
+    "DD MMM YYYY", "MMM DD, YYYY", "DD MMM YY"
+  ], true);
+
+  if (date.isValid()) {
+    return date.format("DD-MMM-YY"); // matches your DB format
+  }
+  return null;
+}
 
 export function buildWorkflow(
   matchModel: Model<Match>,
@@ -32,7 +46,7 @@ export function buildWorkflow(
     }),
 
     relevant: Annotation<boolean>,
-    mongoQuery: Annotation<any>(), // was string, fixed to any
+    mongoQuery: Annotation<any>(), 
 
     result: Annotation<any[]>({
       value: (_left, right) => right,
@@ -96,7 +110,7 @@ export function buildWorkflow(
     const queryGenerator = async (state: any) => {
   const lastQ = state.history.length ? state.history[state.history.length - 1].question : "";
 
-  const prompt = `
+  let prompt = `
 You are an expert in MongoDB + Mongoose.
 Convert the user's cricket question into a **strict JSON MongoDB query**.
 
@@ -122,6 +136,10 @@ Convert the user's cricket question into a **strict JSON MongoDB query**.
 - For opposition, always prefix with "v " (e.g. "v India").
 - Do not add duplicate $project stages.
 - Only output pure JSON.
+- Never use $project to remove schema fields unless explicitly required.
+- Always return documents with the original schema fields:
+  { team, opposition, score, overs, rpo, inns, result, ground, start_date, type }
+
 
 Example:
 Question: "Which team won most matches?"
@@ -136,6 +154,12 @@ Question: "Which team won most matches?"
 }
     Question: ${state.question}
     `;
+
+    const normalizedDate = extractAndNormalizeDate(state.question);
+    if (normalizedDate) {
+      // Append rule for LLM
+      prompt += `\n- The question includes a date, filter using: { "start_date": { "$regex": "${normalizedDate}", "$options": "i" } }\n`;
+    }
 
     const response = await llm.invoke(prompt);
 
@@ -226,6 +250,18 @@ Question: "Which team won most matches?"
           result = await query.exec();
         }
 
+        else if (queryObj.filter || queryObj.start_date || queryObj.team || queryObj.opposition) {
+            const filter = queryObj.filter ?? queryObj;  // if no filter, use entire object
+
+            let query = matchModel.find(filter)
+              .select("team opposition score overs rpo inns result ground start_date type");
+
+            if (queryObj.sort) query = query.sort(queryObj.sort);
+            if (queryObj.limit) query = query.limit(queryObj.limit);
+
+            result = await query.exec();
+          }
+
         else {
           return { error: "Normal query requires a filter." };
         }
@@ -264,6 +300,16 @@ const answerFormatter = async (state: any) => {
   // Case 3: count queries
   else if (resultsArray[0]?.count !== undefined) {
     structuredAnswer = resultsArray.map((m: any) => ({ count: m.count }));
+  }
+  else if (resultsArray[0]?.team_name !== undefined) {
+  structuredAnswer = resultsArray.map((m: any) => ({
+    team: m.team_name
+  }));
+  }
+  else if (resultsArray[0]?._id !== undefined && typeof resultsArray[0]._id === "string") {
+    structuredAnswer = resultsArray.map((m: any) => ({
+      team: m._id
+    }));
   }
 
   // Case 4: normal documents
@@ -305,29 +351,59 @@ Please generate a concise human-readable answer:
   };
 };
 
-//save memory
+
+// save memory
 const saveMemory = async (state: any) => {
   const { userId, chatId, question, answer, text, history } = state;
-  // console.log("state::", state)
-  console.log("texttst::", text),
-  console.log("answerrr::", answer)
-  const answerText = text || (typeof answer === "string" ? answer : JSON.stringify(answer));
 
+  const answerText =
+    text || (typeof answer === "string" ? answer : JSON.stringify(answer));
 
-  const latestHistory = [...history, { question, answer: answerText }].slice(-5);
+  // 🟢 Update local history with latest Q/A
+  const latestHistory = [
+    ...history,
+    { question, answer: answerText },
+  ].slice(-5);
 
-  const summaryText = latestHistory
-    .map(h => `Q: ${h.question} | A: ${h.answer}`)
-    .join("\n");
+  const historyString = latestHistory
+    .map((h) => `Q: ${h.question}\nA: ${h.answer}`)
+    .join("\n\n");
 
+  const prompt = `
+You are a helpful assistant. Summarize the following conversation into a concise, 
+easy-to-understand summary capturing the main points so far:
+
+${historyString}
+  `;
+
+  let summaryText: string;
+
+  try {
+    const llmResponse = await llm.invoke(prompt);
+
+    if (typeof llmResponse.content === "string") {
+      summaryText = llmResponse.content;
+    } else if (Array.isArray(llmResponse.content)) {
+      summaryText = llmResponse.content
+        .map((c: any) => (typeof c.text === "string" ? c.text : JSON.stringify(c)))
+        .join(" ");
+    } else {
+      summaryText = JSON.stringify(llmResponse);
+    }
+  } catch (err) {
+    console.error("⚠️ LLM summarization failed:", err);
+    summaryText = historyString; // fallback
+  }
+  console.log("Generated summary:::", summaryText);
+
+  // 🟢 Save summary in DB
   await summaryModel.findOneAndUpdate(
     { userId, chatId },
     { summary: summaryText },
-    { upsert: true }
+    { upsert: true, new: true }
   );
 
-  console.log("texts state::", text);
-  return { ...state, answer, text };
+  return { ...state, answer, text, summary: summaryText, history: latestHistory };
 };
 
 

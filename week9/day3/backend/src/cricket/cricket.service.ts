@@ -68,7 +68,7 @@ async ask(userId: string, chatId: string, question: string) {
       const summaryDoc = await this.summaryModel.findOne({ userId: new Types.ObjectId(userId), chatId });
       summary = summaryDoc ? summaryDoc.summary : '';
     } else {
-      // 🟢 Chat does NOT exist: create it
+      // 🟢 Chat does NOT exist: create it        //creating the chat
       const newChat = new this.conversationModel({
         userId: new Types.ObjectId(userId),
         chatId,
@@ -88,12 +88,15 @@ async ask(userId: string, chatId: string, question: string) {
 
     const answer = response?.answer ?? 'No answer found.';
     const text = response?.text ?? '';
+    const updatedSummary = response?.summary ?? summary;
+    
 
     console.log("answer from service", answer);
     console.log("text from service", text);
+    console.log("summery from service", updatedSummary);
 
     // 🟢 Return both
-    return { answer, text, history, summary, chatId };
+    return { answer, text, history, summary:updatedSummary, chatId };
   } catch (err) {
     console.error('Error in ask():', err);
     return { answer: 'Error while processing your question.', text: '', history: [], summary: '', chatId };
