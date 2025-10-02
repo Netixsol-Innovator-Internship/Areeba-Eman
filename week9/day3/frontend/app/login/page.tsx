@@ -1,44 +1,37 @@
-'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useLoginMutation } from '../../store/apiSlice';
-import { useAppDispatch } from '@/store/hooks';
-import { setToken } from "@/features/authSlice";
+"use client";
+import { useState } from "react";
+import axios from "axios";
+import { useAppDispatch } from "@/store/store";
+import { loginSuccess } from "@/store/authSlice";
+import { useRouter } from "next/navigation";
 
-export default function Login() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [login] = useLoginMutation();
+export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const router = useRouter();
+
+  const handleLogin = async () => {
     try {
-    const res = await login({ email, password }).unwrap();
-    console.log("user logged in::", res);
-
-    const token = res.access_token; // ✅ correct property
-
-    dispatch(setToken(token)); // Redux
-    localStorage.setItem("token", token); // localStorage
-
-    router.push("/chat");
-  } catch {
-    alert("Login failed");
-  } }
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        email,
+        password,
+      });
+      dispatch(loginSuccess({ token: res.data.access_token, user: { email } }));
+      router.push("/");
+    } catch (err) {
+      alert("Login failed");
+    }
+  };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow">
-        <h2 className="text-xl mb-4">Login</h2>
-        <input type="email" placeholder="Email" value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mb-2 w-full border p-2 rounded" />
-        <input type="password" placeholder="Password" value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="mb-4 w-full border p-2 rounded" />
-        <button className="bg-blue-500 text-white p-2 rounded w-full">Login</button>
-      </form>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h2 className="text-2xl mb-4">Login</h2>
+      <input className="border p-2 mb-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input className="border p-2 mb-2" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded">
+        Login
+      </button>
     </div>
   );
 }

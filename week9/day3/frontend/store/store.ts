@@ -1,19 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "@/features/authSlice";
-import chatReducer from "@/features/chatSlice";
-import { apiSlice } from "./apiSlice";
-import { conversationsApi } from "./conversationsApi";
+import authReducer from "./authSlice";
+import { useDispatch } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    chat: chatReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    [conversationsApi.reducerPath]: conversationsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware, conversationsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
