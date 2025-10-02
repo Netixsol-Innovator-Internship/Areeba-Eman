@@ -30,3 +30,13 @@ export async function addTodo(text) {
   });
   return res.json();
 }
+
+export async function completeTodo(id) {
+  const res = await fetch(`${API_URL}/todos/${id}/complete`, { method: "PUT" });
+  return res.json();
+}
+
+export async function deleteTodo(id) {
+  const res = await fetch(`${API_URL}/todos/${id}`, { method: "DELETE" });
+  return res.json();
+}

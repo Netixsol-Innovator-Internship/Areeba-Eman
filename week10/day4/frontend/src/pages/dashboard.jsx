@@ -1,21 +1,32 @@
-import { useState, useEffect } from "react";
-import { getTodos, addTodo } from "../api";
+import { useEffect, useState } from "react";
+import { getTodos, addTodo, completeTodo, deleteTodo } from "../api";
 
 export default function Dashboard() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
 
   useEffect(() => {
-    (async () => {
-      setTodos(await getTodos());
-    })();
+    refreshTodos();
   }, []);
 
+  async function refreshTodos() {
+    setTodos(await getTodos());
+  }
+
   async function handleAdd() {
-    if (!text.trim()) return;
-    const newTodo = await addTodo(text);
-    setTodos([...todos, newTodo]);
+    await addTodo(text);
     setText("");
+    refreshTodos();
+  }
+
+  async function handleComplete(id) {
+    await completeTodo(id);
+    refreshTodos();
+  }
+
+  async function handleDelete(id) {
+    await deleteTodo(id);
+    await refreshTodos();
   }
 
   return (
@@ -29,10 +40,32 @@ export default function Dashboard() {
       <button onClick={handleAdd}>Add Todo</button>
 
       <ul>
-        {todos.map((t) => (
-          <li key={t.id}>{t.text}</li>
-        ))}
-      </ul>
+  {todos.map((t) => (
+    <li key={t.id} data-testid={`todo-${t.id}`}>
+      <span
+        style={{ textDecoration: t.completed ? "line-through" : "none" }}
+        data-testid={`todo-text-${t.id}`}
+      >
+        {t.text}
+      </span>
+      {!t.completed && (
+        <button
+          onClick={() => handleComplete(t.id)}
+          data-testid={`complete-${t.id}`}
+        >
+          Complete
+        </button>
+      )}
+      <button
+        onClick={() => handleDelete(t.id)}
+        data-testid={`delete-${t.id}`}
+      >
+        Delete
+      </button>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 }
