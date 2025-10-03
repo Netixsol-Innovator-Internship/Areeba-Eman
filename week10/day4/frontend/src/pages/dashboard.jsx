@@ -30,7 +30,8 @@ export default function Dashboard() {
   }
 
   return (
-    <div>
+    <div className="dashboard-container">
+      <div>
       <h2>Dashboard</h2>
       <input
         placeholder="Enter todo"
@@ -38,10 +39,11 @@ export default function Dashboard() {
         onChange={(e) => setText(e.target.value)}
       />
       <button onClick={handleAdd}>Add Todo</button>
+      </div>
 
       <ul>
   {todos.map((t) => (
-    <li key={t.id} data-testid={`todo-${t.id}`}>
+    <li className="listt" key={t.id} data-testid={`todo-${t.id}`}>
       <span
         style={{ textDecoration: t.completed ? "line-through" : "none" }}
         data-testid={`todo-text-${t.id}`}

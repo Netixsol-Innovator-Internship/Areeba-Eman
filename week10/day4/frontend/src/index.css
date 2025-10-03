@@ -23,9 +23,10 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  margin: auto;
   display: flex;
   place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -45,6 +46,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 2vh;
 }
 button:hover {
   border-color: #646cff;
@@ -65,4 +67,62 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 300px;
+  background-color: #a3a3a3;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.login-container input{
+  margin: 5px 0;
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  width: 400px;
+  background-color: #a3a3a3;
+  padding: 10px;
+  border-radius: 8px;
+}
+.dashboard-container input{
+  margin: 5px 8px;
+  padding: 12px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+ul{
+  padding-left: 10px;
+}
+
+.listt {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 4px;
+}
+
+.listt span {
+  flex-grow: 1\
+}
+
+.listt button {
+  margin-left: 8px; 
 }

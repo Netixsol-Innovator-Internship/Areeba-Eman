@@ -16,16 +16,16 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <input
-        placeholder="username"
+        placeholder="username:admin"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
         type="password"
-        placeholder="password"
+        placeholder="password:1234"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
