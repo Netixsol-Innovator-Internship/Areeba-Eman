@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 
 // force CommonJS require
-const pdfParse = require('pdf-parse');
+import * as pdfParse from 'pdf-parse';
 
 @Injectable()
 export class PdfService {
   async extractText(file: Express.Multer.File): Promise<string> {
-    const data = await pdfParse(file.buffer); // works at runtime
+    const data = await pdfParse.default(file.buffer); // works at runtime
     return data.text;
   }
 

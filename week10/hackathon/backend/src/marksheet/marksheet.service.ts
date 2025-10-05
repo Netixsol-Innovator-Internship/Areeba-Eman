@@ -8,10 +8,14 @@ import * as crypto from 'crypto';
 @Injectable()
 export class MarksheetService {
   async generateMarksheet(results: AssignmentResult[]): Promise<string> {
-    // Ensure output directory exists
-    const outputDir = path.join(process.cwd(), 'output');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
+    // ✅ Use /tmp in serverless or fallback to local 'output'
+    const baseDir =
+      process.env.NODE_ENV === 'production'
+        ? '/tmp' // writable in AWS Lambda, Railway, etc.
+        : path.join(process.cwd(), 'output');
+
+    if (!fs.existsSync(baseDir)) {
+      fs.mkdirSync(baseDir, { recursive: true });
     }
 
     // Prepare worksheet
@@ -27,11 +31,16 @@ export class MarksheetService {
 
     // Save file
     const fileName = `marksheet-${crypto.randomUUID()}.xlsx`;
-    const filePath = path.join(outputDir, fileName);
+    const filePath = path.join(baseDir, fileName);
     XLSX.writeFile(workbook, filePath);
 
-    // ✅ Return a public URL instead of a local path
-    const publicUrl = `http://localhost:3000/output/${fileName}`;
+    // ✅ If you're running locally, return a public URL
+    //    In production, you might upload to S3 or return buffer
+    const publicUrl =
+      process.env.NODE_ENV === 'production'
+        ? filePath // serverless can't host static files
+        : `http://localhost:3000/output/${fileName}`;
+
     return publicUrl;
   }
 }
