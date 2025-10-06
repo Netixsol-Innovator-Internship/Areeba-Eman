@@ -1,51 +1,54 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store/store";
 import { loginSuccess } from "@/store/authSlice";
-import { useRouter } from "next/navigation";
-import { Mail, Lock, LogIn, Loader2, Eye, EyeOff, ArrowLeft, MessageCircle } from "lucide-react";
+import { Mail, Lock, User, UserPlus, Loader2, Eye, EyeOff, ArrowLeft, MessageCircle, CheckCircle2 } from "lucide-react";
 
-export default function LoginPage() {
+export default function SignupPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const dispatch = useAppDispatch();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      setError("Please fill in all fields");
-      return;
-    }
-
-    setIsLoading(true);
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
     setError("");
 
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+      // Register user
+      await axios.post("http://localhost:4000/auth/register", {
+        name,
         email,
         password,
       });
-      dispatch(loginSuccess({
-        token: res.data.access_token,
-        user: res.data.user
-      }));
+
+      // Immediately login after registration
+      const res = await axios.post("http://localhost:4000/auth/login", {
+        email,
+        password,
+      });
+
+      const { access_token, user } = res.data;
+
+      // Update Redux store
+      dispatch(loginSuccess({ token: access_token, user }));
+
       router.push("/");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed. Please try again.");
+      setError(err.response?.data?.message || "Signup failed. Please try again.");
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleLogin();
-    }
-  };
+  const passwordStrength = password.length >= 8 ? "strong" : password.length >= 6 ? "medium" : password.length > 0 ? "weak" : "";
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-gray-900 via-blue-900 to-green-900 relative overflow-hidden">
@@ -73,25 +76,29 @@ export default function LoginPage() {
             </div>
           </div>
           <h1 className="text-5xl font-bold text-white leading-tight">
-            Welcome Back to <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Cricket AI</span>
+            Join the <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Cricket AI</span> Community
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Continue your journey with the most intelligent cricket assistant. Get instant answers to all your cricket queries.
+            Create your account and unlock access to the most comprehensive cricket intelligence platform.
           </p>
-          <div className="flex gap-4 pt-4">
-            <div className="flex items-center gap-2 text-gray-300">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm">Real-time Stats</span>
+          <div className="space-y-3 pt-4">
+            <div className="flex items-center gap-3 text-gray-300">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <span className="text-sm">Access to real-time cricket statistics</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-300">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-              <span className="text-sm">AI Powered</span>
+            <div className="flex items-center gap-3 text-gray-300">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <span className="text-sm">AI-powered cricket insights</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <span className="text-sm">Unlimited chat conversations</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Right Side - Login Form */}
+      {/* Right Side - Signup Form */}
       <div className="flex-1 flex items-center justify-center p-6 relative z-10">
         <div className="w-full max-w-md animate-fadeIn">
           {/* Card */}
@@ -101,8 +108,8 @@ export default function LoginPage() {
               <div className="lg:hidden flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl shadow-xl mx-auto mb-4">
                 <MessageCircle className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-white">Welcome Back</h2>
-              <p className="text-gray-300">Sign in to continue to Cricket AI</p>
+              <h2 className="text-3xl font-bold text-white">Create Account</h2>
+              <p className="text-gray-300">Start your cricket AI journey today</p>
             </div>
 
             {/* Error Message */}
@@ -113,7 +120,27 @@ export default function LoginPage() {
             )}
 
             {/* Form */}
-            <div className="space-y-4">
+            <form onSubmit={handleSignup} className="space-y-4">
+              {/* Name Input */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-200 block">Full Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setError("");
+                    }}
+                    disabled={loading}
+                    required
+                    className="w-full bg-white/10 border border-white/20 focus:border-blue-400 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                </div>
+              </div>
+
               {/* Email Input */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-200 block">Email Address</label>
@@ -127,8 +154,8 @@ export default function LoginPage() {
                       setEmail(e.target.value);
                       setError("");
                     }}
-                    onKeyPress={handleKeyPress}
-                    disabled={isLoading}
+                    disabled={loading}
+                    required
                     className="w-full bg-white/10 border border-white/20 focus:border-blue-400 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
@@ -147,8 +174,8 @@ export default function LoginPage() {
                       setPassword(e.target.value);
                       setError("");
                     }}
-                    onKeyPress={handleKeyPress}
-                    disabled={isLoading}
+                    disabled={loading}
+                    required
                     className="w-full bg-white/10 border border-white/20 focus:border-blue-400 rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <button
@@ -159,27 +186,56 @@ export default function LoginPage() {
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
+                
+                {/* Password Strength Indicator */}
+                {password && (
+                  <div className="space-y-1">
+                    <div className="flex gap-1 h-1">
+                      <div className={`flex-1 rounded-full transition-all duration-300 ${
+                        passwordStrength === "weak" ? "bg-red-500" :
+                        passwordStrength === "medium" ? "bg-yellow-500" :
+                        passwordStrength === "strong" ? "bg-green-500" : "bg-gray-600"
+                      }`} />
+                      <div className={`flex-1 rounded-full transition-all duration-300 ${
+                        passwordStrength === "medium" || passwordStrength === "strong" ? 
+                        (passwordStrength === "medium" ? "bg-yellow-500" : "bg-green-500") : "bg-gray-600"
+                      }`} />
+                      <div className={`flex-1 rounded-full transition-all duration-300 ${
+                        passwordStrength === "strong" ? "bg-green-500" : "bg-gray-600"
+                      }`} />
+                    </div>
+                    <p className={`text-xs ${
+                      passwordStrength === "weak" ? "text-red-400" :
+                      passwordStrength === "medium" ? "text-yellow-400" :
+                      "text-green-400"
+                    }`}>
+                      {passwordStrength === "weak" ? "Weak password" :
+                       passwordStrength === "medium" ? "Medium password" :
+                       "Strong password"}
+                    </p>
+                  </div>
+                )}
               </div>
 
-              {/* Login Button */}
+              {/* Signup Button */}
               <button
-                onClick={handleLogin}
-                disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
               >
-                {isLoading ? (
+                {loading ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Signing in...</span>
+                    <span>Creating Account...</span>
                   </>
                 ) : (
                   <>
-                    <LogIn className="w-5 h-5" />
-                    <span>Sign In</span>
+                    <UserPlus className="w-5 h-5" />
+                    <span>Create Account</span>
                   </>
                 )}
               </button>
-            </div>
+            </form>
 
             {/* Divider */}
             <div className="relative">
@@ -187,24 +243,22 @@ export default function LoginPage() {
                 <div className="w-full border-t border-white/20" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-transparent text-gray-400">New to Cricket AI?</span>
+                <span className="px-4 bg-transparent text-gray-400">Already have an account?</span>
               </div>
             </div>
 
-            {/* Sign Up Link */}
+            {/* Login Link */}
             <button
-              onClick={() => router.push("/signup")}
-              disabled={isLoading}
+              type="button"
+              onClick={() => router.push("/login")}
+              disabled={loading}
               className="w-full bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/30 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Create an Account
+              Sign In Instead
             </button>
           </div>
 
-          {/* Footer Text */}
-          <p className="text-center text-sm text-gray-400 mt-6">
-            By signing in, you agree to our Terms of Service and Privacy Policy
-          </p>
+          
         </div>
       </div>
 

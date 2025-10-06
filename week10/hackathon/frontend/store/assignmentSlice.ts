@@ -27,7 +27,7 @@ export const uploadAssignments = createAsyncThunk(
       const res = await axios.post(`${BASE_URL}assignment/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      return res.data;
+      return res.data; // { results, marksheet: fileName }
     } catch (err: any) {
       return rejectWithValue(err.response?.data || "Error uploading assignments");
     }

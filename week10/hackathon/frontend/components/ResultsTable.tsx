@@ -9,6 +9,30 @@ export default function ResultsTable() {
 
   if (!results || results.length === 0) return null;
 
+  const handleDownload = async () => {
+    if (!marksheet) return;
+
+    try {
+      // ✅ Backend URL from env
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      const response = await fetch(`${baseUrl}assignment/download/${marksheet}`);
+
+      if (!response.ok) throw new Error("Download failed");
+
+      // ✅ Convert to blob and trigger download
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = marksheet;
+      a.click();
+      a.remove();
+    } catch (error) {
+      console.error("Error downloading file:", error);
+      alert("Failed to download marksheet");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -24,10 +48,18 @@ export default function ResultsTable() {
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-blue-100/70">
-              <th className="p-3 border text-left font-semibold text-gray-800">Student Name</th>
-              <th className="p-3 border text-left font-semibold text-gray-800">Roll Number</th>
-              <th className="p-3 border text-left font-semibold text-gray-800">Score</th>
-              <th className="p-3 border text-left font-semibold text-gray-800">Remarks</th>
+              <th className="p-3 border text-left font-semibold text-gray-800">
+                Student Name
+              </th>
+              <th className="p-3 border text-left font-semibold text-gray-800">
+                Roll Number
+              </th>
+              <th className="p-3 border text-left font-semibold text-gray-800">
+                Score
+              </th>
+              <th className="p-3 border text-left font-semibold text-gray-800">
+                Remarks
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -41,7 +73,9 @@ export default function ResultsTable() {
               >
                 <td className="p-3 border">{r.studentName}</td>
                 <td className="p-3 border">{r.rollNumber}</td>
-                <td className="p-3 border font-semibold text-blue-600">{r.score}</td>
+                <td className="p-3 border font-semibold text-blue-600">
+                  {r.score}
+                </td>
                 <td className="p-3 border text-gray-700">{r.remarks}</td>
               </motion.tr>
             ))}
@@ -50,15 +84,13 @@ export default function ResultsTable() {
       </div>
 
       {marksheet && (
-        <motion.a
-          href={marksheet}
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.button
           whileHover={{ scale: 1.05 }}
-          className="block mt-6 text-center text-blue-700 font-semibold underline hover:text-blue-900 transition-all"
+          onClick={handleDownload}
+          className="block mt-6 mx-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all"
         >
           📄 Download Marksheet
-        </motion.a>
+        </motion.button>
       )}
     </motion.div>
   );

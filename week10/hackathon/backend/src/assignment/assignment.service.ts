@@ -48,10 +48,13 @@ export class AssignmentService {
     });
   }
 
-  const marksheetPath = await this.marksheetService.generateMarksheet(results);
-  // console.log('Marksheet generated at:', marksheetPath);
-  // console.log('Results:', results, marksheetPath);
-  return { results, marksheet: marksheetPath };
-}
 
+  const marksheetBuffer = await this.marksheetService.generateMarksheet(results);
+  const { fileName } = await this.marksheetService.generateMarksheet(results);
+
+return {
+  results,
+  marksheet: fileName, // just return name, not full path
+};
+  }
 }

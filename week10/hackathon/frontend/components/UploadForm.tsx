@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { uploadAssignments } from "../store/assignmentSlice";
-import { FileUp, Loader2, UploadCloud } from "lucide-react";
+import { FileUp, Loader2, UploadCloud, Download } from "lucide-react";
 
 export default function UploadForm() {
   const dispatch = useAppDispatch();
@@ -20,7 +20,32 @@ export default function UploadForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!config) return alert("⚠️ Please create an assignment first!");
+    if (files.length === 0) return alert("Please select PDF files first!");
     dispatch(uploadAssignments(files));
+  };
+
+  // ✅ Function to trigger marksheet download (same as your ResultsTable logic)
+  const handleDownload = async () => {
+    if (!marksheet) return;
+
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      const response = await fetch(`${baseUrl}assignment/download/${marksheet}`);
+
+      if (!response.ok) throw new Error("Download failed");
+
+      // ✅ Convert to blob and trigger download
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = marksheet;
+      a.click();
+      a.remove();
+    } catch (error) {
+      console.error("Error downloading file:", error);
+      alert("Failed to download marksheet");
+    }
   };
 
   return (
@@ -28,7 +53,7 @@ export default function UploadForm() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl shadow-xl w-full max-w-2xl mx-auto mt-8 border border-green-200"
+      className="p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl shadow-xl w-full max-w-3xl mx-auto mt-8 border border-green-200"
     >
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
@@ -77,16 +102,23 @@ export default function UploadForm() {
         </motion.button>
       </form>
 
+      {/* ✅ Download Marksheet Button */}
       {marksheet && (
-        <motion.a
-          href={marksheet}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          className="block mt-6 text-center bg-white border border-green-300 text-green-700 font-medium py-2 rounded-xl shadow-sm hover:bg-green-50 transition-all"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-8 flex justify-center"
         >
-          📄 Download Marksheet
-        </motion.a>
+          <motion.button
+            onClick={handleDownload}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-green-700 transition-all"
+          >
+            <Download size={20} /> Download Marksheet (XLSX)
+          </motion.button>
+        </motion.div>
       )}
     </motion.div>
   );
