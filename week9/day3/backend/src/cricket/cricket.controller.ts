@@ -2,8 +2,8 @@ import { Controller, Post, Body, UseGuards, Req, UseInterceptors, BadRequestExce
 import { JwtAuthGuard } from 'src/guards/jwt.guard';
 import { Model, Types } from 'mongoose';
 import { CricketService } from './cricket.service';
-import {  UploadedFile } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+// import {  UploadedFile } from '@nestjs/common';
+// import { FileInterceptor } from '@nestjs/platform-express';
 import { ConversationsService } from 'src/conversation/conversation.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from 'src/users/schemas/user.schema';
@@ -15,14 +15,14 @@ export class CricketController {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
-  async uploadCSV(
-    @UploadedFile() file: Express.Multer.File,
-    @Body('type') type: string, // 'test' | 'odi' | 't20'
-  ) {
-    return this.cricketService.uploadCSV(file, type);
-  }
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('file'))
+  // async uploadCSV(
+  //   @UploadedFile() file: Express.Multer.File,
+  //   @Body('type') type: string, // 'test' | 'odi' | 't20'
+  // ) {
+  //   return this.cricketService.uploadCSV(file, type);
+  // }
 
   @UseGuards(JwtAuthGuard)
   @Post('/ask')

@@ -4,8 +4,8 @@ import { Model, Types } from 'mongoose';
 import { Match } from './schemas/match.schema';
 import { Conversation } from 'src/conversation/schema/conversation.schema';
 import { Summary } from 'src/summary/schema/summary.schema';
-import { Readable } from 'stream';
-import csvParser from 'csv-parser';
+// import { Readable } from 'stream';
+// import csvParser from 'csv-parser';
 // import { Conversation } from 'src/conversation/schemas/conversation.schema';
 import { buildWorkflow } from "./workflow";
 
@@ -20,34 +20,34 @@ export class CricketService {
     this.workflow = buildWorkflow(this.matchModel, this.conversationModel, this.summaryModel);
   }
 
-  async uploadCSV(file: Express.Multer.File, type: string) {
-    return new Promise((resolve, reject) => {
-      const results: any[] = [];
+  // async uploadCSV(file: Express.Multer.File, type: string) {
+  //   return new Promise((resolve, reject) => {
+  //     const results: any[] = [];
 
-      Readable.from(file.buffer)
-        .pipe(csvParser())
-        .on('data', (row) => {
-          results.push({
-            team: row['Team'],
-            score: row['Score'],
-            overs: row['Overs'],
-            rpo: row['RPO'],
-            lead: row['Lead'],
-            inns: row['Inns'],
-            result: row['Result'],
-            opposition: row['Opposition'],
-            ground: row['Ground'],
-            start_date: row['Start Date'],
-            type, // add type (test/odi/t20)
-          });
-        })
-        .on('end', async () => {
-          await this.matchModel.insertMany(results);
-          resolve({ message: `${results.length} records uploaded for ${type}` });
-        })
-        .on('error', reject);
-    });
-  }
+  //     Readable.from(file.buffer)
+  //       .pipe(csvParser())
+  //       .on('data', (row) => {
+  //         results.push({
+  //           team: row['Team'],
+  //           score: row['Score'],
+  //           overs: row['Overs'],
+  //           rpo: row['RPO'],
+  //           lead: row['Lead'],
+  //           inns: row['Inns'],
+  //           result: row['Result'],
+  //           opposition: row['Opposition'],
+  //           ground: row['Ground'],
+  //           start_date: row['Start Date'],
+  //           type, // add type (test/odi/t20)
+  //         });
+  //       })
+  //       .on('end', async () => {
+  //         await this.matchModel.insertMany(results);
+  //         resolve({ message: `${results.length} records uploaded for ${type}` });
+  //       })
+  //       .on('error', reject);
+  //   });
+  // }
 
 
 async ask(userId: string, chatId: string, question: string) {

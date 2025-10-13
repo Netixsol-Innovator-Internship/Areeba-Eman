@@ -23,14 +23,14 @@ export default function SignupPage() {
 
     try {
       // Register user
-      await axios.post("http://localhost:4000/auth/register", {
+      await axios.post("https://cricketai-backend.vercel.app/auth/register", {
         name,
         email,
         password,
       });
 
       // Immediately login after registration
-      const res = await axios.post("http://localhost:4000/auth/login", {
+      const res = await axios.post("https://cricketai-backend.vercel.app/auth/login", {
         email,
         password,
       });
