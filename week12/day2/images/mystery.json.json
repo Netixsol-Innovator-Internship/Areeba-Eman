@@ -1,0 +1,9 @@
+{
+  "name": "MyCollection #0",
+  "description": "Mystery NFT",
+  "image": "ipfs://bafybeid2hcj5yuxmbmm3g2dkvunlpmdux7rl6b7licroy5anrqbjdzyyjy", 
+  "attributes": [
+    { "trait_type": "Background", "value": "Blue" },
+    { "trait_type": "type", "value": "Box" }
+  ]
+}

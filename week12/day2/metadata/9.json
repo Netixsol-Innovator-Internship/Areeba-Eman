@@ -1,0 +1,9 @@
+{
+  "name": "MyCollection #9",
+  "description": "One-line description of the project",
+  "image": "ipfs://bafkreid4pvnctmm2hu7zojpwxpbhjjh336hxxcab63gme2dessp3vc67c4", 
+  "attributes": [
+    { "trait_type": "Background", "value": "Blue" },
+    { "trait_type": "Patels", "value": "white" }
+  ]
+}
