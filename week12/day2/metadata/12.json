@@ -1,0 +1,9 @@
+{
+  "name": "MyCollection #12",
+  "description": "A flower that symbolizes innocence, purity, and new beginnings. ",
+  "image": "ipfs://bafybeigihnlctbfrnd5bcxm3kc7axxrpnny66kqyc65jraplyjak62awau", 
+  "attributes": [
+    { "trait_type": "Background", "value": "Blue" },
+    { "trait_type": "Patels", "value": "white" }
+  ]
+}
