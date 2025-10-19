@@ -8,7 +8,7 @@ import { wagmiConfig } from "@/lib/wagmiConfig";
 import { parseEther, formatEther } from "viem";
 
 const TOKENS = [
-  { symbol: "PLT", address: CONTRACTS.PLT, name: "Platform Token", icon: "🪙" },
+  { symbol: "PLT", address: CONTRACTS.PLT, name: "Platform Token", icon: "💵" },
   { symbol: "ARB", address: CONTRACTS.ARB, name: "Arbitrum Token", icon: "🔷" },
   { symbol: "LU", address: CONTRACTS.LU, name: "Lunar Token", icon: "🌙" },
 ];

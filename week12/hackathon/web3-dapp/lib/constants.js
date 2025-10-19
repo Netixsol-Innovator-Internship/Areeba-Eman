@@ -18,5 +18,3 @@ export const CONTRACTS = {
 export { PLATFORM_TOKEN_ABI, FAUCET_ABI, DEX_ABI, NFT_ABI, MARKET_ABI }; // ✅ Export NFT_ABI
 // Legacy export for backward compatibility
 export const PLATFORM_TOKEN_ADDRESS = CONTRACTS.PLT;
-
-0x02352bCcFf1368D8C85710faF7C381d9FddeE1bb

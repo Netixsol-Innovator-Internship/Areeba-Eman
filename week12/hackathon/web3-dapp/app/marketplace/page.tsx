@@ -8,7 +8,7 @@ import { wagmiConfig } from "@/lib/wagmiConfig";
 import { parseEther, formatEther } from "viem";
 
 const TOKENS = [
-  { symbol: "PLT", address: CONTRACTS.PLT, name: "Platform Token", icon: "🪙" },
+  { symbol: "PLT", address: CONTRACTS.PLT, name: "Platform Token", icon: "💵" },
   { symbol: "ARB", address: CONTRACTS.ARB, name: "Arbitrum Token", icon: "🔷" },
   { symbol: "LU", address: CONTRACTS.LU, name: "Lunar Token", icon: "🌙" },
 ];
@@ -22,11 +22,12 @@ interface NFTListing {
   imageUrl?: string;
   name?: string;
   description?: string;
+  attributes?: Array<{trait_type: string; value: string}>;
 }
 
 export default function MarketplacePage() {
   const { address, isConnected } = useAccount();
-  const [activeTab, setActiveTab] = useState<"mint" | "marketplace" | "my-nfts">("mint");
+  const [activeTab, setActiveTab] = useState<"mint" | "all-nfts" | "marketplace" | "my-nfts" | "royalties">("mint");
   
   // State
   const [nftPrice, setNftPrice] = useState("0");
@@ -34,52 +35,57 @@ export default function MarketplacePage() {
   const [totalMinted, setTotalMinted] = useState("0");
   const [paymentToken, setPaymentToken] = useState(TOKENS[0]);
   const [listings, setListings] = useState<NFTListing[]>([]);
+  const [allNFTs, setAllNFTs] = useState<NFTListing[]>([]);
   const [myNFTs, setMyNFTs] = useState<NFTListing[]>([]);
   const [listPrice, setListPrice] = useState("");
   const [selectedNFT, setSelectedNFT] = useState<number | null>(null);
+  const [selectedNFTId, setSelectedNFTId] = useState<number | null>(null);
+  const [royaltyReceiver, setRoyaltyReceiver] = useState("");
+  const [royaltyPercentage, setRoyaltyPercentage] = useState("0");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   
   // Fetch NFT metadata from tokenURI
   const fetchNFTMetadata = async (tokenId: number) => {
-  try {
-    const tokenURI = await readContract(wagmiConfig, {
-      address: CONTRACTS.NFT as `0x${string}`,
-      abi: NFT_ABI,
-      functionName: "tokenURI",
-      args: [BigInt(tokenId)],
-    });
+    try {
+      const tokenURI = await readContract(wagmiConfig, {
+        address: CONTRACTS.NFT as `0x${string}`,
+        abi: NFT_ABI,
+        functionName: "tokenURI",
+        args: [BigInt(tokenId)],
+      });
 
-    // Convert IPFS URI to HTTPS
-    let metadataUrl = tokenURI as string;
-    if (metadataUrl.startsWith("ipfs://")) {
-      metadataUrl = metadataUrl.replace("ipfs://", "https://ipfs.io/ipfs/");
+      // Convert IPFS URI to HTTPS
+      let metadataUrl = tokenURI as string;
+      if (metadataUrl.startsWith("ipfs://")) {
+        metadataUrl = metadataUrl.replace("ipfs://", "https://ipfs.io/ipfs/");
+      }
+
+      const response = await fetch(metadataUrl);
+      const metadata = await response.json();
+
+      // Fix image URL if also IPFS
+      let imageUrl = metadata.image;
+      if (imageUrl.startsWith("ipfs://")) {
+        imageUrl = imageUrl.replace("ipfs://", "https://ipfs.io/ipfs/");
+      }
+
+      return {
+        name: metadata.name || `Daisy #${tokenId}`,
+        description: metadata.description || "",
+        imageUrl: imageUrl || `https://placehold.co/300x300/1a1a1a/white?text=Daisy+%23${tokenId}`,
+        attributes: metadata.attributes || [],
+      };
+    } catch (err) {
+      console.error(`Error fetching metadata for token ${tokenId}:`, err);
+      return {
+        name: `Daisy #${tokenId}`,
+        description: "",
+        imageUrl: `https://placehold.co/300x300/1a1a1a/white?text=Daisy+%23${tokenId}`,
+        attributes: [],
+      };
     }
-
-    const response = await fetch(metadataUrl);
-    const metadata = await response.json();
-
-    // Fix image URL if also IPFS
-    let imageUrl = metadata.image;
-    if (imageUrl.startsWith("ipfs://")) {
-      imageUrl = imageUrl.replace("ipfs://", "https://ipfs.io/ipfs/");
-    }
-
-    return {
-      name: metadata.name || `Daisy #${tokenId}`,
-      description: metadata.description || "",
-      imageUrl: imageUrl || `https://placehold.co/300x300/1a1a1a/white?text=Daisy+%23${tokenId}`,
-    };
-  } catch (err) {
-    console.error(`Error fetching metadata for token ${tokenId}:`, err);
-    return {
-      name: `Daisy #${tokenId}`,
-      description: "",
-      imageUrl: `https://placehold.co/300x300/1a1a1a/white?text=Daisy+%23${tokenId}`,
-    };
-  }
-};
-
+  };
 
   // Fetch marketplace data
   const fetchMarketplaceData = async () => {
@@ -110,13 +116,62 @@ export default function MarketplacePage() {
     }
   };
 
-  // Fetch all listings (simplified - you'll need to track tokenIds properly)
+  // Fetch all NFTs
+  const fetchAllNFTs = async () => {
+    try {
+      const allNFTsList: NFTListing[] = [];
+      const totalMintedNum = parseInt(totalMinted);
+      
+      for (let i = 1; i <= Math.min(totalMintedNum, 100); i++) {
+        try {
+          const owner = await readContract(wagmiConfig, {
+            address: CONTRACTS.NFT as `0x${string}`,
+            abi: NFT_ABI,
+            functionName: "ownerOf",
+            args: [BigInt(i)],
+          });
+
+          // Check if listed
+          let isListed = false;
+          let listingPrice = "0";
+          try {
+            const listing = await readContract(wagmiConfig, {
+              address: CONTRACTS.MARKETPLACE as `0x${string}`,
+              abi: MARKET_ABI,
+              functionName: "listings",
+              args: [BigInt(i)],
+            });
+            const [, pricePLT, active] = listing as [string, bigint, boolean];
+            isListed = active;
+            listingPrice = formatEther(pricePLT);
+          } catch {}
+
+          const metadata = await fetchNFTMetadata(i);
+          allNFTsList.push({
+            tokenId: i,
+            seller: owner as string,
+            pricePLT: listingPrice,
+            active: isListed,
+            owner: owner as string,
+            ...metadata,
+          });
+        } catch (err) {
+          // Token doesn't exist
+        }
+      }
+      
+      setAllNFTs(allNFTsList);
+    } catch (err) {
+      console.error("Error fetching all NFTs:", err);
+    }
+  };
+
+  // Fetch listings
   const fetchListings = async () => {
     try {
       const listedNFTs: NFTListing[] = [];
       const totalMintedNum = parseInt(totalMinted);
       
-      // Check each minted NFT for listing status
       for (let i = 1; i <= Math.min(totalMintedNum, 50); i++) {
         try {
           const listing = await readContract(wagmiConfig, {
@@ -187,6 +242,25 @@ export default function MarketplacePage() {
     }
   };
 
+  // Fetch royalty info
+  const fetchRoyaltyInfo = async () => {
+    try {
+      const salePrice = parseEther("100");
+      const royaltyInfo = await readContract(wagmiConfig, {
+        address: CONTRACTS.NFT as `0x${string}`,
+        abi: NFT_ABI,
+        functionName: "royaltyInfo",
+        args: [BigInt(1), salePrice],
+      });
+
+      const [receiver, royaltyAmount] = royaltyInfo as [string, bigint];
+      setRoyaltyReceiver(receiver);
+      setRoyaltyPercentage(((Number(royaltyAmount) / Number(salePrice)) * 100).toFixed(2));
+    } catch (err) {
+      console.error("Error fetching royalty info:", err);
+    }
+  };
+
   useEffect(() => {
     if (isConnected) {
       fetchMarketplaceData();
@@ -196,6 +270,8 @@ export default function MarketplacePage() {
   useEffect(() => {
     if (totalMinted !== "0") {
       fetchListings();
+      fetchAllNFTs();
+      fetchRoyaltyInfo();
       if (address) fetchMyNFTs();
     }
   }, [totalMinted, address, activeTab]);
@@ -219,7 +295,6 @@ export default function MarketplacePage() {
     setMessage("");
     try {
       setMessage("Approving payment token...");
-      // Approve enough tokens (price * 2 for safety with swaps)
       await approveToken(paymentToken.address, (parseFloat(nftPrice) * 2).toString());
 
       setMessage("Minting NFT...");
@@ -227,7 +302,7 @@ export default function MarketplacePage() {
         address: CONTRACTS.MARKETPLACE as `0x${string}`,
         abi: MARKET_ABI,
         functionName: "buyNewNFT",
-        args: [paymentToken.address, parseEther("0")], // minAmountOut = 0 for simplicity
+        args: [paymentToken.address, parseEther("0")],
         account: address,
       });
 
@@ -237,6 +312,7 @@ export default function MarketplacePage() {
       setMessage("✅ NFT minted successfully!");
       await fetchMarketplaceData();
       await fetchMyNFTs();
+      await fetchAllNFTs();
     } catch (err: any) {
       console.error(err);
       setMessage(`❌ ${err.message || "Minting failed"}`);
@@ -251,7 +327,6 @@ export default function MarketplacePage() {
     setLoading(true);
     setMessage("");
     try {
-      // First approve marketplace to transfer NFT
       setMessage("Approving NFT transfer...");
       const approveTxHash = await writeContract(wagmiConfig, {
         address: CONTRACTS.NFT as `0x${string}`,
@@ -279,6 +354,7 @@ export default function MarketplacePage() {
       setSelectedNFT(null);
       await fetchListings();
       await fetchMyNFTs();
+      await fetchAllNFTs();
     } catch (err: any) {
       console.error(err);
       setMessage(`❌ ${err.message || "Listing failed"}`);
@@ -308,6 +384,7 @@ export default function MarketplacePage() {
       setMessage("✅ Listing cancelled!");
       await fetchListings();
       await fetchMyNFTs();
+      await fetchAllNFTs();
     } catch (err: any) {
       console.error(err);
       setMessage(`❌ ${err.message || "Cancellation failed"}`);
@@ -340,6 +417,7 @@ export default function MarketplacePage() {
       setMessage("✅ NFT purchased successfully!");
       await fetchListings();
       await fetchMyNFTs();
+      await fetchAllNFTs();
     } catch (err: any) {
       console.error(err);
       setMessage(`❌ ${err.message || "Purchase failed"}`);
@@ -384,30 +462,46 @@ export default function MarketplacePage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-4 mb-6 overflow-x-auto">
         <button
           onClick={() => setActiveTab("mint")}
-          className={`flex-1 py-3 rounded-lg font-semibold transition ${
+          className={`px-6 py-3 rounded-lg font-semibold transition whitespace-nowrap ${
             activeTab === "mint" ? "bg-purple-600" : "bg-gray-800 hover:bg-gray-700"
           }`}
         >
           🎨 Mint New
         </button>
         <button
+          onClick={() => setActiveTab("all-nfts")}
+          className={`px-6 py-3 rounded-lg font-semibold transition whitespace-nowrap ${
+            activeTab === "all-nfts" ? "bg-purple-600" : "bg-gray-800 hover:bg-gray-700"
+          }`}
+        >
+          🌸 All NFTs ({allNFTs.length})
+        </button>
+        <button
           onClick={() => setActiveTab("marketplace")}
-          className={`flex-1 py-3 rounded-lg font-semibold transition ${
+          className={`px-6 py-3 rounded-lg font-semibold transition whitespace-nowrap ${
             activeTab === "marketplace" ? "bg-purple-600" : "bg-gray-800 hover:bg-gray-700"
           }`}
         >
-          🛒 Marketplace ({listings.length})
+          🛒 Listed ({listings.length})
         </button>
         <button
           onClick={() => setActiveTab("my-nfts")}
-          className={`flex-1 py-3 rounded-lg font-semibold transition ${
+          className={`px-6 py-3 rounded-lg font-semibold transition whitespace-nowrap ${
             activeTab === "my-nfts" ? "bg-purple-600" : "bg-gray-800 hover:bg-gray-700"
           }`}
         >
           👤 My NFTs ({myNFTs.length})
+        </button>
+        <button
+          onClick={() => setActiveTab("royalties")}
+          className={`px-6 py-3 rounded-lg font-semibold transition whitespace-nowrap ${
+            activeTab === "royalties" ? "bg-purple-600" : "bg-gray-800 hover:bg-gray-700"
+          }`}
+        >
+          💎 Royalties
         </button>
       </div>
 
@@ -460,6 +554,49 @@ export default function MarketplacePage() {
           >
             {loading ? "Minting..." : parseInt(totalMinted) >= parseInt(maxSupply) ? "Sold Out" : "Mint NFT"}
           </button>
+        </div>
+      )}
+
+      {/* All NFTs Tab */}
+      {activeTab === "all-nfts" && (
+        <div>
+          {allNFTs.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400 text-lg">No NFTs minted yet</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {allNFTs.map((nft) => (
+                <div
+                  key={nft.tokenId}
+                  onClick={() => setSelectedNFTId(nft.tokenId)}
+                  className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden hover:border-purple-600 transition cursor-pointer"
+                >
+                  <div className="relative">
+                    <img
+                      src={nft.imageUrl}
+                      alt={nft.name || `Daisy #${nft.tokenId}`}
+                      className="w-full h-64 object-cover"
+                    />
+                    {nft.active && (
+                      <div className="absolute top-2 right-2 bg-green-600 px-2 py-1 rounded text-xs font-bold">
+                        LISTED
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold mb-1">{nft.name || `Daisy #${nft.tokenId}`}</h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Owner: {nft.owner?.slice(0, 6)}...{nft.owner?.slice(-4)}
+                    </p>
+                    {nft.active && (
+                      <p className="text-purple-400 font-bold">{parseFloat(nft.pricePLT).toFixed(2)} PLT</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -589,6 +726,218 @@ export default function MarketplacePage() {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* Royalties Tab */}
+      {activeTab === "royalties" && (
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 mb-6">
+            <h2 className="text-2xl font-bold mb-4">💎 Collection Royalties</h2>
+            <p className="text-gray-400 mb-6">
+              This collection has ERC2981 royalties enabled. A percentage of each secondary sale goes to the royalty receiver.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-800 rounded-lg p-6">
+                <p className="text-gray-400 text-sm mb-2">Royalty Receiver</p>
+                <p className="font-mono text-lg break-all">{royaltyReceiver || "Loading..."}</p>
+              </div>
+
+              <div className="bg-gray-800 rounded-lg p-6">
+                <p className="text-gray-400 text-sm mb-2">Royalty Percentage</p>
+                <p className="text-4xl font-bold text-purple-400">{royaltyPercentage}%</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="text-xl font-bold mb-4">How Royalties Work</h3>
+            <div className="space-y-4 text-gray-300">
+              <div className="flex gap-3">
+                <span className="text-2xl">1️⃣</span>
+                <div>
+                  <p className="font-semibold mb-1">Primary Sale (Minting)</p>
+                  <p className="text-sm text-gray-400">When you mint an NFT, the full price goes to the marketplace/collection owner. No royalties on primary sales.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <span className="text-2xl">2️⃣</span>
+                <div>
+                  <p className="font-semibold mb-1">Secondary Sale (Resale)</p>
+                  <p className="text-sm text-gray-400">
+                    When an NFT is resold on the marketplace, {royaltyPercentage}% of the sale price automatically goes to the royalty receiver ({royaltyReceiver?.slice(0, 6)}...{royaltyReceiver?.slice(-4)}).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <span className="text-2xl">3️⃣</span>
+                <div>
+                  <p className="font-semibold mb-1">Marketplace Fee</p>
+                  <p className="text-sm text-gray-400">The marketplace also takes a 2.5% fee on secondary sales, so the seller receives the remaining amount.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 bg-purple-900/30 border border-purple-800 rounded-lg p-4">
+              <p className="font-semibold mb-2">💡 Example:</p>
+              <p className="text-sm text-gray-300">
+                If an NFT sells for <span className="font-bold">100 PLT</span>:
+              </p>
+              <ul className="text-sm text-gray-300 mt-2 space-y-1 ml-4">
+                <li>• Royalty: {royaltyPercentage} PLT ({royaltyPercentage}%)</li>
+                <li>• Marketplace Fee: 2.5 PLT (2.5%)</li>
+                <li>• Seller Receives: {(100 - parseFloat(royaltyPercentage) - 2.5).toFixed(2)} PLT</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* NFT Detail Modal */}
+      {selectedNFTId !== null && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedNFTId(null)}
+        >
+          <div
+            className="bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {(() => {
+              const nft = allNFTs.find(n => n.tokenId === selectedNFTId) || 
+                          myNFTs.find(n => n.tokenId === selectedNFTId) ||
+                          listings.find(n => n.tokenId === selectedNFTId);
+              
+              if (!nft) return null;
+
+              const isOwner = nft.owner?.toLowerCase() === address?.toLowerCase();
+              const isListed = nft.active;
+
+              return (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                    {/* Image */}
+                    <div>
+                      <img
+                        src={nft.imageUrl}
+                        alt={nft.name || `Daisy #${nft.tokenId}`}
+                        className="w-full rounded-lg"
+                      />
+                    </div>
+
+                    {/* Details */}
+                    <div>
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <h2 className="text-3xl font-bold mb-2">{nft.name || `Daisy #${nft.tokenId}`}</h2>
+                          <p className="text-gray-400">Token ID: #{nft.tokenId}</p>
+                        </div>
+                        <button
+                          onClick={() => setSelectedNFTId(null)}
+                          className="text-gray-400 hover:text-white text-2xl"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      {nft.description && (
+                        <p className="text-gray-300 mb-4">{nft.description}</p>
+                      )}
+
+                      {/* Owner */}
+                      <div className="bg-gray-800 rounded-lg p-4 mb-4">
+                        <p className="text-sm text-gray-400 mb-1">Owner</p>
+                        <p className="font-mono">{nft.owner?.slice(0, 10)}...{nft.owner?.slice(-8)}</p>
+                      </div>
+
+                      {/* Price */}
+                      {isListed && (
+                        <div className="bg-purple-900/30 border border-purple-800 rounded-lg p-4 mb-4">
+                          <p className="text-sm text-gray-400 mb-1">Listed Price</p>
+                          <p className="text-3xl font-bold text-purple-400">{parseFloat(nft.pricePLT).toFixed(2)} PLT</p>
+                        </div>
+                      )}
+
+                      {/* Attributes */}
+                      {nft.attributes && nft.attributes.length > 0 && (
+                        <div className="mb-4">
+                          <p className="text-sm text-gray-400 mb-3">Traits</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            {nft.attributes.map((attr, idx) => (
+                              <div key={idx} className="bg-gray-800 rounded-lg p-3">
+                                <p className="text-xs text-gray-400">{attr.trait_type}</p>
+                                <p className="font-semibold">{attr.value}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Actions */}
+                      <div className="space-y-3">
+                        {isOwner && !isListed && (
+                          <div>
+                            <input
+                              type="number"
+                              placeholder="Price in PLT"
+                              value={listPrice}
+                              onChange={(e) => setListPrice(e.target.value)}
+                              className="w-full bg-gray-800 px-4 py-2 rounded-lg mb-2"
+                            />
+                            <button
+                              onClick={() => {
+                                handleListNFT(nft.tokenId);
+                                setSelectedNFTId(null);
+                              }}
+                              disabled={loading || !listPrice}
+                              className="w-full bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold"
+                            >
+                              List for Sale
+                            </button>
+                          </div>
+                        )}
+
+                        {isOwner && isListed && (
+                          <button
+                            onClick={() => {
+                              handleCancelListing(nft.tokenId);
+                              setSelectedNFTId(null);
+                            }}
+                            disabled={loading}
+                            className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-semibold"
+                          >
+                            Cancel Listing
+                          </button>
+                        )}
+
+                        {!isOwner && isListed && (
+                          <button
+                            onClick={() => {
+                              handleBuyNFT(nft.tokenId, nft.pricePLT);
+                              setSelectedNFTId(null);
+                            }}
+                            disabled={loading}
+                            className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold"
+                          >
+                            Buy Now for {parseFloat(nft.pricePLT).toFixed(2)} PLT
+                          </button>
+                        )}
+
+                        {!isOwner && !isListed && (
+                          <div className="text-center text-gray-400 py-3">
+                            This NFT is not listed for sale
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
         </div>
       )}
 
