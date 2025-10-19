@@ -562,7 +562,7 @@ export default function MarketplacePage() {
         <div>
           {allNFTs.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">No NFTs minted yet</p>
+              <p className="text-gray-400 text-lg">`No NFTs minted yet (wait it takes time to load).`</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

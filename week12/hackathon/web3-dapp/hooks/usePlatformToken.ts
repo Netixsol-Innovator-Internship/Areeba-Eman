@@ -1,26 +1,26 @@
-"use client";
-
+// hooks/usePlatformToken.ts
 import { useAccount, useReadContract } from "wagmi";
-import { useEffect } from "react";
-import { PLATFORM_TOKEN_ABI, PLATFORM_TOKEN_ADDRESS } from "@/lib/constants";
+import { PLATFORM_TOKEN_ABI, CONTRACTS } from "@/lib/constants";
 
 export function usePlatformToken() {
   const { address } = useAccount();
 
   const {
     data: balance,
+    isError,
+    isLoading,
     refetch,
-    isFetching,
   } = useReadContract({
     abi: PLATFORM_TOKEN_ABI,
-    address: PLATFORM_TOKEN_ADDRESS,
+    address: CONTRACTS.PLT as `0x${string}`, // ✅ Fixed with type assertion
     functionName: "balanceOf",
     args: address ? [address] : undefined,
   });
 
-  useEffect(() => {
-    if (address) refetch();
-  }, [address, refetch]);
-
-  return { balance, refetch, isFetching };
+  return {
+    balance,
+    isError,
+    isLoading,
+    refetch,
+  };
 }
