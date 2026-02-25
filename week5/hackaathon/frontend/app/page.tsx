@@ -1,10 +1,19 @@
 "use client";
 import { useState } from "react";
-import { useGetCarsQuery, useCreateBidMutation } from "../features/api/apiSlice";
+import {
+  useGetCarsQuery,
+  useCreateBidMutation,
+} from "../features/api/apiSlice";
 import CarCard from "../components/CarCard";
+import CarCardSkeleton from "../components/Skeleton";
 
 export default function LandingPage() {
-  const [filters, setFilters] = useState({ year: "", model: "", price: "", company: "" });
+  const [filters, setFilters] = useState({
+    year: "",
+    model: "",
+    price: "",
+    company: "",
+  });
   const liveFilters = { ...filters, status: "live" };
 
   const { data: cars = [], isLoading, error } = useGetCarsQuery(liveFilters);
@@ -62,7 +71,9 @@ export default function LandingPage() {
           />
           <select
             value={filters.company}
-            onChange={(e) => setFilters({ ...filters, company: e.target.value })}
+            onChange={(e) =>
+              setFilters({ ...filters, company: e.target.value })
+            }
             className="border p-2 rounded flex-1 min-w-[120px]"
           >
             <option value="">Company</option>
@@ -76,14 +87,22 @@ export default function LandingPage() {
 
       {/* Live Auction Section */}
       <section className="p-8 bg-blue-900 mt-10">
-        <h2 className="text-3xl font-bold my-4 py-10 text-white">Live Auction</h2>
+        <h2 className="text-3xl font-bold my-4 py-10 text-white">
+          Live Auction
+        </h2>
 
         {error && (
-          <p className="text-red-500 mb-2">Failed to fetch cars. Please login.</p>
+          <p className="text-red-500 mb-2">
+            Failed to fetch cars.
+          </p>
         )}
 
         {isLoading ? (
-          <p>Loading cars...</p>
+          <div className="flex flex-wrap gap-6">
+            {[...Array(6)].map((_, index) => (
+              <CarCardSkeleton key={index} />
+            ))}
+          </div>
         ) : cars.length === 0 ? (
           <p>No live cars found matching your filters.</p>
         ) : (

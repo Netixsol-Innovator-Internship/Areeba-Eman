@@ -1,17 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import {
   useCreateBidMutation,
   useGetCarByIdQuery,
   useGetBidsQuery,
-} from "../../features/api/apiSlice";
-import TimeLeft from "../../components/TimeLeft";
-import type { Car, Bid } from "../../features/api/apiSlice";
+} from "../../../features/api/apiSlice";
+import TimeLeft from "../../../components/TimeLeft";
+import type { Car, Bid } from "../../../features/api/apiSlice";
+import { useParams } from "next/navigation";
 
 export default function CreateBidsPage() {
-  const searchParams = useSearchParams();
-  const carId = searchParams.get("id");
+  const params = useParams();
+  const carId = params.id as string;
 
   const {
     data: car,
@@ -75,7 +75,7 @@ export default function CreateBidsPage() {
           <img
             src={
               car.photos?.[0]
-                ? `http://localhost:4000${car.photos[0]}`
+                ? process.env.NEXT_PUBLIC_API_URL + car.photos[0]
                 : "/default-car.jpg"
             }
             alt={car.model}
@@ -88,7 +88,7 @@ export default function CreateBidsPage() {
           {car.photos?.slice(1).map((photo: string, i: number) => (
             <img
               key={i}
-              src={`http://localhost:4000${photo}`}
+              src={process.env.NEXT_PUBLIC_API_URL + photo}
               alt={`car-${i}`}
               className="w-full h-40 object-cover rounded"
             />

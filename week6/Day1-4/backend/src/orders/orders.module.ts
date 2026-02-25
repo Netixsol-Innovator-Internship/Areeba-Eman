@@ -8,8 +8,8 @@ import { ProductsModule } from '../products/products.module';
 import { SocketGateway } from '../socket/socket.gateway';
 import { NotificationsModule } from '../notifications/notifications.module';
 import { Stripe } from 'stripe';
-import { UsersModule } from 'src/users/users.module';
-import { StripeModule } from 'src/stripe/stripe.module';
+import { UsersModule } from '../users/users.module';
+import { StripeModule } from '../stripe/stripe.module';
 
 @Module({
   imports: [

@@ -9,10 +9,10 @@ export default function ReviewCard({ review }) {
   const name = user.fullName || user.name || 'Anonymous'
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-[260px] h-[260px] flex flex-col justify-between">
+    <div className="bg-white rounded-lg shadow-md p-4 w-[260px] h-[200px] flex flex-col justify-between">
   <div>
     <div className="flex items-center justify-between mb-2">
-      <div className="text-sm font-medium truncate">{name}</div>
+      <div className="text-sm font-medium truncate mr-3">{name}</div>
       <div className="flex items-center text-yellow-400">
         {Array.from({ length: 5 }).map((_, i) => (
           <FaStar

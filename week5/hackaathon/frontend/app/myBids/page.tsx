@@ -83,7 +83,7 @@ function CarBidCard({ bid }: { bid: any }) {
   return (
     <div className="bg-white rounded shadow overflow-hidden flex flex-col">
       <img
-        src={car.photos?.length ? `http://localhost:4000${car.photos[0]}` : "/default-car.jpg"}
+        src={car.photos?.length ? process.env.NEXT_PUBLIC_API_URL + car.photos[0] : "/default-car.jpg"}
         alt={car.model}
         className="h-48 w-full object-cover"
       />

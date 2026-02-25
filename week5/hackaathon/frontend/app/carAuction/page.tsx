@@ -1,51 +1,59 @@
-"use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { FaStar } from "react-icons/fa"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { FaStar } from "react-icons/fa";
+import Link from "next/link";
 import {
   useGetCarsQuery,
   useSubmitBidMutation,
   useGetProfileQuery,
   useAddToWishlistMutation,
   useRemoveFromWishlistMutation,
-} from "../../features/api/apiSlice"
-import TimeLeft from "../../components/TimeLeft"
+} from "../../features/api/apiSlice";
+import TimeLeft from "../../components/TimeLeft";
+import CarCardSkeleton from "../../components/Skeleton";
 
 export default function CarAuctionPage() {
-  const [filters, setFilters] = useState({ year: "", model: "", price: "", company: "" })
-  const router = useRouter()
-  const { data: cars = [], isLoading, error } = useGetCarsQuery(filters)
+  const [filters, setFilters] = useState({
+    year: "",
+    model: "",
+    price: "",
+    company: "",
+  });
+  const router = useRouter();
+  const { data: cars = [], isLoading, error } = useGetCarsQuery(filters);
 
   // Wishlist hooks
-  const { data: profile, refetch: refetchProfile } = useGetProfileQuery()
-  const [addWishlist] = useAddToWishlistMutation()
-  const [removeWishlist] = useRemoveFromWishlistMutation()
+  const { data: profile, refetch: refetchProfile } = useGetProfileQuery();
+  const [addWishlist] = useAddToWishlistMutation();
+  const [removeWishlist] = useRemoveFromWishlistMutation();
 
-  const [submitBid] = useSubmitBidMutation()
+  const [submitBid] = useSubmitBidMutation();
 
   const goToCreateBid = (carId: string) => {
-  router.push(`/createBids?id=${carId}`);
-};
+    router.push(`/createBids?${carId}`);
+  };
 
   // Check if car is in wishlist
   const isCarWishlisted = (carId: string) => {
-    return profile?.wishlist?.some((item: any) => String(item._id) === String(carId))
-  }
+    return profile?.wishlist?.some(
+      (item: any) => String(item._id) === String(carId),
+    );
+  };
 
   // Toggle wishlist
   const toggleWishlist = async (carId: string) => {
     try {
       if (isCarWishlisted(carId)) {
-        await removeWishlist(carId).unwrap()
+        await removeWishlist(carId).unwrap();
       } else {
-        await addWishlist(carId).unwrap()
+        await addWishlist(carId).unwrap();
       }
-      await refetchProfile() // keep profile in sync
+      await refetchProfile(); // keep profile in sync
     } catch (err) {
-      console.error("Failed to toggle wishlist:", err)
+      console.error("Failed to toggle wishlist:", err);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -65,7 +73,11 @@ export default function CarAuctionPage() {
 
           {error && <p className="text-red-500 mb-2">Failed to fetch cars.</p>}
           {isLoading ? (
-            <p>Loading cars...</p>
+            <div className="flex flex-col gap-6">
+              {[...Array(6)].map((_, index) => (
+                <CarCardSkeleton key={index} />
+              ))}
+            </div>
           ) : cars.length === 0 ? (
             <p>No cars found.</p>
           ) : (
@@ -81,7 +93,9 @@ export default function CarAuctionPage() {
                 >
                   <FaStar
                     className={`transition-colors ${
-                      isCarWishlisted(car.id) ? "text-yellow-400" : "text-gray-400"
+                      isCarWishlisted(car.id)
+                        ? "text-yellow-400"
+                        : "text-gray-400"
                     } hover:text-yellow-400`}
                   />
                 </div>
@@ -100,7 +114,9 @@ export default function CarAuctionPage() {
                   <h3 className="font-bold text-xl">{car.model}</h3>
                   <p className="text-gray-600">Make: {car.company}</p>
                   <p className="text-gray-600">Year: {car.year}</p>
-                  <p className="text-gray-600">Mileage: {car.mileage || "N/A"}</p>
+                  <p className="text-gray-600">
+                    Mileage: {car.mileage || "N/A"}
+                  </p>
                   <p className="text-gray-600">Paint: {car.paint}</p>
                 </div>
 
@@ -109,7 +125,9 @@ export default function CarAuctionPage() {
                   <p className="text-gray-700">
                     Time Left: <TimeLeft createdAt={car.createdAt} />
                   </p>
-                  <p className="font-bold text-lg">Current Bid: ${car.currentBid}</p>
+                  <p className="font-bold text-lg">
+                    Current Bid: ${car.currentBid}
+                  </p>
                   <button
                     onClick={() => goToCreateBid(car.id)}
                     className={`mt-2 px-8 py-2 rounded ${
@@ -141,19 +159,25 @@ export default function CarAuctionPage() {
               type="text"
               placeholder="Model"
               value={filters.model}
-              onChange={(e) => setFilters({ ...filters, model: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, model: e.target.value })
+              }
               className="border p-2 rounded"
             />
             <input
               type="text"
               placeholder="Max Price"
               value={filters.price}
-              onChange={(e) => setFilters({ ...filters, price: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, price: e.target.value })
+              }
               className="border p-2 rounded"
             />
             <select
               value={filters.company}
-              onChange={(e) => setFilters({ ...filters, company: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, company: e.target.value })
+              }
               className="border p-2 rounded"
             >
               <option value="">Company</option>
@@ -172,5 +196,5 @@ export default function CarAuctionPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

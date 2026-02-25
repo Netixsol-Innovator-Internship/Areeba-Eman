@@ -22,11 +22,11 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
 @Controller('cars')
 export class CarsController {
   constructor(private cars: CarsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @UseInterceptors(
     FilesInterceptor('photos', 6, {
@@ -39,6 +39,8 @@ export class CarsController {
       }),
     }),
   )
+  
+  @UseGuards(JwtAuthGuard)
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: 'Create car with up to 6 photos',
@@ -62,12 +64,13 @@ export class CarsController {
   findOne(@Param('id') id: string) {
     return this.cars.findById(id);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() dto: UpdateCarDto) {
     return this.cars.update(id, dto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.cars.remove(id);

@@ -10,7 +10,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/bidding-app'),
+    MongooseModule.forRoot(process.env.MONGO_URI!),
     AuthModule,
     UsersModule,
     CarsModule,

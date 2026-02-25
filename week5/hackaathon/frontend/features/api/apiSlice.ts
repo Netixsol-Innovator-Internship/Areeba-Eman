@@ -64,7 +64,7 @@ export interface Bid {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000",
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
     prepareHeaders: (headers) => {
       if (typeof window !== "undefined") {
         const token = localStorage.getItem("token");
@@ -91,7 +91,7 @@ export const api = createApi({
           company: car.make,
           currentBid: car.maxBid,
           image: car.photos?.length
-            ? `http://localhost:4000${car.photos[0]}`
+            ? process.env.NEXT_PUBLIC_API_URL + car.photos[0]
             : "/default-car.jpg",
           year: car.year,
           status: car.status,
@@ -111,7 +111,7 @@ export const api = createApi({
         currentBid: car.maxBid,
         maxBid: car.maxBid,
         image: car.photos?.length
-          ? `http://localhost:4000${car.photos[0]}`
+          ? process.env.NEXT_PUBLIC_API_URL + car.photos[0]
           : "/default-car.jpg",
         photos: car.photos,
         paint: car.paint,

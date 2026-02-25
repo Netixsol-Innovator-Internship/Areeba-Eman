@@ -69,7 +69,7 @@ export default function CreateCarPage() {
       });
       photos.forEach((file) => fd.append("photos", file));
 
-      const res = await fetch("http://localhost:4000/cars", {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/cars", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // adjust if needed
